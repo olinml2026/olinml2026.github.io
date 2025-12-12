@@ -48,6 +48,45 @@ We'll have an optional course-wide Slack workspace for asking questions. Of cour
 
 In class, we explored aspects of the machine learning lifecycle. Please continue to read through [this short article to continue to build your sense of the big picture](https://www.datacamp.com/blog/machine-learning-lifecycle-explained) (about 10 minutes).
 
+# Types of ML and general ML workflow
+
+We will talk about some types of machine learning and the general machine learning workflow.
+
+There are a few different ways to categorize machine learning problems, but most texts will reference the three main types of machine learning problems.
+
+## Supervised Learning
+
+In supervised learning, you are given a training set of data points and corresponding desired outputs.  Let's use $$\mathbf{x}_i$$ to denote the $$i$$th training input and $y_i$ to denote the $i$th training output.  The training set is composed of $$\mathbf{X}_{train} = \mathbf{x}_1, \mathbf{x}_2, \ldots, \mathbf{x}_N$$ and $$\mathbf{y}_{train} = y_1, y_2, \ldots, y_N$$, where $y_i$ is the label for the $i^{th}$ individual example (sometimes called a datapoint, training instance, or sample) and $$\mathbf{x}_i$$ contains the features (input information) for that sample.
+
+In the classic examples, $\mathbf{x}_i$ will be a vector of features and $y_i$ will be a scalar label. We'll talk about when this type of problem shows up and how the problem changes depending on the values that $y_i$ can take on.
+
+<p>A supervised machine learning algorithm can take as input $\mathbf{X}_{train}$ and produce a model capable of taking in an unseen datapoint, $\mathbf{x}_{test}$, and estimating the corresponding label, $y_{test}$.  In order to evaluate the quality of these predictions, you'll want to have a set of test points, $\mathbf{X}_{test}$ to compute a relevant performance metrix (as we did in assignment 1).</p>
+
+<div class="mermaid">
+graph TB;
+    id1[X Train and y Train];
+    id2[Supervised Learning Algorithm];
+    id3[Predictive Model];
+    id4[X Test and y Test]
+    id5[Model Metrics]
+    id1 --> id2;
+    id2 --> id3;
+    id4 --> id3;
+    id3 --> id5;
+</div>
+
+In addition to having a test set, you may also use a validation set to help tune your machine learning model.  We'll talk a bit about how this would work.
+
+## Unsupervised Learning
+
+<p>In unsupervised learning, you are given set a of data points (there are no corresponding outputs).  The training set is $\mathbf{X}_{train} = \mathbf{x}_1, \mathbf{x}_2 \ldots, \mathbf{x}_N$.</p>
+
+In an unsupervised learning problem, our goal is to understand something about the structure of these training points.  For example, perhaps the data lies in some low dimensional subspace (sounding a little familiar?).  Examples of problems that fit under unsupervised learning are clustering, sequence learning (e.g., as is done in language models), and dimensionality reduction.
+
+## Reinforcement Learning
+
+Reinforcement learning involves an agent learning to interact with an environment in an optimal fashion.  We won't define notation for reinforcement learning as we aren't planning to cover it in this class (it could be a great final project).  Examples of reinforcement learning problems would be an agent learning to play a game (e.g., Chess), a robot learning to interact with its environment, or even determining treatment regimes in a clinical setting.  The reinforcement learning book has [a bunch of sample applications](https://rl-book.com/applications/) if you are curious.
+
 # Six Big Ideas in Machine Learning
 
 **Note: We suggest you timebox this section to a maximum of 60 minutes

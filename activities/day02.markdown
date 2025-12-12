@@ -1,5 +1,5 @@
 ---
-title: "Day 2: Types of Machine Learning Problems and Exploring Image Transforms"
+title: "Day 2: Community-Centered Design for Machine Learning"
 toc_sticky: true 
 toc_h_max: 1
 layout: problemset
@@ -9,10 +9,7 @@ published: true
 {% capture agenda %}
 * 10:20-10:25am: Everyone come hang out in MAC128, we'll talk about the plan and answer any logistics questions.
 * 10:25-10:45am: Debrief at tables about the last assignment.
-* 10:45-10:50am: Split into two rooms, depending on desire for intro to types of ML
-* 10:50-11:15am: (Room 128, else skip down) Discuss types of ML and general workflow
-* 11:15-11:40am: Explore types of image transforms
-* 11:40-12:00pm: Start assignment 
+* 10:45-12pm: Presentation on Community-centered design for ML
 {% endcapture %}
 
 {% include agenda.html content=agenda %}
@@ -28,48 +25,6 @@ published: true
     Consider the confusion matrix, precision, and recall. How do you interpret this?
     What does it mean for life as french toast or as red velvet cake?
 
+# Community-Centered Design for ML
 
-# Types of ML and general ML workflow
-
-We will talk about some types of machine learning and the general machine learning workflow.
-
-There are a few different ways to categorize machine learning problems, but most texts will reference the three main types of machine learning problems.
-
-## Supervised Learning
-
-<p>In supervised learning, you are given a training set of data points and corresponding desired outputs.  Let's use $\mathbf{x}_i$ to denote the $i$th training input and $y_i$ to denote the $i$th training output.  The training set is composed of $\mathbf{X}_{train} = \mathbf{x}_1, \mathbf{x}_2, \ldots, \mathbf{x}_N $  and  $\mathbf{y}_{train} = y_1, y_2, \ldots, y_N $, where $y_i$ is the label for the $i^{th}$ individual example (sometimes called a datapoint, training instance, or sample) and $\mathbf{x}_i$ contains the features (input information) for that sample. </p> 
-
-In the classic examples, $\mathbf{x}_i$ will be a vector of features and $y_i$ will be a scalar label. We'll talk about when this type of problem shows up and how the problem changes depending on the values that $y_i$ can take on.
-
-<p>A supervised machine learning algorithm can take as input $\mathbf{X}_{train}$ and produce a model capable of taking in an unseen datapoint, $\mathbf{x}_{test}$, and estimating the corresponding label, $y_{test}$.  In order to evaluate the quality of these predictions, you'll want to have a set of test points, $\mathbf{X}_{test}$ to compute a relevant performance metrix (as we did in assignment 1).</p>
-
-<div class="mermaid">
-graph TB;
-    id1[X Train and y Train];
-    id2[Supervised Learning Algorithm];
-    id3[Predictive Model];
-    id4[X Test and y Test]
-    id5[Model Metrics]
-    id1 --> id2;
-    id2 --> id3;
-    id4 --> id3;
-    id3 --> id5;
-</div>
-
-In addition to having a test set, you may also use a validation set to help tune your machine learning model.  We'll talk a bit about how this would work.
-
-## Unsupervised Learning
-
-<p>In unsupervised learning, you are given set a of data points (there are no corresponding outputs).  The training set is $\mathbf{X}_{train} = \mathbf{x}_1, \mathbf{x}_2 \ldots, \mathbf{x}_N$.</p>
-
-In an unsupervised learning problem, our goal is to understand something about the structure of these training points.  For example, perhaps the data lies in some low dimensional subspace (sounding a little familiar?).  Examples of problems that fit under unsupervised learning are clustering, sequence learning (e.g., as is done in language models), and dimensionality reduction.
-
-## Reinforcement Learning
-
-Reinforcement learning involves an agent learning to interact with an environment in an optimal fashion.  We won't define notation for reinforcement learning as we aren't planning to cover it in this class (it could be a great final project).  Examples of reinforcement learning problems would be an agent learning to play a game (e.g., Chess), a robot learning to interact with its environment, or even determining treatment regimes in a clinical setting.  The reinforcement learning book has [a bunch of sample applications](https://rl-book.com/applications/) if you are curious.
-
-# Exploring Image Transforms
-
-In the next assignment, you'll be evaluating some existing models. As part of this, you may apply different transformation to the images that you'll use to evaluate the model. These same types of transforms can also be used to augment an initial dataset, often making models trained on it more robust. In class, we'll show a few transforms and how to find documentation for others.
-
-Let's look at some simple examples in this [Google Colab notebook](https://colab.research.google.com/drive/1lBUjxz5hJleKTt_zTrFwSyER0Er3wA8-?usp=sharing).  Once we've gone over these, we'll jump to [Assignment 2](../assignments/assignment02/assignment02.markdown) and show these same concepts for the dessert classification problem.
+* Slide deck from summer + something more active to cap it off (e.g., critiquing something we did or extending it in some way)
