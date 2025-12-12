@@ -31,7 +31,17 @@ questions about the syllabus, please post them on the Slack so we can
 clarify (and practice using Slack as a class). Or if it is a personal
 question, you can always email us or catch us after class.
 
+# Fill Out Some Surveys
+
+{% capture content %}
+Before we get into the semester, we'd like to understand how you all think about
+topics such as X, Y, an Z.  Please fill out the surveys (it should take about 20 minutes).
+Note: that these surveys can be used as part of an [education research project](../../education_research/education_research) we are doing this semester that you have the option to participate in.
+{% endcapture %}
+{% include problem.html problem=content %}
+
 # Join the Slack if you want
+
 We'll have an optional course-wide Slack workspace for asking questions. Of course you can always go to office hours and send emails, but Slack can make it easier to create a thread about a specific question. The link to join Slack is found on the syllabus. Good thing you just read the syllabus!
 
 # The Machine Learning Lifecycle

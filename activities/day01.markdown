@@ -9,7 +9,7 @@ published: true
 {% capture agenda %}
 * 10:20-10:22am: Everyone come hang out in MAC128.
 * 10:22-10:30am: We'll provide brief orienting remarks about the course!
-* 10:30-10:35am: Introduction to the our main activity (see below).
+* 10:30-10:35am: Introduction to our main activity (see below).
 * 10:35-11:15am: Mapping the Machine Learning Ecosystem
 * 11:15-11:40am: Report out
 * 11:40-12:00pm: Orientation to first assignment and basic course logistics for assignment submissions.  We'll show you the Canvas page, grading options, how to find office hours, etc.
@@ -111,3 +111,11 @@ Here are some prompts to consider to help get you thinking:
 ## Step 4: Share Your Map
 
 Make sure you take a high-resolution picture of your map and add it to [this shared Slide deck](https://docs.google.com/presentation/d/1nzF3k-ps9xWlojtOrpTjxBW6dR3eAT3gPl61rK9_QF0/edit?usp=sharing).  We'll give each team a chance to discuss an interesting feature of their map (there won't be time to present the map in its entirety, so you'll have to choose 1-2 things to share).
+
+# Orientation to Assignment 1, Course Logistics, and Educational Research Opportunity
+
+* Where to find first assignment
+* Canvas (where to find stuff)
+
+Educational Research Opportunity
+* 11:40-12:00pm: Orientation to first assignment and basic course logistics for assignment submissions.  We'll show you the Canvas page, grading options, how to find office hours, etc.
