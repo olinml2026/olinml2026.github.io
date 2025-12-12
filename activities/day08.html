@@ -78,7 +78,7 @@ customElements.define("confirm-link", ConfirmLink, { extends: "a" });
 
 </script>
 
-<!-- begin _includes/seo.html --><title>Day 8: From Micrograd to Pytorch - Machine Learning Spring 2026 @ Olin College</title>
+<!-- begin _includes/seo.html --><title>Day 8: COMPAS discussion - Machine Learning Spring 2026 @ Olin College</title>
 <meta name="description" content="Website">
 
 
@@ -86,7 +86,7 @@ customElements.define("confirm-link", ConfirmLink, { extends: "a" });
 <meta property="og:type" content="website">
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Machine Learning Spring 2026 @ Olin College">
-<meta property="og:title" content="Day 8: From Micrograd to Pytorch">
+<meta property="og:title" content="Day 8: COMPAS discussion">
 <meta property="og:url" content="/activities/day08.html">
 
 
@@ -384,7 +384,7 @@ $
   
 
   <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
-    <meta itemprop="headline" content="Day 8: From Micrograd to Pytorch">
+    <meta itemprop="headline" content="Day 8: COMPAS discussion">
     
     
     
@@ -392,7 +392,7 @@ $
     <div class="page__inner-wrap">
       
         <header>
-          <h1 id="page-title" class="page__title" itemprop="headline">Day 8: From Micrograd to Pytorch
+          <h1 id="page-title" class="page__title" itemprop="headline">Day 8: COMPAS discussion
 </h1>
           
         </header>
@@ -406,9 +406,10 @@ $
 	      
                 <ul class="toc__menu">
   <li><a href="#">Agenda</a></li>
-  <li><a href="#instructor-led-debrief">Instructor-led Debrief</a></li>
-  <li><a href="#from-micrograd-to-pytorch">From Micrograd to Pytorch</a></li>
-  <li><a href="#more-resources-on-pytorch">More Resources on Pytorch</a></li>
+  <li><a href="#gather-information-based-on-external-sources">Gather information based on external sources</a></li>
+  <li><a href="#large-group-debrief-and-introduction-of-the-impossibility-theorem">Large group debrief and introduction of the impossibility theorem</a></li>
+  <li><a href="#small-group-exploration-and-sense-making-of-fairness-metrics">Small group exploration and sense-making of fairness metrics</a></li>
+  <li><a href="#large-group-discussion-of-the-big-picture">Large group discussion of the big picture</a></li>
 </ul>
 	      	
             </nav>
@@ -436,37 +437,39 @@ $
 	   
 <ul>
   <li>10:20-10:25am: Everyone come hang out in MAC128, we’ll talk about the plan and answer any logistics questions.</li>
-  <li>10:25-10:45am: Instructor-led debrief of the homework… what just happened?!?</li>
-  <li>10:45-11:05am: Cross-entropy loss</li>
-  <li>11:05-12:00pm: From micrograd to Pytorch</li>
+  <li>10:25-10:45am: Gathering information based on sources</li>
+  <li>10:45-11:00am: Large group debrief and introduction of impossibility theorem</li>
+  <li>11:00-11:20am: Small group exploration and sense-making of fairness metrics</li>
+  <li>11:20-12:00pm: Large group discussion of the big picture</li>
 </ul>
 
 	</div>
 </div>
 
-<h1 id="instructor-led-debrief">Instructor-led Debrief</h1>
+<h1 id="gather-information-based-on-external-sources">Gather information based on external sources</h1>
 
-<p>We’ll debrief on what happened in the previous assignment.  The focus will be on connecting mathematical concepts to Python.  We hope that by the end of this everything is coming into focus for you (it may take a little longer to fully click).</p>
+<p>On the whiteboard, please gather pieces of information that we learned from the readings or other sources. Take turns having each person share one thing that they wrote down for Exercise 1 in the last assignment.</p>
 
-<h1 id="from-micrograd-to-pytorch">From Micrograd to Pytorch</h1>
+<h1 id="large-group-debrief-and-introduction-of-the-impossibility-theorem">Large group debrief and introduction of the impossibility theorem</h1>
 
-<p>While it may be tempting to ride our micrograd framework for the rest of the semester, you can probably tell that there are some good reasons to move to something <em>a little</em> more powerful.  We’re going to be using the <code class="language-plaintext highlighter-rouge">pytorch</code> framework for the remainder of the scaffolded work in this course (it’s possible you might venture into a different framework for the final project).  Machine learning frameworks like <code class="language-plaintext highlighter-rouge">pytorch</code> provide some really important capabilities for us.</p>
+<p>Here are some <a href="https://docs.google.com/presentation/d/1I1rMkqJYiOuaYAmzKzj3oshUxqdPa_wiOlqtnt4qbLc/edit?usp=sharing">summary slides</a>, which also include refernce to the study Sam mentioned with humans attempting to predict re-arrest.</p>
 
+<p>We’ll summarize some key takeaways and show an example from an extreme version to help us wrap our heads around different models of fairness.
+<a href="https://medium.com/@alex.liu.roc/understanding-the-impossibility-of-fairness-199bba6c9072">https://medium.com/@alex.liu.roc/understanding-the-impossibility-of-fairness-199bba6c9072</a></p>
+
+<h1 id="small-group-exploration-and-sense-making-of-fairness-metrics">Small group exploration and sense-making of fairness metrics</h1>
+
+<p>The field of fairness and applications to human or algorithmic decision making is vast. Here are a few resources to guide your exploration of fairness metrics:</p>
 <ul>
-  <li>An autograd engine</li>
-  <li>Built-in optimizers (that do, for example, gradient descent)</li>
-  <li>Optimized code that can efficiently handle large models (e.g., by running on a GPU or across several GPUs)</li>
-  <li>Specific building blocks for machine learning algorithms that are used by current state of the art algorithms.</li>
-  <li>The ability to be extended easily when the library doesn’t provide the necessary functionality.</li>
+  <li><a href="https://aif360.res.ibm.com/data">IBM’s exploration of COMPAS and fairness metrics</a></li>
+  <li><a href="https://www.datasciencepublicpolicy.org/our-work/tools-guides/aequitas/">One group that made a tool for fairness and has a flowchart</a></li>
+  <li><a href="https://research.google.com/bigpicture/attacking-discrimination-in-ml/">Orange and blue dot example of fairness from the last assignment</a></li>
+  <li><a href="https://www.andrew.cmu.edu/user/achoulde/files/disparate_impact.pdf">Fair prediction with disparate impact - math paper on COMPAS</a></li>
 </ul>
 
-<p>To help introduce <code class="language-plaintext highlighter-rouge">pytorch</code>, we’re going to jump right into a looking at some <code class="language-plaintext highlighter-rouge">pytorch</code> code.  This is a great chance to practice reading code and looking up documentation.  Your goal should be to understand the given code as well as possible.  If there are pieces that you can’t figure out, please ask us or make a note of your confusion so you can revisit it later.  You’ll also get a head start on the assignment (so that is a bonus!).</p>
+<h1 id="large-group-discussion-of-the-big-picture">Large group discussion of the big picture</h1>
 
-<p>The code in question is in the <a href="https://colab.research.google.com/github/olinml2024/notebooks/blob/main/ML24_Assignment08_part_2.ipynb">assignment 8, part 2 Colab notebook</a>. The first two code cells load a dataset of handwritten digits and visualize them.  The third code cell is where the action is, we’d like you to go over that one, read documentation, ask ChatGPT, ask an instructor, etc., so that you leave here today with a solid understanding of a training / testing loop in <code class="language-plaintext highlighter-rouge">pytorch</code>.</p>
-
-<h1 id="more-resources-on-pytorch">More Resources on Pytorch</h1>
-
-<p>We’re going to be introducing Pytorch functionality on an as needed basis, but if you’d like to get some more practice with the basics, we recommend checking out some of <a href="https://pytorch.org/tutorials/">the Pytorch tutorials</a>.  Start with the <a href="https://pytorch.org/tutorials/beginner/basics/tensorqs_tutorial.html">basics of using Tensors</a>.</p>
+<p>We will close our computers for this part and have a large group guided discussion.</p>
 
         
       </section>
