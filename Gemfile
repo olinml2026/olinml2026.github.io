@@ -1,0 +1,24 @@
+# frozen_string_literal: true
+
+source "https://rubygems.org"
+
+gem "minimal-mistakes-jekyll", path: "_themes/minimal-mistakes"
+
+gem "github-pages", group: :jekyll_plugins
+
+gem "tzinfo-data"
+gem "wdm"
+
+# If you have any plugins, put them here!
+group :jekyll_plugins do
+  gem "jekyll-paginate"
+  gem "jekyll-sitemap"
+  gem "jekyll-gist"
+  gem "jekyll-feed"
+  gem "jemoji"
+  gem "jekyll-include-cache"
+  gem "jekyll-algolia"
+  gem "rouge"
+end
+
+gem "webrick"

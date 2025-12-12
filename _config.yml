@@ -1,0 +1,38 @@
+theme: minimal-mistakes-jekyll
+logo: "https://qeacourse.github.io/RoboNinjaWarrior/website_graphics/olinlogo.png"
+title: "Machine Learning Spring 2026 @ Olin College"
+repository: olinml2026/olinml2026.github.io
+highlighter: rouge
+
+plugins:
+  - jekyll-paginate
+  - jekyll-spaceship
+  - jekyll-sitemap
+  - jekyll-gist
+  - jekyll-feed
+  - jemoji
+  - jekyll-include-cache
+
+jekyll-spaceship:
+  mathjax-processor:
+    src:
+      - https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-mml-chtml.js
+  mermaid-processor:
+    mode: default  # mode value 'pre-fetch' for fetching image at building stage
+    css:
+      class: mermaid
+    syntax:
+      code: 'mermaid!'
+      custom: ['@startmermaid', '@endmermaid']
+    config:
+      theme: default
+    src: https://mermaid.ink/svg/
+
+defaults:
+  # _pages
+  - scope:
+      path: ""
+      type: pages
+    values:
+      layout: single
+      toc: true

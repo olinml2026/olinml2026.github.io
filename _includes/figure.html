@@ -1,0 +1,10 @@
+{% assign figure_number = figure_number | plus: 1 %}
+
+<figure id="figure{{ figure_number }}">
+    <div style="text-align: center;">
+        <img src="{{ include.img }}" alt="{{ include.alt }}" style="max-width: {{ include.width | default: "50%" }}"/>
+    </div>
+    <figcaption style="font-size: large">
+        Figure {{ figure_number }}: {{ include.caption | markdownify }}
+    </figcaption>
+</figure>

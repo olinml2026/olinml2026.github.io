@@ -1,0 +1,130 @@
+<link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" rel="stylesheet">
+
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', function() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const showSolutions = urlParams.get('showSolutions');
+    const showAllSolutions = urlParams.get('showAllSolutions');
+    const divs = document.querySelectorAll('button.togglebutton');
+
+    if (showSolutions == 'true') {
+        // Loop through the selected divs and manipulate them
+        divs.forEach(div => {
+            div.removeAttribute('hidden');
+        });
+    }
+
+    const solutionDivs = document.querySelectorAll('[id^=solution]');
+    const subpartSolutionDivs = document.querySelectorAll('[id^=subpartsolution]');
+
+    if (showAllSolutions == 'true') {
+        solutionDivs.forEach(div => {
+            console.log('test')
+            div.style.display = 'block';
+        });
+
+        subpartSolutionDivs.forEach(div => {
+            console.log('test')
+            div.style.display = 'block';
+        });
+    }
+});
+</script>
+
+<script type="text/javascript">
+function HideShowElement(divID) {
+    const x = document.getElementById(divID);
+    if (x.style.display === "none") {
+        x.style.display = "block";
+    } else {
+        x.style.display = "none";
+    }
+}
+</script>
+<style>
+:root {
+    --box-bg-color: #fff; /* Default background color */
+}
+
+.homework-box {
+    background-color: var(--box-bg-color);
+    border: 2px solid #ccc;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    width: 300px;
+}
+
+.homework-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    position: relative;
+}
+
+.homework-icon {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+}
+
+/* Handle missing or empty src attribute */
+.homework-icon[src=""],
+.homework-icon:not([src]) {
+    content: url('https://upload.wikimedia.org/wikipedia/commons/a/ab/Games_for_Learning_%2827470%29_-_The_Noun_Project.svg');
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+}
+
+.homework-title {
+    margin: 0;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.homework-content {
+    font-size: 16px;
+    color: #333;
+}
+</style>
+
+<style>
+.solution {
+    display: none; /* Hide solutions by default */
+    background-color: #f9f9f9;
+    padding: 10px;
+    border-left: 4px solid #007bff;
+    margin-top: 10px;
+}
+
+.toggle-button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    display: inline-block;
+}
+
+.toggle-button.hide-solution {
+    background-color: #dc3545; /* Red background for hide button */
+}
+
+img.mermaid {
+     max-width:500px;
+     text-align: center;
+}
+
+</style>
+
+<div style="display:none;">
+$
+\newcommand{\mlvec}[1]{\mathbf{#1}}
+\newcommand{\mlmat}[1]{\mathbf{#1}}
+\DeclareMathOperator*{\argmax}{arg\,max\,}
+\DeclareMathOperator*{\argmin}{arg\,min\,}
+$
+</div>
