@@ -1,0 +1,646 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.17.2 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<script>
+class AnchorNoProxy extends HTMLElement {
+  constructor() {
+    super();
+    this.attachShadow({ mode: "open" });
+    this._$a = null;
+  }
+  connectedCallback() {
+    const href = this.getAttribute("href") || "#";
+    if (this.dataset.hasOwnProperty('canvas')) {
+        const canvasURL = this.dataset.canvas;
+        this.shadowRoot.innerHTML = `<style>a:hover, a:active { outline: 0; }\na { color: #5197ad; }\na:visited { color: #5197ad; }\na:hover { color: #266477; outline: 0; }</style><a href="${href}" data-canvas="${canvasURL}"><slot></slot></a>`;
+    } else {
+        this.shadowRoot.innerHTML = `<style>a:hover, a:active { outline: 0; }\na { color: #5197ad; }\na:visited { color: #5197ad; }\na:hover { color: #266477; outline: 0; }</style><a href="${href}"><slot></slot></a>`;
+    }
+    this._$a = this.shadowRoot.querySelector("a");
+    this._$a.addEventListener("click", e => {
+      var url = this.getAttribute('href');
+      e.preventDefault();
+      if (document.referrer.startsWith('https://lms.hypothes.is') && this.dataset.hasOwnProperty('canvas')) {
+        // get rid of proxy if it was added
+        var n = this.dataset.canvas.search('https://olin.instructure.com');
+        window.open(this.dataset.canvas.substring(n), '_blank');
+      } else {
+        window.open(url, '_blank');
+      }
+    });
+  }
+  static get observedAttributes() { return ["href"]; }
+  attributeChangedCallback(name, oldValue, newValue) {
+    if (oldValue !== newValue) {
+      if (this._$a === null) return;
+      this._$a.setAttribute("href", newValue);
+    }
+  }
+}
+
+customElements.define("a-no-proxy", AnchorNoProxy);
+
+class NoProxy extends HTMLAnchorElement {
+  connectedCallback() {
+    this.addEventListener("click", e => {
+      e.preventDefault();
+      if (document.referrer.startsWith('https://lms.hypothes.is') && this.dataset.hasOwnProperty('canvas')) {
+        // get rid of proxy if it was added
+        var n = this.dataset.canvas.search('https://olin.instructure.com');
+      	window.open(this.dataset.canvas.substring(n), '_blank');
+      } else {
+      	window.open(this.href, '_blank');
+      }
+    });
+  }
+}
+
+customElements.define("no-proxy", NoProxy, { extends: "a" });
+
+class ConfirmLink extends HTMLAnchorElement {
+  connectedCallback() {
+    this.addEventListener("click", e => {
+      const result = confirm(`Are you sure you want to go to '${this.href}'?`);
+      if (!result) e.preventDefault();
+    });
+  }
+}
+
+customElements.define("confirm-link", ConfirmLink, { extends: "a" });
+
+</script>
+
+<!-- begin _includes/seo.html --><title>Quality Assessed Deliverable: Machine Learning with Images - Machine Learning Spring 2026 @ Olin College</title>
+<meta name="description" content="Website">
+
+
+
+<meta property="og:type" content="website">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Machine Learning Spring 2026 @ Olin College">
+<meta property="og:title" content="Quality Assessed Deliverable: Machine Learning with Images">
+<meta property="og:url" content="/assignments/assignment16/ImagesQAD.html">
+
+
+  <meta property="og:description" content="Website">
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="canonical" href="/assignments/assignment16/ImagesQAD.html">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": null,
+      "url": "/"
+    
+  }
+</script>
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Machine Learning Spring 2026 @ Olin College Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+<script src="https://cdn.jsdelivr.net/npm/mermaid@11.9.0/dist/mermaid.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.css" integrity="sha384-ZPe7yZ91iWxYumsBEOn7ieg8q/o+qh/hQpSaPow8T6BwALcXSCS6C6fSRPIAnTQs" crossorigin="anonymous">
+
+<!-- The loading of KaTeX is deferred to speed up page rendering -->
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.js" integrity="sha384-ljao5I1l+8KYFXG7LNEA7DyaFvuvSCmedUf6Y6JI7LJqiu8q5dEivP2nDdFH31V4" crossorigin="anonymous"></script>
+
+<!-- To automatically render math in text elements, include the auto-render extension: -->
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/contrib/auto-render.min.js" integrity="sha384-+XBljXPPiv+OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR" crossorigin="anonymous"
+        onload="renderMathInElement(document.body);"></script>
+<script>
+    // https://github.com/KaTeX/KaTeX/blob/main/docs/autorender.md
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+            // customised options
+            // • auto-render specific keys, e.g.:
+                delimiters: [
+                {left: '$$', right: '$$', display: true},
+                {left: '$', right: '$', display: false},
+                {left: "\begin{equation}", right: "\end{equation}", display: true},
+                {left: "\begin{align}", right: "\end{align}", display: true},
+            ],
+            // • rendering keys, e.g.:
+            throwOnError : false
+        });
+    });
+</script>
+
+
+<script type="text/javascript">
+function HideShowElement(divID) {
+    const x = document.getElementById(divID);
+    if (x.style.display === "none") {
+        x.style.display = "block";
+    } else {
+        x.style.display = "none";
+    }
+}
+</script>
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" rel="stylesheet">
+
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', function() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const showSolutions = urlParams.get('showSolutions');
+    const showAllSolutions = urlParams.get('showAllSolutions');
+    const divs = document.querySelectorAll('button.togglebutton');
+
+    if (showSolutions == 'true') {
+        // Loop through the selected divs and manipulate them
+        divs.forEach(div => {
+            div.removeAttribute('hidden');
+        });
+    }
+
+    const solutionDivs = document.querySelectorAll('[id^=solution]');
+    const subpartSolutionDivs = document.querySelectorAll('[id^=subpartsolution]');
+
+    if (showAllSolutions == 'true') {
+        solutionDivs.forEach(div => {
+            console.log('test')
+            div.style.display = 'block';
+        });
+
+        subpartSolutionDivs.forEach(div => {
+            console.log('test')
+            div.style.display = 'block';
+        });
+    }
+});
+</script>
+
+<script type="text/javascript">
+function HideShowElement(divID) {
+    const x = document.getElementById(divID);
+    if (x.style.display === "none") {
+        x.style.display = "block";
+    } else {
+        x.style.display = "none";
+    }
+}
+</script>
+<style>
+:root {
+    --box-bg-color: #fff; /* Default background color */
+}
+
+.homework-box {
+    background-color: var(--box-bg-color);
+    border: 2px solid #ccc;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    width: 300px;
+}
+
+.homework-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    position: relative;
+}
+
+.homework-icon {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+}
+
+/* Handle missing or empty src attribute */
+.homework-icon[src=""],
+.homework-icon:not([src]) {
+    content: url('https://upload.wikimedia.org/wikipedia/commons/a/ab/Games_for_Learning_%2827470%29_-_The_Noun_Project.svg');
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+}
+
+.homework-title {
+    margin: 0;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.homework-content {
+    font-size: 16px;
+    color: #333;
+}
+</style>
+
+<style>
+.solution {
+    display: none; /* Hide solutions by default */
+    background-color: #f9f9f9;
+    padding: 10px;
+    border-left: 4px solid #007bff;
+    margin-top: 10px;
+}
+
+.toggle-button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    display: inline-block;
+}
+
+.toggle-button.hide-solution {
+    background-color: #dc3545; /* Red background for hide button */
+}
+
+img.mermaid {
+     max-width:500px;
+     text-align: center;
+}
+
+</style>
+
+<div style="display:none;">
+$
+\newcommand{\mlvec}[1]{\mathbf{#1}}
+\newcommand{\mlmat}[1]{\mathbf{#1}}
+\DeclareMathOperator*{\argmax}{arg\,max\,}
+\DeclareMathOperator*{\argmin}{arg\,min\,}
+$
+</div>
+
+  </head>
+
+  <body class="layout--problemset">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+          <a class="site-logo" href="/"><img src="https://qeacourse.github.io/RoboNinjaWarrior/website_graphics/olinlogo.png" alt=""></a>
+        
+        <a class="site-title" href="/">
+          Machine Learning Spring 2026 @ Olin College
+          
+        </a>
+        <ul class="visible-links"></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Quality Assessed Deliverable: Machine Learning with Images">
+    
+    
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">Quality Assessed Deliverable: Machine Learning with Images
+</h1>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On this page</h4></header>
+	      
+                <ul class="toc__menu">
+  <li><a href="#learning-objectives">Learning Objectives</a></li>
+</ul>
+	      	
+            </nav>
+          </aside>
+        
+        <h1 id="learning-objectives">Learning Objectives</h1>
+
+<p>The intent of this quality assessed deliverable is to demonstrate your understanding of a few key concepts from the Images as Data module (largely focusing on convolutional neural networks).</p>
+
+<p>Most of the questions pull directly or indirectly from your prior assignments. The intent here is to minimize the workload (assuming you have been keeping up on your assignments) and to revisit concepts from the assignments now that you have had a chance to ask questions in class.</p>
+
+<div class="tip" style="
+    border-left: 6px solid #000000;
+    margin: 2em 2em 2em 2em;">
+	<div style="background-color: #C6EBD5;
+	                column-gap: 1rem;
+					display: flex;
+					padding: 1em 1em 1em 1em;">
+	<div class="notice-bulb" style="
+	    font-family: 'Font Awesome 5 Free',serif;
+	    vertical-align: middle;
+	    font-weight: 900;
+	    font-size: xx-large;
+	    color: #000000;">
+        <i class="fas fa-brain"></i>
+</div>
+	<div style="font-size: xx-large; font-weight: 900;">Learning Objectives</div>
+	</div>
+	<div style="padding: 1em 1em 1em 1em;">
+	   
+<ul>
+  <li>Identify and explain key components of a convolutional neural network (CNN)</li>
+  <li>Create and apply filters like a CNN</li>
+  <li>Calculate the output size and values resulting from a given filter</li>
+</ul>
+
+	</div>
+</div>
+
+<p>Will be a Canvas quiz.</p>
+
+<ol>
+  <li>
+    <p>a. Manually calculate the output matrix resulting from applying the following filter. Do not add padding.
+\(\begin{bmatrix}
+0 &amp; ~~~1 &amp; ~~~0 \\  
+1 &amp; -4 &amp; ~~~1 \\  
+0 &amp; ~~~1 &amp; ~~~0 \\  
+\end{bmatrix}\)
+to this image (via a convolution):
+\(\begin{bmatrix}
+0 &amp; 0 &amp; 0 &amp; 0 \\  
+0 &amp; 0 &amp; 50 &amp; 50 \\  
+0 &amp; 50 &amp; 50 &amp; 50 \\  
+0 &amp; 0 &amp; 50 &amp; 0 \\  
+\end{bmatrix}\)</p>
+  </li>
+  <li>
+    <p>b. What is the name for this kind of filter?</p>
+  </li>
+  <li>How many weights (parameters, excluding biases) need to be learned for a convolutional layer that starts with a 10x10x3 a.k.a a 10x10 RGB color image and results in an output with a size of 6x6x10, using no padding and a stride of 1?
+    <ul>
+      <li>Solution: This question requires knowledge of the effects of the filter size on output image size, knowledge that an RGB image has a depth of 3, knowledge that each filter on a color image has size fxfx3, knowledge of how stride affects output size.
+        <ul>
+          <li>To go from a 10x10 to a 6x6 with a stride of 1 and no padding requires a 5x5 filter (losing 2 on each side).</li>
+          <li>Each filter (kernel) therefore is a 5x5x3, so 75 weights to be learned.</li>
+          <li>The output has 10 layers (channels), so there are 10 filters to be learned, so 75x10 = 750</li>
+        </ul>
+      </li>
+      <li>Common mistakes:
+        <ul>
+          <li>If 250, you may have forgotten about the RGB part.</li>
+          <li>If 300*360 = 108000, then you’re probably doing a fully connected layer</li>
+          <li>if 25*7 = 175, then you may have misunderstood what happens with color images and a kernel.</li>
+          <li>if 270, then you assumed a filter size of 3x3 (ChatGPT 4o mini made this error)</li>
+          <li></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Compared to the situation in the previous question (convolutional layer), how would the number of weights change if you instead had a fully connected weights between each node in the input layer and each node in the output?<br />
+ a. The number of weights would increase significantly (fully connected weights needed are more than 10x what is needed for convolutional layer).<br />
+ b. The number of weights would increase somewhat (fully connected weights needed are less than 10x what is needed for convolutional layer).<br />
+ c. The number of weights would stay the same.<br />
+ d. The number of weights would decrease somewhat (convolutional layer weights needed are less than 10x what is needed for fully connected layer). <br />
+ e. The number of weights would decrease significantly (convolutional layer weights needed are more than 10x what is needed for fully connected layer).</li>
+</ol>
+
+<p>Consider the following situations where 9 3x3 filters are applied to the following images (no padding):<br />
+A. a 24x24 grayscale image with a stride of 1.<br />
+B. a 24x24 grayscale image with a stride of 2.<br />
+C. a 32x32 grayscale image with a stride of 2.</p>
+
+<ol>
+  <li>
+    <p>Rank order the number of nodes in the output from largest to smallest:<br />
+a. A, then B, then C<br />
+b. A, then C, then B<br />
+c. A and B are the same, then C<br />
+d. B and C are the same, then A<br />
+e. B, then C, then A<br />
+f. C, then B, then A<br />
+g. C, then A, then B<br />
+h. C, then A and B are the same<br />
+i. They are all the same</p>
+  </li>
+  <li>
+    <p>Ignoring the bias term, rank order each situation based on the number of weights to be learned (from largest to smallest):<br />
+a. A, then B, then C<br />
+b. A, then C, then B<br />
+c. A and B are the same, then C<br />
+d. B and C are the same, then A<br />
+e. B, then C, then A<br />
+f. C, then B, then A<br />
+g. C, then A, then B<br />
+h. C, then A and B are the same<br />
+i. They are all the same</p>
+  </li>
+  <li>
+    <p>Write code for a 5x5 filter that will result in any vertical edges showing up as positive values if the the edge is darker on the right and lighter on the left and as negative values if the edge is darker on the left and lighter on the right.  Apply no padding and use a stride of 1.</p>
+  </li>
+</ol>
+
+<p>You should be able to copy your padding and apply filter code from Assignment 15 directly into this and then just add the filter. 
+Please note that if you were getting a swirly looking penguin in Assignment 15, this was likely due to an issue with the datatype when you created the image. To solve this, you can either start with:
+image_filtered= np.zeros((output_size,output_size))<br />
+or 
+image_filtered = np.zeros_like(image, dtype = np.float32)  (this also gives you the wrong size for this exercise)
+If you’re still getting something like this, please reach out to us.</p>
+
+<p>https://colab.research.google.com/github/olinml2024/notebooks/blob/main/ML2024_ML_with_Images_As_Data_Manual_Convolutions.ipynb</p>
+
+<p>Put the values of your filter here.</p>
+
+<p>Upload the figure generated by your code here.</p>
+
+<ol>
+  <li>Match the loss curve to what is happening</li>
+</ol>
+
+<p>(shuffle these answers in the Canvas)</p>
+
+<ol>
+  <li>
+    <p>Generally, why are convolutional layers useful for image processing? Check all that apply.<br />
+ a. They reduce the number of weights in the model compared to a fully connected layer, reducing the number of parameters that the model needs to learn.<br />
+ b. They increase the number of weights in the model compared to a fully connected layer, allowing to model to learn more information.<br />
+ c. They preserve some of the spatial information of the image.<br />
+ d. They extract image features that are relevant for the task (e.g., classifying types of images).<br />
+ e. They extract tokens that minimize the variance.<br />
+ f. Convolutional layers detect objects by directly classifying each pixel as an object.<br />
+ g. Convolutional layers are useful for image processing because they treat each pixel individually without considering its neighbors.</p>
+  </li>
+  <li>
+    <p>In transfer learning for image processing, why are pre-trained models often fine-tuned? <br />
+A. To make the model smaller and more efficient<br />
+B. To adapt the model to specific features in the new dataset<br />
+C. To replace all layers with random weights<br />
+D. To ignore the data used in the original training</p>
+  </li>
+  <li>
+    <p>In transfer learning, what does it mean to use a model as a “feature extractor”?  <br />
+A. The model’s final layers are replaced to match the new task’s requirements<br />
+B. Only the output layer is trained while other layers are frozen<br />
+C. All layers are re-trained to fit the new dataset<br />
+D. The model’s earlier layers are used to extract general features, which are then used in a new model</p>
+  </li>
+  <li>
+    <p>What is one potential drawback of using transfer learning for an image processing model?<br />
+A. It requires significantly more data than training from scratch<br />
+B. It can be harder to interpret and understand the model’s decisions<br />
+C. It prevents the model from learning new features<br />
+D. It is only effective for small-scale image processing tasks</p>
+  </li>
+</ol>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+        
+      </footer>
+
+      
+
+      
+    </div>
+
+    
+  </article>
+
+  
+  
+</div>
+
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2025 Machine Learning Spring 2026 @ Olin College.</div>
+
+      </footer>
+    </div>
+
+    <script src="/assets/js/copyCode.js"></script>
+
+
+  <script src="/assets/js/main.min.js"></script>
+  <script src="https://kit.fontawesome.com/4eee35f757.js"></script>
+
+
+
+
+
+
+
+
+
+
+  </body>
+</html>

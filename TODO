@@ -1,0 +1,2 @@
+Automatically add the "with show solutions button" to index.markdown (may need to gate with an attribute on each markdown file since some pages don't have solutions)`
+Handle missing rows in the index.markdown file (currently messes up the table format)
