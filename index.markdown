@@ -8,6 +8,9 @@ header:
 
 {% include search-box.html %}
 
+## Education Research
+[Education Research Information](education_research/education_research)
+
 ## Final project
 [Final Project Documents](assignments/assignment17/FinalProject)
 
@@ -34,6 +37,8 @@ header:
 {%- assign t = t | replace_first: pref2s, '' | replace_first: pref2, '' -%}
 {%- assign clean_title = t | strip -%}
 | {{ d }} | [{{ clean_title }}]({{ p.url | relative_url }}) |
+{%- else -%}
+| {{ d }} |  |
 {%- endif %}
 {% endfor %}
 
