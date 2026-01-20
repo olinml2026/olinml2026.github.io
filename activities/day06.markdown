@@ -3,7 +3,7 @@ title: "Day 5: 	Logistic Regression Sample Problem, Foundations of Micrograd"
 toc_sticky: true 
 toc_h_max: 1
 layout: problemset
-published: true
+published: false
 ---
 
 {% capture agenda %}

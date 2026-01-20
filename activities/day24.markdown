@@ -3,7 +3,7 @@ title: "Day 24: Energy Usage and Machine Learning Plus Project Worktime"
 toc_sticky: true 
 toc_h_max: 1
 layout: problemset
-published: true
+published: false
 ---
 
 {% capture agenda %}

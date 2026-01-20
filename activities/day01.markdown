@@ -7,12 +7,11 @@ published: true
 ---
 
 {% capture agenda %}
-* 10:20-10:22am: Everyone come hang out in MAC128.
-* 10:22-10:30am: We'll provide brief orienting remarks about the course!
-* 10:30-10:35am: Introduction to our main activity (see below).
-* 10:35-11:15am: Mapping the Machine Learning Ecosystem
-* 11:15-11:40am: Report out
-* 11:40-12:00pm: Orientation to first assignment and basic course logistics for assignment submissions.  We'll show you the Canvas page, grading options, how to find office hours, etc.
+* 3:45-4:00pm: We'll provide brief orienting remarks about the course!
+* 4:00-4:05pm: Introduction to our main activity (see below).
+* 4:05-4:45pm: Mapping the Machine Learning Ecosystem
+* 4:45-5:05pm: Report out
+* 5:05-5:25pm: Orientation to first assignment and basic course logistics for assignment submissions.  We'll show you the Canvas page, grading options, how to find office hours, etc.
 {% endcapture %}
 
 {% include agenda.html content=agenda %}
@@ -53,8 +52,7 @@ flowchart LR
   id4 --> id2
 </div>
 
-This picture helps us undertand the potential scope of the machine learning approach.  Is machine learning just what happens in the middle box?  What about the inputs and outputs?  We probably have a lot of questions about those.  Let's take a minute to throw out a few considerations.
-
+This picture helps us understand the potential scope of the machine learning approach.  Is machine learning just what happens in the middle box?  What about the inputs and outputs?  We probably have a lot of questions about those.  Let's take a minute to throw out a few considerations.
 
 ## Learning Goals
 

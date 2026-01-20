@@ -4,6 +4,7 @@ toc_sticky: true
 toc_h_max: 1
 layout: problemset
 due_on_class: 2
+published: true
 ---
 
 # Learning Objectives
@@ -24,25 +25,23 @@ There is a substantial Jupyter notebook that is part of your assignment linked a
 
 # Please read the syllabus
 
-The [syllabus](https://olin.instructure.com/courses/832/assignments/syllabus) is available on Canvas. Please read it, it contains a lot
-of helpful information. There will be an ungraded competitive game
-around what's in the syllabus in the next class! If you have any
-questions about the syllabus, please post them on the Slack so we can
-clarify (and practice using Slack as a class). Or if it is a personal
-question, you can always email us or catch us after class.
+The [syllabus](https://olin.instructure.com/courses/1000/assignments/syllabus) is available on Canvas. Please read it, it contains a lot
+of helpful information.  If you have any questions about the syllabus, please post them on Discord so we can
+clarify (and practice using Discord as a class). Or if it is a personal
+question, you can always email me or send me a direct message on Discord.
 
 # Fill Out Some Surveys
 
 {% capture content %}
-Before we get into the semester, we'd like to understand how you all think about
-topics such as X, Y, an Z.  Please fill out the surveys (it should take about 20 minutes).
-Note: that these surveys can be used as part of an [education research project](../../education_research/education_research) we are doing this semester that you have the option to participate in.
+Before we get into the semester, we'd like to understand how you all are thinking about
+machine learning, AI, and engineering in general.  Please use [fill out the surveys](https://olin.instructure.com/courses/1000/assignments/17769) using the link at this Canvas page. (it should take about 20 minutes).
+Note: that these surveys wil be used as part of an [education research project](../../education_research/education_research) we are doing this semester that you have the option to participate in.
 {% endcapture %}
 {% include problem.html problem=content %}
 
-# Join the Slack if you want
+# Join the Discord if you want
 
-We'll have an optional course-wide Slack workspace for asking questions. Of course you can always go to office hours and send emails, but Slack can make it easier to create a thread about a specific question. The link to join Slack is found on the syllabus. Good thing you just read the syllabus!
+We'll have an optional course-wide Discord server for asking questions. Of course, you can always go to office hours and send emails, but Discord can make it easier to create a thread about a specific question. The link to join Discord is found on the syllabus.
 
 # The Machine Learning Lifecycle
 
@@ -87,7 +86,7 @@ In an unsupervised learning problem, our goal is to understand something about t
 
 Reinforcement learning involves an agent learning to interact with an environment in an optimal fashion.  We won't define notation for reinforcement learning as we aren't planning to cover it in this class (it could be a great final project).  Examples of reinforcement learning problems would be an agent learning to play a game (e.g., Chess), a robot learning to interact with its environment, or even determining treatment regimes in a clinical setting.  The reinforcement learning book has [a bunch of sample applications](https://rl-book.com/applications/) if you are curious.
 
-# Six Big Ideas in Machine Learning
+# Five Big Ideas in Machine Learning
 
 **Note: We suggest you timebox this section to a maximum of 60 minutes
 to start, including the exercise. Beware of the many interesting rabbit
@@ -107,21 +106,21 @@ likely be useful for determining whether a new image of a face was of a smiling 
 Now suppose you take this model and apply it to a new
 dataset. You may find that faces that are angry are mistakenly marked as
 smiling! Why? In the case of angry facial expressions the teeth may also
-be showing. Of course you would expect the learning algorithm to be
+be showing. Of course, you would expect the learning algorithm to be
 smart enough to realize that just using the presence of teeth is not
-enough to conclusively determine whether someone is smiling. Whether or
-not this actually happens is a function of the training data given to
+enough to conclusively determine whether someone is smiling. Whether this actually happens is a function of the training data given to
 the ML algorithm. If, for instance, the training set was scraped from
 profile pictures from a dating website, the training set may not contain
 pictures of angry faces. Unfortunately, while exploiting correlations is
 one of the most powerful aspects of ML systems, it is also one of the
 most potentially problematic.
 
-*Example 1: Reinforcing Hiring Biases* You may have heard that [Amazon
+*Example 1: Reinforcing Hiring Biases* An important (and unfortunately not uncommon) example of a machine learning system
+exploiting a spurious correlation was when [Amazon
 scrapped a secret AI recruiting tool that showed bias against
 women](https://www.reuters.com/article/us-amazon-com-jobs-automation-insight/amazon-scraps-secret-ai-recruiting-tool-that-showed-bias-against-women-idUSKCN1MK08G).
 More specifically, the tool performed automatic keyword analysis of job
-applications to predict whether or not the applicant was worth
+applications to predict whether the applicant was worth
 forwarding on to a human for further evaluation. Early in the
 development of this system researchers discovered that the model the
 system had learned placed a negative weight on words such as "women's"
@@ -286,87 +285,7 @@ This also connects back to the age-old debate over whether [falling with
 style can be considered
 flying](https://www.youtube.com/watch?v=DwN6efmhp7E).
 
-## Idea 4: ML Systems Can Learn Intermediate Representations
-
-In the next few weeks we'll learn about artificial neural networks
-(ANNs). ANNs are biologically inspired algorithms since their
-functioning, at an abstract level, is modeled on the functioning of
-biological neurons (e.g., in the brain).
-
-{% include figure.html
-        img="figures/Colored_neural_network.png"
-        alt="a schematic of a neural network is shown.  Circles represent nodes, which are connected to other nodes using arrows"
-        caption="An artificial neural network with a single hidden layer." %}
-{% assign annfigure = figure_number %}
-
-ANNs accept input patterns at an array of virtual neurons called the
-input layer (see {% include figure_reference.html fig_num=annfigure %}). The neurons in the input layer are connected to
-other neurons via virtual [axons](https://en.wikipedia.org/wiki/Axon)
-that control to what extent a particular input neuron activates a
-downstream neuron. The second set of neurons, called the "hidden layer"
-(shown in blue in the middle of the figure), is responsible for
-computing intermediate, hidden representations of the input data. This
-process continues as activations propagate through the network until
-activations are generated at the output layer (shown in green on the
-right of the figure). These outputs could correspond to any salient
-properties of the input (e.g., if the input is an image, the output
-might encode the objects in the image).
-
-What's amazing about ANNs is that there are learning algorithms for
-setting the connection strengths between these virtual neurons (the
-black arrows in {% include figure_reference.html fig_num=annfigure %}) based on training data (input / output pairs).
-These learning algorithms tune the connections strengths (also called
-"weights") such that for the provided training data the network produces
-the appropriate training outputs (e.g., if you show the network a
-training set of images of cats or dogs, over time the network will
-adjust its weights so that the output is "cat" when the network is
-presented an image of a cat and "dog" if presented an image of a dog).
-The algorithms used to tune the network weights are only concerned with
-reproducing the output patterns, the network is free to choose how it
-represents information within the network (i.e., at the hidden layer).
-
-{% include figure.html
-        img="figures/learned_receptive_fields.png"
-        alt="images are shown representing various receptive fields learned by a neural network.  The images show receptive fields with oriented bars."
-        caption="12x12 receptive fields learned from an neural network trained to optimally compress images"
-%}
-{% assign learnedfields=figure_number %}
-
-What's super amazing is that we can actually examine the internal
-representations of a neural network to understand how it's performing
-the computation from input to output. For instance, {% include figure_reference.html fig_num=learnedfields %}[^2] shows a visualization of the internal
-representations learned by a network trained to best compress a training
-set of images (these sorts of networks are called "auto-encoders"). The
-receptive fields of each of the hidden units in the network and can be
-understood as specifying how each input pixel activates a particular
-hidden unit (gray corresponds to no activation, black to negative
-activation, and white to positive activation). It's remarkable that
-these receptive fields have coherent structure: they are localized in
-space, tuned to particular orientations, and tuned to features at a
-particular scale. You can think of these as oriented edge detectors that
-the network learned completely on its own (it was never told to extract
-edges from the images in the training set).
-
-What's super-duper amazing is that if we compare the receptive fields
-learned by the artificial neural network to the [simple
-cells](https://en.wikipedia.org/wiki/Simple_cell) in the primary visual
-cortex of a cat, there are a number of striking similarities. Just as in
-the ANN, the biological neural network responds to edges at particular
-orientations and scales. The scientists Hubel and Wiesel performed the
-pioneering work in neuroscience to establish the properties of receptive
-fields in the primary visual cortex. Consider watching [a video of their
-experiment](https://www.youtube.com/watch?v=8VdFf3egwfg) that eventually
-garnered a Nobel prize (note that in the video the static sound
-corresponds to the measurement of spikes in activity of an individual
-neuron in the brain of an anesthetized cat).[^3]. The implication of the
-similarity between the receptive fields of the neurons in the cat brain
-and the virtual neurons in the ANN is that they are similar because they
-are fundamentally solving the same problem (i.e., efficiently
-representing visual information). In this light, that they should find
-similar solutions to this problem is not as surprising as it may first
-seem.
-
-## Idea 5: Machine Learning Zoomed Out
+## Idea 4: Machine Learning Zoomed Out
 
 Historically, most ML courses have been laser-focused on learning about
 learning algorithms (e.g., neural networks, support vector machines,
@@ -433,7 +352,7 @@ Discourse](https://link.springer.com/article/10.1007/s11023-017-9417-6)
 [Fairness and Abstraction in Sociotechnical
 Systems](https://dl.acm.org/citation.cfm?id=3287598)
 
-## Idea 6: It's Not All Doom and Gloom
+## Idea 5: It's Not All Doom and Gloom
 
 While we'll be talking a lot about how ML can go wrong, unleashing
 unexpected consequences, we'll also be talking about the positive things
@@ -448,8 +367,7 @@ examples](https://www.springboard.com/blog/ai-for-good/)
 * [19 Times Data Analysis Empowered Students and
 Schools](https://fpf.org/wp-content/uploads/2016/03/Final_19Times-Data_Mar2016-1.pdf)
 * Austin Veseliza put together [a list of links to AI for social good
-projects](https://www.notion.so/ML-for-Good-c0cc352c88b04e719c187c8e4a6f5887)
-that you might use for inspiration.[^4]
+projects](https://www.notion.so/ML-for-Good-c0cc352c88b04e719c187c8e4a6f5887) that you might use for inspiration.[^2]
 
 {% capture content %}
 Now, we want to hear from you!
@@ -610,10 +528,10 @@ $$\begin{aligned}
 
 The last part of this assignment is to meet some key metrics for assessing classification models while also getting our python brains warmed up for the coding in this class.
 
-
-Please work through the exercises in this Jupyter notebook: [https://colab.research.google.com/drive/1MxD0SFsR9g0FGBhii34hu7qusM_AECj5?usp=sharing](https://colab.research.google.com/drive/1MxD0SFsR9g0FGBhii34hu7qusM_AECj5?usp=sharing)
+Please work through the exercises in this Jupyter notebook: [https://colab.research.google.com/drive/1MxD0SFsR9g0FGBhii34hu7qusM_AECj5?usp=sharing](https://colab.research.google.com/drive/1lnoGbjLkIN30UoxFgt0gOVO3IykMcSAr?usp=sharing)
 It's hosted on Google Colab, so you can either make your own copy and run it on Colab or download and run it locally (you may have to make small tweaks).
 
+While you are at it, you may want to sign up for a free year of Colab Pro (see this [link on Canvas for instructions](https://olin.instructure.com/courses/1000/pages/get-colab-pro?module_item_id=20148)).
 
 # Footnotes
 [^1]: A [Cool video of YOLO version
@@ -622,13 +540,6 @@ It's hosted on Google Colab, so you can either make your own copy and run it on 
     researcher](https://www.youtube.com/watch?v=Cgxsv1riJhI), and
     [newer variants of YOLO have been created by other researchers](https://docs.ultralytics.com/models)
 
-[^2]: From [Sparse coding of sensory
-    inputs](http://www.cnbc.cmu.edu/~tai/nc19journalclubs/Olshausen-Field-CON-2004-1.pdf)
-
-[^3]: There are a variety of opinions on the [ethics of performing
-    research on
-    animals](https://en.wikipedia.org/wiki/Animal_testing#Ethics)
-
-[^4]: This list was part of the original version of this assignment,
+[^2]: This list was part of the original version of this assignment,
     made in 2019. We are glad we can remember one of the many good
     things Austin created at Olin.

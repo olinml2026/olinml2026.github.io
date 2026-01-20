@@ -3,7 +3,7 @@ title: "Day 11: Cross Entropy, Privacy in ML Systems, and Small Data Project Kic
 toc_sticky: true 
 toc_h_max: 1
 layout: problemset
-published: true
+published: false
 ---
 
 {% capture agenda %}

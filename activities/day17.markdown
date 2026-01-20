@@ -3,7 +3,7 @@ title: "Day 17: Goodbye Text, Hello Images and Convolution"
 toc_sticky: true 
 toc_h_max: 1
 layout: problemset
-published: true
+published: false
 ---
 
 {% capture agenda %}

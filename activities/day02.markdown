@@ -3,7 +3,7 @@ title: "Day 2: Community-Centered Design for Machine Learning"
 toc_sticky: true 
 toc_h_max: 1
 layout: problemset
-published: true
+published: false
 ---
 
 {% capture agenda %}
