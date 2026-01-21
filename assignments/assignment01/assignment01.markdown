@@ -34,8 +34,8 @@ question, you can always email me or send me a direct message on Discord.
 
 {% capture content %}
 Before we get into the semester, we'd like to understand how you all are thinking about
-machine learning, AI, and engineering in general.  Please use [fill out the surveys](https://olin.instructure.com/courses/1000/assignments/17769) using the link at this Canvas page. (it should take about 20 minutes).
-Note: that these surveys wil be used as part of an [education research project](../../education_research/education_research) we are doing this semester that you have the option to participate in.
+machine learning, AI, and engineering in general.  Please use this link to Canvas to find [the surveys](https://olin.instructure.com/courses/1000/assignments/17769).  It should take about 20 minutes to complete the surveys.
+Note: that these surveys wil be used as part of an [education research project](../../education_research/education_research) we are doing this semester. You have the option to participate in this research, but you are not required to do so.
 {% endcapture %}
 {% include problem.html problem=content %}
 
@@ -95,7 +95,7 @@ holes that could consume your day. You can always revisit this later.**
 Before diving into the specifics of our first machine learning
 algorithm, let's examine some important ideas in machine learning.
 
-## Idea 1: Correlations for the Win?
+## Idea 1: Correlations Without Causation Can Cause All Sorts of Problems
 
 ML algorithms learn to exploit correlations in data in order to make
 predictions. For instance, if one was using an ML algorithm to recognize
@@ -113,7 +113,8 @@ the ML algorithm. If, for instance, the training set was scraped from
 profile pictures from a dating website, the training set may not contain
 pictures of angry faces. Unfortunately, while exploiting correlations is
 one of the most powerful aspects of ML systems, it is also one of the
-most potentially problematic.
+most potentially problematic.  The idea that the testing dataset may differ significantly from the training dataset
+is known in the ML literature as *distribution shift*.
 
 *Example 1: Reinforcing Hiring Biases* An important (and unfortunately not uncommon) example of a machine learning system
 exploiting a spurious correlation was when [Amazon
@@ -128,9 +129,9 @@ as well as the names of some women's colleges. While there is of course
 no causal link between these words appearing in a job application and
 the suitability of the candidate for the job, there was a *correlation*
 in the training set between the presence of words such as "women's" and
-the candidates not being invited for interviews.
+the candidates not being invited for interviews.  A correlation such as this is known as a *spurious correlation* (meaning there is no causal relationship between the two correlated phenomena).
 
-Why might such a correlation exist in the training set? There are many
+Why might a spurious correlation exist in the training set? There are many
 different possible explanations for this correlation, ranging from overt
 or unconscious bias in the applicant evaluators whose judgments helped
 form the training data to systemic discrimination that denies women
@@ -194,8 +195,7 @@ in {% include figure_reference.html fig_num=yolofooled %}.
 
 ## Idea 2: There's No Such Thing as a Free Lunch
 
-> ["All models are wrong, but some
-> useful."](https://en.wikipedia.org/wiki/All_models_are_wrong)
+> ["All models are wrong, but some useful."](https://en.wikipedia.org/wiki/All_models_are_wrong)
 >
 > --- George Box
 
@@ -224,8 +224,7 @@ The prediction function is sparse (it ignores the majority of the
 inputs).
 
 In fact, there are a whole class of theorems called [No-Free-Lunch (NFL)
-theorems](https://en.wikipedia.org/wiki/No_free_lunch_theorem) that
-state that without inductive biases (such as the ones stated above),
+theorems](https://en.wikipedia.org/wiki/No_free_lunch_theorem) that state that without inductive biases (such as the ones stated above),
 learning from data is essentially impossible. This connects us back to
 the quote from George Box. While the inductive bias we encode into our
 model will never fully represent reality, having this bias is necessary
@@ -233,7 +232,8 @@ to allow the model to do the useful work of making predictions. What's
 important for us as machine learning scientists and practitioners is to
 be explicit about the biases we are introducing when settling on a
 particular model so that we can best evaluate our results and predict
-the limitations of our systems.
+the limitations of our systems.  As we learn more about various machine learning architectures (e.g., transformers and convolutional neural networks), it helps to remind ourselves of the assumptions
+encoded in these systems.
 
 ## Idea 3: It's All About How You Frame the Problem
 
@@ -276,14 +276,15 @@ virtual character learned that falling down, see picture above, and
 getting up was more efficient for locomotion than constantly hopping
 (which is what the designer had intended the system to learn).
 
-For more examples of this sort of thing, consider checking out [Karl
-Sims: Evolved Virtual
-Creatures](https://www.youtube.com/watch?v=bBt0imn77Zg) or the short
-article [When AI Surprises
-Us](https://aiweirdness.com/post/172894792687/when-algorithms-surprise-us).
-This also connects back to the age-old debate over whether [falling with
+For more examples of this sort of thing, consider checking out [Karl Sims: Evolved Virtual
+Creatures](https://www.youtube.com/watch?v=bBt0imn77Zg) or the short article [When AI Surprises
+Us](https://aiweirdness.com/post/172894792687/when-algorithms-surprise-us). This also connects back to the age-old debate over whether [falling with
 style can be considered
 flying](https://www.youtube.com/watch?v=DwN6efmhp7E).
+
+The idea that machine learning algorithms can find unproductive solutions is not confined to reinforcement learning 
+problems.  A seminal paper called ["Shortcut Learning in Deep Neural Networks"](https://arxiv.org/abs/2004.07780)
+discusses how the same phenomenon can occurs in other types of machine learning problems.
 
 ## Idea 4: Machine Learning Zoomed Out
 
@@ -362,7 +363,7 @@ things to go wrong!). We'll leave this list deliberately short to give
 you a chance to find your own example in the exercise below.  Some of these examples are a little old, but they are still good starting points.
 
 * [AI for social good: 7 inspiring
-examples](https://www.springboard.com/blog/ai-for-good/)
+examples](https://www.springboard.com/blog/data-science/ai-for-good/)
 * While not without controversy, some companies (and researchers) are working on [Enhancing Accessibility with AI and ML](https://www.deque.com/blog/enhancing-accessibility-with-ai-and-ml/).
 * [19 Times Data Analysis Empowered Students and
 Schools](https://fpf.org/wp-content/uploads/2016/03/Final_19Times-Data_Mar2016-1.pdf)
@@ -401,9 +402,6 @@ There's no one right answer here!
 {% include problem_part.html label="B" subpart=part_b solution=part_b_sol %}
 {% endcapture %}
 {% include problem_with_parts.html problem=content %}
-
-
-
 
 # Mathematical Background
 
@@ -468,8 +466,8 @@ $$
 
 
 {% capture partb %}
-Suppose $\mathbf{x} = \begin{bmatrix} 3 \\ -1 \\ 4 \end{bmatrix}$ and
-$\mathbf{y} = \begin{bmatrix} 2 \\  7 \\ 4 \end{bmatrix}$. Calculate
+Suppose $$\mathbf{x} = \begin{bmatrix} 3 \\ -1 \\ 4 \end{bmatrix}$$ and
+$$\mathbf{y} = \begin{bmatrix} 2 \\  7 \\ 4 \end{bmatrix}$$. Calculate
 $\mathbf{x} \cdot \mathbf{y}$, $\mathbf{x}^\top \mathbf{y}$, and
 $\mathbf{x} \mathbf{y}^\top$.
 

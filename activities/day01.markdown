@@ -114,6 +114,4 @@ Make sure you take a high-resolution picture of your map and add it to [this sha
 
 * Where to find first assignment
 * Canvas (where to find stuff)
-
-Educational Research Opportunity
-* 11:40-12:00pm: Orientation to first assignment and basic course logistics for assignment submissions.  We'll show you the Canvas page, grading options, how to find office hours, etc.
+* Educational Research Opportunity
