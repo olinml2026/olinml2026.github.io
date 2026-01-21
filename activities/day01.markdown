@@ -22,12 +22,6 @@ Welcome to Machine Learning!  We're not going to spend a ton of time talking at 
 
 ## What is Machine Learning?
 
-As a running example, let's take the idea of creating a computer program to predict various characteristics of a person (e.g., age and gender) from a picture of their face.
-
-<p style="text-align: center;">
-<img alt="A selfie of a professor that has been processed by SeeingAI.  The output of the program says that the image contains a picture of a 43-year old man looking neutral" src="images/paulseeingai.jpg"/>
-</p>
-
 One way to frame machine learning is by contrasting it with the traditional approach to writing an algorithm to solve a problem.  Here is a somewhat cartoonish version.  
 
 <div class="mermaid">
@@ -52,16 +46,60 @@ flowchart LR
   id4 --> id2
 </div>
 
-This picture helps us understand the potential scope of the machine learning approach.  Is machine learning just what happens in the middle box?  What about the inputs and outputs?  We probably have a lot of questions about those.  Let's take a minute to throw out a few considerations.
+This picture helps us understand the potential scope of the machine learning approach.
+* Is machine learning just what happens in the middle box?
+* What about the inputs and outputs?  What are some examples?
+* Let's take a minute to throw out a few considerations.
 
-## Learning Goals
+## Types of ML and general ML workflow
+
+We will talk about some types of machine learning and the general machine learning workflow.
+
+There are a few different ways to categorize machine learning problems, but most texts will reference the three main types of machine learning problems.
+
+### Supervised Learning
+
+In supervised learning, you are given a training set of data points and corresponding desired outputs.  Let's use $$\mathbf{x}_i$$ to denote the $$i$$th training input and $y_i$ to denote the $i$th training output.  The training set is composed of $$\mathbf{X}_{train} = \mathbf{x}_1, \mathbf{x}_2, \ldots, \mathbf{x}_N$$ and $$\mathbf{y}_{train} = y_1, y_2, \ldots, y_N$$, where $y_i$ is the label for the $i^{th}$ individual example (sometimes called a datapoint, training instance, or sample) and $$\mathbf{x}_i$$ contains the features (input information) for that sample.
+
+In the classic examples, $\mathbf{x}_i$ will be a vector of features and $y_i$ will be a scalar label. We'll talk about when this type of problem shows up and how the problem changes depending on the values that $y_i$ can take on.
+
+<p>A supervised machine learning algorithm can take as input $\mathbf{X}_{train}$ and produce a model capable of taking in an unseen datapoint, $\mathbf{x}_{test}$, and estimating the corresponding label, $y_{test}$.  In order to evaluate the quality of these predictions, you'll want to have a set of test points, $\mathbf{X}_{test}$ to compute a relevant performance metrix (as we did in assignment 1).</p>
+
+<div class="mermaid">
+graph TB;
+    id1[X Train and y Train];
+    id2[Supervised Learning Algorithm];
+    id3[Predictive Model];
+    id4[X Test and y Test]
+    id5[Model Metrics]
+    id1 --> id2;
+    id2 --> id3;
+    id4 --> id3;
+    id3 --> id5;
+</div>
+
+In addition to having a test set, you may also use a validation set to help tune your machine learning model.  We'll talk a bit about how this would work.
+
+### Unsupervised Learning
+
+<p>In unsupervised learning, you are given set a of data points (there are no corresponding outputs).  The training set is $\mathbf{X}_{train} = \mathbf{x}_1, \mathbf{x}_2 \ldots, \mathbf{x}_N$.</p>
+
+In an unsupervised learning problem, our goal is to understand something about the structure of these training points.  For example, perhaps the data lies in some low dimensional subspace (sounding a little familiar?).  Examples of problems that fit under unsupervised learning are clustering, sequence learning (e.g., as is done in language models), and dimensionality reduction.
+
+### Reinforcement Learning
+
+Reinforcement learning involves an agent learning to interact with an environment in an optimal fashion.  We won't define notation for reinforcement learning as we aren't planning to cover it in this class (it could be a great final project).  Examples of reinforcement learning problems would be an agent learning to play a game (e.g., Chess), a robot learning to interact with its environment, or even determining treatment regimes in a clinical setting.  The reinforcement learning book has [a bunch of sample applications](https://rl-book.com/applications/) if you are curious.
+
+# Learning Goals
 
 Machine learning is a vast field that touches upon many disciplines.  In this class we aim to take a broad view towards the subject that covers the underlying theory, implementation, and critically evaluating how machine learning systems impact the world and its people.
 
 * Understand a variety of machine learning techniques from both a mathematical and algorithmic perspective.
 * Successfully implement machine learning algorithms in Python (both by using only minimal external libraries and by leveraging standard machine learning libraries).
 * Execute the iterative machine learning workflow of model design, fitting to training data, testing, and interpretation in order to be able to successfully apply machine learning techniques in specific contexts.
-* Contemplate the potential impacts of a machine learning system when deployed in a real-world context and make design decisions to mitigate potential harmful impacts while maximizing positive impacts.
+* Contemplate the potential impacts of a machine learning system when deployed in a real-world context and make 
+  design decisions to mitigate potential harmful impacts while maximizing positive impacts.  <span 
+  style="color:green;">We've done some innovation on how to do this.  More to come later in class.</span>
 
 # Mapping the machine learning ecosystem
 
@@ -112,6 +150,6 @@ Make sure you take a high-resolution picture of your map and add it to [this sha
 
 # Orientation to Assignment 1, Course Logistics, and Educational Research Opportunity
 
-* Where to find first assignment
+* Where to find the first assignment
 * Canvas (where to find stuff)
-* Educational Research Opportunity
+* [Educational Research Opportunity](../education_research/education_research)
