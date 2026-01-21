@@ -4,6 +4,7 @@ title: "Machine Learning Spring 2026"
 header:
   overlay_color: "#000"
   overlay_filter: "0.4"
+  overlay_image: website_graphics/LaneThomasky.png
 ---
 
 {% include search-box.html %}
@@ -72,3 +73,8 @@ header:
 <!--
 [Learning as Optimization Key Concepts](assignments/assignment09/LearningAsOptimizationTakeaways)
 -->
+
+## Overlay Image Attribution
+
+<span><a href="https://lone-thomasky.de/">Lone Thomasky</a> &amp; <a href="https://bits-und-baeume.org/en">Bits&Bäume</a> / <a href="https://betterimagesofai.org/images?artist=LoneThomasky&title=DigitalSocietyBell"> Digital Society Bell</a> / <a href="https://creativecommons.org/licenses/by/4.0/">Licenced by CC-BY 4.0</a></span>
+
