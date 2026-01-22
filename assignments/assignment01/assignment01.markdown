@@ -350,7 +350,7 @@ There's no one right answer here!
 {% include problem_part.html label="A" subpart=part_a solution=part_a_sol %}
 
 {% capture part_b %}
-Idea 6 talks about the idea of ML for positive impact. What is one
+Idea 5 talks about the idea of ML for positive impact. What is one
 example of an ML application (real or imagined) that you think would
 have the largest (or most unambiguously) positive impact on the world?
 Why? Alternatively, what is an example of an ML application (real or
@@ -487,7 +487,8 @@ $$\begin{aligned}
 
 The last part of this assignment is to meet some key metrics for assessing classification models while also getting our python brains warmed up for the coding in this class.
 
-Please work through the exercises in this Jupyter notebook: [https://colab.research.google.com/drive/1MxD0SFsR9g0FGBhii34hu7qusM_AECj5?usp=sharing](https://colab.research.google.com/drive/1lnoGbjLkIN30UoxFgt0gOVO3IykMcSAr?usp=sharing)
+Please work through the exercises in this [Jupyter notebook](https://colab.research.google.
+com/drive/1lnoGbjLkIN30UoxFgt0gOVO3IykMcSAr?usp=sharing).
 It's hosted on Google Colab, so you can either make your own copy and run it on Colab or download and run it locally (you may have to make small tweaks).
 
 While you are at it, you may want to sign up for a free year of Colab Pro (see this [link on Canvas for instructions](https://olin.instructure.com/courses/1000/pages/get-colab-pro?module_item_id=20148)).
@@ -496,8 +497,8 @@ While you are at it, you may want to sign up for a free year of Colab Pro (see t
 [^1]: A [Cool video of YOLO version
     3](https://www.youtube.com/watch?time_continue=77&v=MPU2HistivI),
     a [TED talk from the creator of YOLO
-    researcher](https://www.youtube.com/watch?v=Cgxsv1riJhI), and
-    [newer variants of YOLO have been created by other researchers](https://docs.ultralytics.com/models)
+    researcher](https://www.youtube.com/watch?v=Cgxsv1riJhI), [newer variants of YOLO have been created by other 
+researchers](https://docs.ultralytics.com/models), and a nice [hands-on video with YOLO26](https://www.youtube.com/watch?v=G2GEUhe2ro8) (latest version)
 
 [^2]: This list was part of the original version of this assignment,
     made in 2019. We are glad we can remember one of the many good
