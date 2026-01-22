@@ -37,6 +37,14 @@ Something specifically about human-centered design in a machine learning context
 
 Describe this in detail and include as much framing as possible.
 
+* Orientation activities (link to presentation).... maybe there were not necessary??? have students comment.
+* Card sort
+* VoiceMemo roleplay
+* Note-taking survey
+* Internal Testing Activities (Preliminary Testing.docx has the one that Bela created)
+* Brainstorming for testing.docx (has the procedure)
+* Testing 3 Rounds (Tiramisu with Oliners, CCB, and Jerry and Aaron)
+
 {% capture content %}
 Please categorize the major activities of the summer team with respect to the HCD steps of observation, ideation, rapid 
 prototyping, user feedback, iteration, and implementation.  For each activity, comment on how the particular 
@@ -49,6 +57,8 @@ the design process stronger?
 
 # Model Evaluation for Retrieval Systems
 
+
+App Feedback Clips for Model Eval pt 1 assignment.docx
 Value proposition.
 Testing.
 Quantitative data / qualitative data.
