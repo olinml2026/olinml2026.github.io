@@ -21,9 +21,31 @@ Let's go into breakout rooms and do a quick debrief on assignment 1.
 * Share you responses to exercise 2.
 * Note any lingering confusions.
 
-# Learning as Optimization Key Ideas
+# Learning as Optimization Key Terminology
 
+While it hasn't always been the case, optimization is at the core of modern machine learning.  If you aren't 
+familiar with the idea of optimization, we will be building some intuition together.  An optimization problem 
+typically consists of the following key ingredients, which together define a vocabulary that helps us see 
+connections between seemingly different problems.
 
+Optimization has a lot of complex sounding vocabulary / jargon.  One of my goals in this unit is to help you feel 
+comfortable with this jargon and connect it to concrete concepts in a number of real world examples.  Let's start to 
+unpack some of these ideas together.  It may seem confusing at first, but we'll get there together.
+
+* *Decision variables:* what is the "space" of candidate solutions?  Each variable may represent some knob that 
+  controls something about the solution.
+* *Object function:* what are we trying to achieve?  What does it mean for a particular candidate solution to be good 
+  or bad?
+* *Constraints:* sometimes we are able to pick any values for our decision variables such that the objective 
+  function is maximized (unconstrained optimization).  Sometimes, there are specific solutions that are disallowed 
+  (infeasible).  The rules that govern which solutions are feasible (allowed) versus infeasible (disallowed) are 
+  called constraints.  Optimization problems with constraints are known as "constrained optimization problems"
+
+One thing that is important to realize about the concepts above is that they help you frame an optimization problem, 
+however, they do not, by themselves, tell you how you would actually solve the optimization problem.  Coming up with 
+a solution to an optimization problem is the domain of optimization algorithms (which we will learn about soon). 
+
+Let's think through a problem you've seen before in QEA: smile detection.  We'll go over this as a group.
 
 # The Supervised Learning Problem Setup (Learning as Optimization)
 
