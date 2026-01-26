@@ -407,7 +407,7 @@ $
                 <ul class="toc__menu">
   <li><a href="#">Agenda</a></li>
   <li><a href="#debrief-on-assignment-1">Debrief on Assignment 1</a></li>
-  <li><a href="#learning-as-optimization-key-ideas">Learning as Optimization Key Ideas</a></li>
+  <li><a href="#learning-as-optimization-key-terminology">Learning as Optimization Key Terminology</a></li>
   <li><a href="#the-supervised-learning-problem-setup-learning-as-optimization">The Supervised Learning Problem Setup (Learning as Optimization)</a></li>
   <li><a href="#getting-started-on-linear-regression">Getting Started on Linear Regression</a></li>
 </ul>
@@ -453,7 +453,33 @@ $
   <li>Note any lingering confusions.</li>
 </ul>
 
-<h1 id="learning-as-optimization-key-ideas">Learning as Optimization Key Ideas</h1>
+<h1 id="learning-as-optimization-key-terminology">Learning as Optimization Key Terminology</h1>
+
+<p>While it hasn’t always been the case, optimization is at the core of modern machine learning.  If you aren’t 
+familiar with the idea of optimization, we will be building some intuition together.  An optimization problem 
+typically consists of the following key ingredients, which together define a vocabulary that helps us see 
+connections between seemingly different problems.</p>
+
+<p>Optimization has a lot of complex sounding vocabulary / jargon.  One of my goals in this unit is to help you feel 
+comfortable with this jargon and connect it to concrete concepts in a number of real world examples.  Let’s start to 
+unpack some of these ideas together.  It may seem confusing at first, but we’ll get there together.</p>
+
+<ul>
+  <li><em>Decision variables:</em> what is the “space” of candidate solutions?  Each variable may represent some knob that 
+controls something about the solution.</li>
+  <li><em>Object function:</em> what are we trying to achieve?  What does it mean for a particular candidate solution to be good 
+or bad?</li>
+  <li><em>Constraints:</em> sometimes we are able to pick any values for our decision variables such that the objective 
+function is maximized (unconstrained optimization).  Sometimes, there are specific solutions that are disallowed 
+(infeasible).  The rules that govern which solutions are feasible (allowed) versus infeasible (disallowed) are 
+called constraints.  Optimization problems with constraints are known as “constrained optimization problems”</li>
+</ul>
+
+<p>One thing that is important to realize about the concepts above is that they help you frame an optimization problem, 
+however, they do not, by themselves, tell you how you would actually solve the optimization problem.  Coming up with 
+a solution to an optimization problem is the domain of optimization algorithms (which we will learn about soon).</p>
+
+<p>Let’s think through a problem you’ve seen before in QEA: smile detection.  We’ll go over this as a group.</p>
 
 <h1 id="the-supervised-learning-problem-setup-learning-as-optimization">The Supervised Learning Problem Setup (Learning as Optimization)</h1>
 
