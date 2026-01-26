@@ -101,7 +101,7 @@ To get $\mathbf{w^\star}$, take the gradient, set it to 0 and solve for $\mathbf
 {% include problem_part.html label=" - another hint" subpart=part_b solution=part_b_hint %}
 
 
-{% [assignment03.markdown](../assignment03/assignment03.markdown)capture part_c %}
+{% [assignment03.markdown](../assignment02/assignment02.markdown)capture part_c %}
 Okay, now check against the full solution.
 {% endcapture %}
 {% capture part_c_sol %}

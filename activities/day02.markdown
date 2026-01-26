@@ -1,30 +1,46 @@
 ---
-title: "Day 2: Community-Centered Design for Machine Learning"
+title: "Day 2:  ML as Optimization and Linear Regression"
 toc_sticky: true 
 toc_h_max: 1
 layout: problemset
-published: false
+published: true
 ---
 
 {% capture agenda %}
-* 10:20-10:25am: Everyone come hang out in MAC128, we'll talk about the plan and answer any logistics questions.
-* 10:25-10:45am: Debrief at tables about the last assignment.
-* 10:45-12pm: Presentation on Community-centered design for ML
+* 3:45-3:50pm: Welcome to online class! Chelsea will say hi.
+* 3:50-4:05pm: Debrief on previous assignment
+* 4:05-4:15pm: ML as Optimization Key Ideas and Supervised Learning Problem Setup
+* 4:15-5:25pm: Work on assignment collaboratively
 {% endcapture %}
 
 {% include agenda.html content=agenda %}
 
-# Debrief on the last assignment
+# Debrief on Assignment 1
 
-1. Introduce yourselves
-2. Quickly draw a confusion matrix at your table and write the equations for accuracy, precision, and recall.
-3. Discuss your answers for Exercise 9 in the Colab notebook (see exercise below as a reminder).
+Let's go into breakout rooms and do a quick debrief on assignment 1.
+* Share you responses to exercise 2.
+* Note any lingering confusions.
 
-    Exercise 9: Summarize how well the dessert classifier works for french toast and red velvet cake.
-    Come to class prepared to share this at your table.
-    Consider the confusion matrix, precision, and recall. How do you interpret this?
-    What does it mean for life as french toast or as red velvet cake?
+# Learning as Optimization Key Ideas
 
-# Community-Centered Design for ML
 
-* Slide deck from summer + something more active to cap it off (e.g., critiquing something we did or extending it in some way)
+
+# The Supervised Learning Problem Setup (Learning as Optimization)
+
+We're now switching gears to talk about how machine learning can be thought of as an optimization problem.  We're going to start with a mathematical definition the simplest type of machine learning: supervised learning.  Along the way you'll get a chance to build your conceptual knowledge about how learning can be thought of as a learning problem.
+
+> Note: this next section is also in the homework, but we wanted to have a chance to go over this together.
+
+Suppose you are given a set of training data points, $(\mathbf{x_1}, y_1), (\mathbf{x}_2, y_2), \ldots, (\mathbf{x}_n, y_n)$ where each $\mathbf{x_i}$ represents an element of an input space (e.g., a d-dimensional feature vector) and each $y_i$ represents an element of an output space (e.g., a scalar target value).  In the supervised learning setting, your goal is to determine a function $\hat{f}$ that maps from the input space to the output space.  For example, if we provide an input $\mathbf{x}$ to $\hat{f}$ it would generate the predicted output $\hat{y} = \hat{f}(\mathbf{x})$.
+
+We typically also assume that there is some loss function, $\ell$, that determines the amount of loss that a particular prediction $\hat{y_i}$ incurs due to a mismatch with the actual output $y_i$.  We can define the best possible model, $\hat{f}^\star$ as the one that minimizes these losses over the training set.  This notion can be expressed with the following equation  (note: that $\argmin$ in the equation below just means the value that minimizes the expression inside of the $\argmin$, e.g., $\argmin_{x} (x - 2)^2 = 2$, whereas $\min_{x} (x-2)^2 = 0$).
+
+\begin{align}
+\hat{f}^\star &= \argmin_{\hat{f}} \sum_{i=1}^n \ell \left ( \hat{f}(\mathbf{x_i}), y_i \right )
+\end{align} 
+
+# Getting Started on Linear Regression
+
+A particular type of supervised learning problem is called linear regression or least squares.  You met this algorithm way back in QEA1, but we don't expect you to recall all of those details!  We're going to go over linear regression from a different perspective in this class.  We find that it often takes us multiple encounters with the same idea to start to really achieve proficiency (hopefully this is another step along that journey for you).
+
+The way we recommend engaging with this material is by [starting on assignment 2](../assignments/assignment02/assignment02).  We'll open up some breakout rooms and you can join them as you like.

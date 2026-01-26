@@ -20,7 +20,7 @@ header:
 
 | Day # | Activity                                                                      |
 |-------|-------------------------------------------------------------------------------|
-{% for d in (1..1) %}
+{% for d in (1..2) %}
 {%- assign dd = d -%}
 {%- if d < 10 -%}{% assign dd = '0' | append: d %}{% endif -%}
 {%- assign fname = 'activities/day' | append: dd | append: '.markdown' -%}
@@ -70,9 +70,7 @@ header:
 ## Other Important Documents
 [Notation conventions](assignments/assignment01/notation_conventions)
 
-<!--
 [Learning as Optimization Key Concepts](assignments/assignment09/LearningAsOptimizationTakeaways)
--->
 
 ## Overlay Image Attribution
 

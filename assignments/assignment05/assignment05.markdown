@@ -17,7 +17,7 @@ published: false
 {% include learning_objectives.html content=content %}
 
 This builds on:
-* [Supervised learning problem framing](/assignments/assignment03/assignment03?showAllSolutions=true#supervised-learning-problem-setup).
+* [Supervised learning problem framing](/assignments/assignment02/assignment03?showAllSolutions=true#supervised-learning-problem-setup).
 * Calculating gradients.
 * [Log loss](/assignments/assignment04/assignment04?showAllSolutions=true#probability-and-the-log-loss)
 

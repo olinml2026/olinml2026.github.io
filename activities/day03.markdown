@@ -1,23 +1,30 @@
 ---
-title: "Day 3: 	Model Validation and Community-centered Machine Learning"
+title: "Day 2: Community-Centered Design for Machine Learning"
 toc_sticky: true 
 toc_h_max: 1
 layout: problemset
 published: false
 ---
-Brian Coming in
 
-* Make it interactive
-* Could do a thing like the ML students come up with some ideas for how to help the BVI community with ML and then can talk to Brian about them
-* The activity with other Brian was fun — doing the codesign ideation and challenge. Having a BVI person at the table and working together with them was really good experience. (
-* Maybe changed the final team project to this: Students work in teams of 5 in the ideation and prototyping of a ML technology that can help visually impaired community. Maybe in hackathon format? For the last 2 days of class? And then we have a the ideas review by professors and members of the bvi community. The price of hackathon is snacks and stickers, or maybe a free subscription to gemini or something like that? Free compute credits?
+{% capture agenda %}
+* 10:20-10:25am: Everyone come hang out in MAC128, we'll talk about the plan and answer any logistics questions.
+* 10:25-10:45am: Debrief at tables about the last assignment.
+* 10:45-12pm: Presentation on Community-centered design for ML
+{% endcapture %}
 
+{% include agenda.html content=agenda %}
 
+# Debrief on the last assignment
 
-# Mapping frameworks for community-centered design to various problems
-Todo
-# Some prep work for the model evaluation part of the assignment
-* Idea of ranking and hard negatives
+1. Introduce yourselves
+2. Quickly draw a confusion matrix at your table and write the equations for accuracy, precision, and recall.
+3. Discuss your answers for Exercise 9 in the Colab notebook (see exercise below as a reminder).
 
-# Play with app
-Examine qualitative data.
+    Exercise 9: Summarize how well the dessert classifier works for french toast and red velvet cake.
+    Come to class prepared to share this at your table.
+    Consider the confusion matrix, precision, and recall. How do you interpret this?
+    What does it mean for life as french toast or as red velvet cake?
+
+# Community-Centered Design for ML
+
+* Slide deck from summer + something more active to cap it off (e.g., critiquing something we did or extending it in some way)
