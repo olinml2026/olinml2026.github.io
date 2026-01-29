@@ -57,9 +57,9 @@ to look at these raw materials directly.  If you are curious, they are there for
 {% capture content %}
 Please categorize the major activities of the summer team with respect to the human-centered design steps of 
 observation, ideation, rapid prototyping, user feedback, iteration, and implementation.  For each activity, comment 
-on how the particular activity fit with the chosen stage of the design process.  For example, did an activity do a 
-good job advancing the design process?  What did you like?  What would you change?  What activities (or changes 
-thereto) do you think would have made the design process stronger?
+on how the particular activity fit with the chosen stage of the design process (e.g., what might the important 
+takeaways be from this activity to advance the design?).  What aspects of the design process seem beneficial and you 
+might emulate?  What would you change (either specifics of an activity or adding new activities all together)?
 {% endcapture %}
 {% include problem.html problem=content %}
 
@@ -187,8 +187,8 @@ We'll get into evaluation a lot more in the next assignment.
 Please listen to [this interview](supplementary_files/ashley_interview.mp3) that Bela and Ethan did with Ashley, an employee at the Massachusetts Association 
 for the Blind and Visually Impaired (MABVI).  The goal of this interview was to get to know our community partners 
 and to understand how they interact with technology in general and machine learning (or AI) specifically.  What are 
-your key takeaways from this interview?  You could focus on important insights regarding Ashley's use of AI, how the 
-interview was conducted (what did you like, how might you do it differently), whether the interview seemed valuable 
+your key takeaways from this interview?  You could focus on important insights regarding Ashley's use of AI, design 
+insights that should be kept in mind when ideating on project directions, how the interview was conducted (what did you like, how might you do it differently), whether the interview seemed valuable 
 to the overall design process, etc.
 {% endcapture %}
 {% include problem.html problem=content %}
