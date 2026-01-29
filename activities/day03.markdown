@@ -1,5 +1,5 @@
 ---
-title: "Day 3: Community-Centered Design for Machine Learning"
+title: "Day 3: Human-Centered Design for Machine Learning"
 toc_sticky: true 
 toc_h_max: 1
 layout: problemset
@@ -8,8 +8,8 @@ published: true
 
 {% capture agenda %}
 * 3:45-4:00pm: Debrief at tables about the last assignment.
-* 4:00-5:25: Community-centered design for ML
-{% endcapture %}
+  * 4:00-5:25: Human-centered design for ML
+  {% endcapture %}
 
 {% include agenda.html content=agenda %}
 
