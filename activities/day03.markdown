@@ -19,8 +19,16 @@ published: true
   regression.
 * Surface any lingering questions
 
-# Community-Centered Design for ML
+# Human-Centered Design for ML
 
 Bela Sanchez Taipe (Wellesley College), Ethan Smith (Wright State University), and Zara Coakley (Olin College) are 
   here to guide you through some activities to understand the role of human-centered design for machine learning 
   technology.  We hope you enjoy.
+
+# App Demo Instructions
+
+First, make sure you have the TestFlight app downloaded.  Once you do, you can download the EchoMinds app using [this TestFlight link](https://testflight.apple.com/join/hMXSxFrp).
+
+If you'd like to prepopulate your app with a bunch of notes related to assistive techology, go "settings" (the gear 
+icon) and select "Load Accessible Tech Notes".  Please note that this process takes a long time, and the server may 
+blow up.  So please ask before doing this (maybe 1-2 people at a time can run this operation).
