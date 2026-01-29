@@ -21,3 +21,10 @@ Todo
 
 # Play with app
 Examine qualitative data.
+
+* Focus on the questions piece of it.  Maybe do an activity like card sort?  Have someone do it in front of everyone.
+  If there is time students could come up with an idea, and have him give a response.
+
+Prompts for Brian
+* Help students feel comfortable interacting with blind people (give some guidance help them to not feel self-conscious)
+* How do you design for people different from you?

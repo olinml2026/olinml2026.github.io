@@ -19,7 +19,7 @@ published: false
 This builds on:
 * [Supervised learning problem framing](/assignments/assignment02/assignment03?showAllSolutions=true#supervised-learning-problem-setup).
 * Calculating gradients.
-* [Log loss](/assignments/assignment04/assignment04?showAllSolutions=true#probability-and-the-log-loss)
+* [Log loss](/assignments/assignment04_old/assignment04?showAllSolutions=true#probability-and-the-log-loss)
 
 
 # The Logistic Regression Model

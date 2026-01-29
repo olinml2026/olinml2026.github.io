@@ -72,7 +72,7 @@ During the first two weeks of the summer, students engaged in the following acti
   * Students practiced doing [fieldwork](https://en.wikipedia.org/wiki/Field_research) at a local senior center (here is a document summarizing [key things to keep](supplementary_files/fieldworktips.pdf)
     in mind when doing field work)
 
-![](supplementary_files/theheights.png)
+![Olin students posing for a group picture with seniors at a Needham senior center](supplementary_files/theheights.png)
 
   * Students listened to a presentation on [blindness education at the Carroll Center](https://olincollege.com/:v:/s/EducateAI/IQDVehDbmW6qRK9aO41k3e31Aar8-5fweQDj-vmOZRyYIFo?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZy1MaW5rIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXcifX0%3D&e=7qMB27)
     sharepoint (the [Carroll Center](https://carroll.org/) was their primary fieldwork site).
@@ -82,14 +82,14 @@ During the first two weeks of the summer, students engaged in the following acti
   * Brian Charlson (formerly of the Carroll Center) and his sister Lesli Charlson gave a demonstration of how a 
     person who is blind cooks (Brian is blind).  Brian will be with us next class.
 
-  <img src="supplementary_files/briancooking.png" width="70%"/>
+  <img alt="Brian Charlson and Lesli Charlson cooking.  Brian is holding a large knife and about to chop a pineapple" src="supplementary_files/briancooking.png" width="70%"/>
 
   * Students volunteered at a fundraiser for the Carroll Center called Walk for Independence.  They helped run booths, 
 direct cars into parking spaces, and worked as sighted guides for the participants in the walkathon.
 
 
 
-![](supplementary_files/walkforindependence.jpg)
+![Three college students serving as volunteers at the Walk for Independence.  The picture is taken on a large lawn.](supplementary_files/walkforindependence.jpg)
 
 * Students learned how to interview people when doing fieldwork.  They practiced by interviewing people from the 
   Olin community ([Interview tips](supplementary_files/interview_tips.pptx))
