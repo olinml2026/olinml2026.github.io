@@ -6,8 +6,6 @@ layout: problemset
 published: true
 ---
 
-# Visit from Brian Charlson
-
 {% capture content %}
 * Improve at being able to quickly map out an opportunity space for machine learning technology and select 
   appropriate design process and key questions.
