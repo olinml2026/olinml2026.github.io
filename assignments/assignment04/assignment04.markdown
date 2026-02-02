@@ -39,17 +39,6 @@ to spend at least 45 minutes thinking through this problem.
 {% endcapture %}
 {% include problem.html problem=content %}
 
-# Qualitative Feedback
-
-{% capture content %}
-Work in progress (will post soon)
-App Feedback Clips for Model Eval pt 1 assignment.docx
-Value proposition.
-Testing.
-Quantitative data / qualitative data.
-{% endcapture %}
-{% include problem.html problem=content %}
-
 # Model Analysis
 
 {% capture content %}

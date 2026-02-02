@@ -16,6 +16,18 @@ published: false
 
 {% include agenda.html content=agenda %}
 
+# Qualitative Feedback
+
+{% capture content %}
+Work in progress (will post soon)
+App Feedback Clips for Model Eval pt 1 assignment.docx
+Value proposition.
+Testing.
+Quantitative data / qualitative data.
+{% endcapture %}
+{% include problem.html problem=content %}
+
+
 # Debrief on the last assignment (5 minutes)
 
 Warm up your brains by refreshing on the last assignment, including the derivation of linear regression... we're going to use it in a minute.
