@@ -52,3 +52,8 @@ Here are some activities:
 # Shareout
 
 We'll conclude by sharing our key takeaways with the larger group.
+
+# Switching Gears to Homework Assignment
+
+With the remainder of class, I'll orient you to the next assignment and give you a chance to ask questions / get 
+started.
