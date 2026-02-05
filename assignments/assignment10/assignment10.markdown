@@ -148,7 +148,7 @@ Let's do a little spiraling back to one of the big ideas in machine learning we 
 > scrapped a secret AI recruiting tool that showed bias against women](https://www.reuters.com/article/us-amazon-com-jobs-automation-insight/amazon-scraps-secret-ai-recruiting-tool-that-showed-bias-against-women-idUSKCN1MK08G).
 More specifically, the tool performed automatic keyword analysis of job applications to predict whether or not the applicant was worth forwarding on to a human for further evaluation. Early in the development of this system researchers discovered that the model the system had learned placed a negative weight on words such as "women's" as well as the names of some women's colleges.
 
-Given what you just learned about the bag of words approach and what we learned about [confounding variables in assignment 4](../assignment04_old/assignment04#confounding-variables), how might Amazon's system have learned to associate negative feature weights with the gendered words or words associated with women's colleges?
+Given what you just learned about the bag of words approach and what we learned about [confounding variables in assignment 4](../assignment05/assignment04#confounding-variables), how might Amazon's system have learned to associate negative feature weights with the gendered words or words associated with women's colleges?
 
 {% endcapture %}
 {% capture solution %}

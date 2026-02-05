@@ -3,7 +3,7 @@ title: "Day 5: 	Linear, Ridge, and Logistic Regression & Train-Test Split"
 toc_sticky: true 
 toc_h_max: 1
 layout: problemset
-published: false
+published: true
 ---
 
 {% capture agenda %}
@@ -16,6 +16,12 @@ published: false
 
 {% include agenda.html content=agenda %}
 
+# Debrief on the last assignment (5 minutes)
+
+Warm up your brains by refreshing on the last assignment, including the derivation of linear regression... we're going to use it in a minute.
+<!--- Possibly do this without computer (unless needed)  -  have them focus on answering a few questions together and prep them for what we might ask at a gate -->
+
+
 # Qualitative Feedback
 
 {% capture content %}
@@ -26,12 +32,6 @@ Testing.
 Quantitative data / qualitative data.
 {% endcapture %}
 {% include problem.html problem=content %}
-
-
-# Debrief on the last assignment (5 minutes)
-
-Warm up your brains by refreshing on the last assignment, including the derivation of linear regression... we're going to use it in a minute.
-<!--- Possibly do this without computer (unless needed)  -  have them focus on answering a few questions together and prep them for what we might ask at a gate -->
 
 # Ridge Regression Math (20 minutes)
 
@@ -63,23 +63,26 @@ The penalty term may seem a little arbitrary, but it can be motivated on a conce
 
 Derive an expression to compute the optimal weights, $\mathbf{w^\star}$, to the ridge regression problem.
 
+> Note: this is on your homework, so you'll be getting a head start!
+
 # Classification and Train/Test Split in scikit-learn (40 minutes)
 
 Overfitting our model to our data can lead to diminished results when we apply our model to a new set of data. One of the ways we try to avoid overfitting is by splitting our data into a training and testing set. (In the future, we will talk about another split of the training data called cross-validation, but for now, we won't worry about that.)
 
-
 [Scikit-learn](https://scikit-learn.org/stable/index.html) is a common python library for classic machine learning. 
 
-We are going to do a guided tour of [this Colab notebook on classification](https://colab.research.google.com/drive/1cAes5ScARNwi3-naPIpl0WnCqpiS5k7x?usp=sharing)
+We are going to do a guided tour of [this Colab notebook on classification](https://colab.research.google.com/drive/1pDAhyrmS51f9sGgwmjM9qmoi4mHyl_z6?usp=sharing)
 
 # Logistic Regression Primer
 
 We've met the idea of classification. Logistic regression is one algorithm for binary classification. It builds nicely on linear regression and feeds nicely into neural networks (which we will explore soon). 
 
 {% include figure.html
-        img="../assignments/assignment05/figures/linearandlogistic.png"
+        img="../assignments/assignment05_old/figures/linearandlogistic.png"
+        width="70%"
         alt="a schematic of a neural network is used to represent linear and logistic regression.  Circles represent nodes, which are connected to other nodes using arrows. Logistic regression looks like linear regression followed by a sigmoid function."
         caption="Graphical representation of both linear and logistic regression.  The key difference is the application of the squashing function shown in yellow. [Original Source - Towards Data Science](https://towardsdatascience.com/building-a-logistic-regression-in-python-301d27367c24)" %}
 {% assign graphicaldataflow = figure_number %}
 
-In [your assignment](../assignments/assignment04_old/assignment04), you'll be meeting loss functions for binary classification.
+In [your assignment](../assignments/assignment05/assignment05), you'll be meeting loss functions for binary 
+classification.

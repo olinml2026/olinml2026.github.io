@@ -24,14 +24,14 @@ Warm up your brains by refreshing on the last assignment.  As a reminder, some o
 
 We're now going to be diving into logistic regression.  We'll start out by writing the basic ideas of logistic regression up on the board, and we'll go through a notebook that shows a sample problem.
 
-The content we're going to use for this is contained in [the beginning part of assignment 5](../assignments/assignment05/assignment05#the-logistic-regression-model).  Let's jump over there and look at it together.
+The content we're going to use for this is contained in [the beginning part of assignment 5](../assignments/assignment05_old/assignment05#the-logistic-regression-model).  Let's jump over there and look at it together.
 
 Next, we're going to go thorugh a Colab notebook that shows [an example logistic regresion problem](https://colab.research.google.com/drive/1xpGvY-kg7-HOC7_To0nMZIOOHQ_Yxd89?usp=sharing).
 
 # Logistic Regression Learning Rule (40 minutes)
 
-Let's use [assignment 5](../assignments/assignment05/assignment05) to begin to unpack some of the concepts behind choosing the best set of weights for logistic regression.  Before we start, we'll go over our high-level strategy.
+Let's use [assignment 5](../assignments/assignment05_old/assignment05) to begin to unpack some of the concepts behind choosing the best set of weights for logistic regression.  Before we start, we'll go over our high-level strategy.
 
 # Foundations of Micrograd
 
-Let's use [assignment 5](../assignments/assignment05/assignment05) to build some of the foudnations we're going to need to optimize a wide range of machine learning models given a trainig set.
+Let's use [assignment 5](../assignments/assignment05_old/assignment05) to build some of the foudnations we're going to need to optimize a wide range of machine learning models given a trainig set.
