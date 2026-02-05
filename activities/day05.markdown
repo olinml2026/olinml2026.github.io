@@ -66,8 +66,6 @@ The penalty term may seem a little arbitrary, but it can be motivated on a conce
 
 Derive an expression to compute the optimal weights, $\mathbf{w^\star}$, to the ridge regression problem.
 
-> Note: this is on your homework, so you'll be getting a head start!
-
 # Classification and Train/Test Split in scikit-learn (50 minutes)
 
 Overfitting our model to our data can lead to diminished results when we apply our model to a new set of data. One of the ways we try to avoid overfitting is by splitting our data into a training and testing set. (In the future, we will talk about another split of the training data called cross-validation, but for now, we won't worry about that.)
