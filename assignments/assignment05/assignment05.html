@@ -753,9 +753,7 @@ assignment 3</a>, you’ll arrive at an expression that looks like this (note: $
 <p style="font-size: x-large; font-weight: 700;">Part B</p>
 
 <p>One natural choice for $\ell$, which you may have already come up with, is to define our loss function as $\ell(y, \hat{y}) = \mathbb{I}[y \neq \hat{y}]$. The funny looking $\mathbb{I}$ is the indicator function that takes on value 1 when the condition inside is true and 0 otherwise.  Given this choice the supervised learning problem becomes:
-\(\begin{align}
-\hat{f}^\star &amp;= \argmin_{\hat{f}} \sum_{i=1}^n \mathbb{I} \left [  \hat{f}(\mathbf{x_i}) \neq y_i\right ] \enspace . \label{eq:minimizeerror}
-\end{align}\)
+$\hat{f}^\star = \argmin_{\hat{f}} \sum_{i=1}^n \mathbf{I} \left [  \hat{f}(\mathbf{x_i}) \neq y_i\right ]$
 Convert the equation above to English to make sure you understand it.</p>
 
 <p><button hidden="true" onclick="HideShowElement(&quot;subpartsolution-28&quot;)" class="togglebutton">Show / Hide Solution</button></p>
