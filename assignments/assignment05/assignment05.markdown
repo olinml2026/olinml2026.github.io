@@ -186,12 +186,9 @@ An easy choice is to output a $1$ if the values don't match and a $0$ otherwise 
 
 {% capture part_b %}
 One natural choice for $\ell$, which you may have already come up with, is to define our loss function as $\ell(y, \hat{y}) = \mathbb{I}[y \neq \hat{y}]$. The funny looking $\mathbb{I}$ is the indicator function that takes on value 1 when the condition inside is true and 0 otherwise.  Given this choice the supervised learning problem becomes:
-$$
-\begin{align}
-\hat{f}^\star &= \argmin_{\hat{f}} \sum_{i=1}^n \mathbb{I} \left [  \hat{f}(\mathbf{x_i}) \neq y_i\right ] \enspace . \label{eq:minimizeerror}
-\end{align}
-$$
+$\hat{f}^\star = \argmin_{\hat{f}} \sum_{i=1}^n \mathbf{I} \left [  \hat{f}(\mathbf{x_i}) \neq y_i\right ]$
 Convert the equation above to English to make sure you understand it.
+
 {% endcapture %}
 {% capture part_b_sol %}
 The equation says that $\hat{f}^\star$ is the function that minimizes the number of mistakes it makes on the training set.
