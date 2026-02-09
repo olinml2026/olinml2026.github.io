@@ -78,7 +78,7 @@ customElements.define("confirm-link", ConfirmLink, { extends: "a" });
 
 </script>
 
-<!-- begin _includes/seo.html --><title>Day 5: 	Linear, Ridge, and Logistic Regression &amp; Train-Test Split - Machine Learning Spring 2026 @ Olin College</title>
+<!-- begin _includes/seo.html --><title>Day 6: 	Logistic Regression Sample Problem, Foundations of Micrograd - Machine Learning Spring 2026 @ Olin College</title>
 <meta name="description" content="Website">
 
 
@@ -86,8 +86,8 @@ customElements.define("confirm-link", ConfirmLink, { extends: "a" });
 <meta property="og:type" content="website">
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Machine Learning Spring 2026 @ Olin College">
-<meta property="og:title" content="Day 5: 	Linear, Ridge, and Logistic Regression &amp; Train-Test Split">
-<meta property="og:url" content="/activities/day05.html">
+<meta property="og:title" content="Day 6: 	Logistic Regression Sample Problem, Foundations of Micrograd">
+<meta property="og:url" content="/activities/day06.html">
 
 
   <meta property="og:description" content="Website">
@@ -103,7 +103,7 @@ customElements.define("confirm-link", ConfirmLink, { extends: "a" });
 
 
 
-<link rel="canonical" href="/activities/day05.html">
+<link rel="canonical" href="/activities/day06.html">
 
 
 
@@ -384,7 +384,7 @@ $
   
 
   <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
-    <meta itemprop="headline" content="Day 5: 	Linear, Ridge, and Logistic Regression &amp; Train-Test Split">
+    <meta itemprop="headline" content="Day 6: 	Logistic Regression Sample Problem, Foundations of Micrograd">
     
     
     
@@ -392,7 +392,7 @@ $
     <div class="page__inner-wrap">
       
         <header>
-          <h1 id="page-title" class="page__title" itemprop="headline">Day 5: 	Linear, Ridge, and Logistic Regression &amp; Train-Test Split
+          <h1 id="page-title" class="page__title" itemprop="headline">Day 6: 	Logistic Regression Sample Problem, Foundations of Micrograd
 </h1>
           
         </header>
@@ -407,9 +407,9 @@ $
                 <ul class="toc__menu">
   <li><a href="#">Agenda</a></li>
   <li><a href="#debrief-on-the-last-assignment-15-minutes">Debrief on the last assignment (15 minutes)</a></li>
-  <li><a href="#ridge-regression-math-20-minutes">Ridge Regression Math (20 minutes)</a></li>
-  <li><a href="#classification-and-traintest-split-in-scikit-learn-50-minutes">Classification and Train/Test Split in scikit-learn (50 minutes)</a></li>
-  <li><a href="#logistic-regression-primer-15-minutes">Logistic Regression Primer (15 minutes)</a></li>
+  <li><a href="#logistic-regression-example-problem-25-minutes">Logistic Regression Example Problem (25 minutes)</a></li>
+  <li><a href="#logistic-regression-learning-rule-40-minutes">Logistic Regression Learning Rule (40 minutes)</a></li>
+  <li><a href="#foundations-of-micrograd-rest-of-class">Foundations of Micrograd (rest of class)</a></li>
 </ul>
 	      	
             </nav>
@@ -437,9 +437,9 @@ $
 	   
 <ul>
   <li>3:45-4:00pm: Debrief at tables</li>
-  <li>4:00-4:20pm: Ridge Regression</li>
-  <li>4:20-5:10pm: Classification and train/test split</li>
-  <li>5:10-5:25pm: Logistic Regression Primer</li>
+  <li>4:00-4:25pm: Logistic Regression Example Problem</li>
+  <li>4:25-5:05pm: Logistic Regression Learning Rule</li>
+  <li>5:05-5:25pm: Foundations of Micrograd</li>
 </ul>
 
 	</div>
@@ -447,120 +447,23 @@ $
 
 <h1 id="debrief-on-the-last-assignment-15-minutes">Debrief on the last assignment (15 minutes)</h1>
 
-<p>What were your major conclusions regarding the models used in the EchoMinds app?  As a reminder, here were the prompts.</p>
-<ul>
-  <li>Are these two datasets useful for evaluating the EchoMinds app?  How do they fit with app’s value proposition?  How 
-are they misaligned?</li>
-  <li>How did the models work when you tried your own questions?  Were you able to fool the models by choosing particular wordings for your questions?</li>
-  <li>Based on your analysis, what tasks could the EchoMinds app do right now and what conditions (or tasks) would be beyond its capabilities?</li>
-</ul>
+<p>Warm up your brains by refreshing on the last assignment.  As a reminder, some of the big ideas were classification algorithms, log loss, and confounding variables.</p>
 
-<!--
-# Qualitative Feedback
+<h1 id="logistic-regression-example-problem-25-minutes">Logistic Regression Example Problem (25 minutes)</h1>
 
+<p>We’re now going to be diving into logistic regression.  We’ll start out by writing the basic ideas of logistic regression up on the board, and we’ll go through a notebook that shows a sample problem.</p>
 
+<p>The content we’re going to use for this is contained in <a href="../assignments/assignment06/assignment06#the-logistic-regression-model">the beginning part of assignment 6</a>.  Let’s jump over there and look at it together.</p>
 
+<p>Next, we’re going to go through a Colab notebook that shows <a href="https://colab.research.google.com/drive/1xpGvY-kg7-HOC7_To0nMZIOOHQ_Yxd89?usp=sharing">an example logistic regression problem</a>.</p>
 
-<div style="display: normal;
-        border-left: 6px solid #0065B4;
-        margin: 2em 0em 2em 0em;">
-    <div class="tip" style="background-color: #ECF7FF;
-        padding: 1em 1em 1em 1em;
-        display: flex;
-        column-gap: 1rem;">
-        <div class="notice-bulb" style="
-	    font-family: 'Font Awesome 5 Free',serif;
-	    vertical-align: middle;
-	    font-weight: 900;
-	    font-size: xx-large;
-	    color: #ff6f00;">
-            <i class="fas fa-question"></i>
-</div>
-	<div style="font-size: xx-large; font-weight: 900;">Exercise 1</div>
-    </div>
-<div  style="display: normal; padding: 1em 1em 1em 1em;">
-	
-<p>Work in progress (will post soon)
-App Feedback Clips for Model Eval pt 1 assignment.docx
-Value proposition.
-Testing.
-Quantitative data / qualitative data.</p>
+<h1 id="logistic-regression-learning-rule-40-minutes">Logistic Regression Learning Rule (40 minutes)</h1>
 
+<p>Let’s use <a href="../assignments/assignment06/assignment06">assignment 6</a> to begin to unpack some of the concepts behind choosing the best set of weights for logistic regression.  Before we start, we’ll go over our high-level strategy.</p>
 
-    <button hidden="true" onclick="HideShowElement(&quot;solution-1&quot;)" class="togglebutton">Show / Hide Solution</button>
+<h1 id="foundations-of-micrograd-rest-of-class">Foundations of Micrograd (rest of class)</h1>
 
-<div id="solution-1" class="solution" style="
-    background-color: #cefad0;
-    border-left: 6px solid #6500B4;
-    padding: 1em 1em 1em 1em;
-    display: none;
-    column-gap: 2rem;
-    margin: 2em 2em 2em 2em;">
-    <div style="display: normal">
-<p style="font-weight: 900; font-size: x-large">Solution</p>
-
-
-     </div>
-</div>
-</div>
-</div>
-
--->
-
-<h1 id="ridge-regression-math-20-minutes">Ridge Regression Math (20 minutes)</h1>
-
-<p>You’ll do some more on ridge regression in the assignment, including an exploration of why it’s useful. In class, we’re going to go over the math of ridge regression (which will also be an exercise on your assignment).</p>
-
-<p>One way to mitigate the problem of having two little data or having features that are linear combinations of each other is to modify the linear regression problem to prefer solutions that have small weights.  We do this by penalizing the sum of the squares of the weights themselves.  This is called ridge regression (or Tikhonov regularization).  Below, we show the original version of ordinary least squares along with ridge regression.</p>
-
-<p>Ordinary least squares:</p>
-
-\[\begin{align*}
-\mathbf{w^\star} &amp;= \argmin_\mathbf{w} \sum_{i=1}^n \left ( \mathbf{w}^\top \mathbf{x_i} - y_i \right)^2  \\  
-&amp;= \argmin_\mathbf{w} \left ( \mathbf{X}\mathbf{w} - \mathbf{y} \right)^\top \left ( \mathbf{X}\mathbf{w} - \mathbf{y} \right)
-\end{align*}\]
-
-<p>Formula for the optimal weights in linear regression:</p>
-
-\[\begin{align*}
-\mathbf{w^\star} = \left ( \mathbf{X}^\top \mathbf{X} \right)^{-1} \mathbf{X}^\top \mathbf{y}
-\end{align*}\]
-
-<p>Ridge regression (note that $\lambda$ is a non-negative parameter that controls how much the algorithm cares about fitting the data and how much it cares about having small weights):</p>
-
-\[\begin{align*}
-\mathbf{w^\star} &amp;= \argmin_\mathbf{w} \sum_{i=1}^n \left ( \mathbf{w}^\top \mathbf{x_i} - y_i \right)^2 + \lambda\sum_{i=1}^d w_i^2  \\  
-&amp;= \argmin_\mathbf{w} \left ( \mathbf{X}\mathbf{w} - \mathbf{y} \right)^\top \left ( \mathbf{X}\mathbf{w} -  \mathbf{y} \right) + \lambda \mathbf{w}^\top \mathbf{w}
-\end{align*}\]
-
-<p>The penalty term may seem a little arbitrary, but it can be motivated on a conceptual level pretty easily.  The basic idea is that in the absence of sufficient training data to suggest otherwise, we should try to make the weights small.  Small weights have the property that changes to the input result in minor changes to our predictions, which is a good default behavior.</p>
-
-<p>Derive an expression to compute the optimal weights, $\mathbf{w^\star}$, to the ridge regression problem.</p>
-
-<h1 id="classification-and-traintest-split-in-scikit-learn-50-minutes">Classification and Train/Test Split in scikit-learn (50 minutes)</h1>
-
-<p>Overfitting our model to our data can lead to diminished results when we apply our model to a new set of data. One of the ways we try to avoid overfitting is by splitting our data into a training and testing set. (In the future, we will talk about another split of the training data called cross-validation, but for now, we won’t worry about that.)</p>
-
-<p><a href="https://scikit-learn.org/stable/index.html">Scikit-learn</a> is a common python library for classic machine learning.</p>
-
-<p>We are going to do a guided tour of <a href="https://colab.research.google.com/drive/1pDAhyrmS51f9sGgwmjM9qmoi4mHyl_z6?usp=sharing">this Colab notebook on classification</a></p>
-
-<h1 id="logistic-regression-primer-15-minutes">Logistic Regression Primer (15 minutes)</h1>
-
-<p>We’ve met the idea of classification. Logistic regression is one algorithm for binary classification. It builds nicely on linear regression and feeds nicely into neural networks (which we will explore soon).</p>
-
-<figure id="figure1">
-    <div style="text-align: center;">
-        <img src="../assignments/assignment06/figures/linearandlogistic.png" alt="a schematic of a neural network is used to represent linear and logistic regression.  Circles represent nodes, which are connected to other nodes using arrows. Logistic regression looks like linear regression followed by a sigmoid function." style="max-width: 100%" />
-    </div>
-    <figcaption style="font-size: large">
-        Figure 1: <p>Graphical representation of both linear and logistic regression.  The key difference is the application of the squashing function shown in yellow. <a href="https://towardsdatascience.com/building-a-logistic-regression-in-python-301d27367c24">Original Source - Towards Data Science</a></p>
-
-    </figcaption>
-</figure>
-
-<p>If we finish this early, let’s move onto <a href="../assignments/assignment05/assignment05">the assignment</a> where you’ll be 
-meeting loss functions for binary classification.</p>
+<p>Let’s use <a href="../assignments/assignment06/assignment06">assignment 6</a> to build some of the foundations we’re going to need to optimize a wide range of machine learning models given a training set.</p>
 
         
       </section>

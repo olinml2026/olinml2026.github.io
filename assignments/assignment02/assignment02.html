@@ -457,9 +457,9 @@ $
 
 <p>We typically also assume that there is some loss function, $\ell$, that determines the amount of loss that a particular prediction $\hat{y_i}$ incurs due to a mismatch with the actual output $y_i$.  We can define the best possible model, $\hat{f}^\star$ as the one that minimizes these losses over the training set.  This notion can be expressed with the following equation  (note: that $\argmin$ in the equation below just means the value that minimizes the expression inside of the $\argmin$, e.g., $\argmin_{x} (x - 2)^2 = 2$, whereas $\min_{x} (x-2)^2 = 0$).</p>
 
-<p>\begin{align}
+\[\begin{aligned}
 \hat{f}^\star &amp;= \argmin_{\hat{f}} \sum_{i=1}^n \ell \left ( \hat{f}(\mathbf{x_i}), y_i \right )
-\end{align}</p>
+\end{aligned}\]
 
 <h1 id="linear-regression-from-the-top-down">Linear Regression from the Top-Down</h1>
 
@@ -479,11 +479,11 @@ $
 <p>Given this model, we can now define our very first machine learning algorithm: <a href="https://en.wikipedia.org/wiki/Ordinary_least_squares">ordinary least squares</a> (OLS)!  In the ordinary least squares algorithm, we use our training set to select the $\mathbf{w}$ that minimizes the sum of squared differences between the model’s predictions and the training outputs.  Thinking back to the supervised learning problem setup, this corresponds to choosing $\ell(y, \hat{y}) = (y - \hat{y})^2$.
 Therefore, the OLS algorithm will use the training data to select the optimal value of $\mathbf{w}$ (called $\mathbf{w}^\star$), which minimizes the sum of squared differences between the model’s predictions and the training outputs.</p>
 
-\[\begin{align*}
+\[\begin{aligned}
 \mathbf{w}^\star &amp;= \argmin_{\mathbf{w}} \sum_{i=1}^n \ell \left ( \hat{f}(\mathbf{x_i}, \mathbf{w}) , y_i \right) \\
 &amp;= \argmin_{\mathbf{w}} \sum_{i=1}^n \left ( \hat{f}(\mathbf{x_i}, \mathbf{w}) - y_i \right)^2 \\ 
 &amp;= \argmin_{\mathbf{w}} \sum_{i=1}^n \left ( \mathbf{x_i} \mathbf{w} - y_i \right)^2
-\end{align*}\]
+\end{aligned}\]
 
 <div class="tip" style="
     border-left: 6px solid #000000;
@@ -703,10 +703,10 @@ Therefore, the OLS algorithm will use the training data to select the optimal va
     <div style="display: normal">
 <p style="font-weight: 900; font-size: x-large">Solution</p>
 
-\[\begin{align}
+\[\begin{aligned}
 \frac{de}{dw} &amp; = \sum_{i=1}^n 2 \left ( x_i w  - y_i \right)x_i   \\  
 &amp;= w \sum_{i=1}^n 2 x_i^2 - \sum_{i=1}^n 2 x_i y_i
-\end{align}\]
+\end{aligned}\]
 
 </div>
 </div>
@@ -727,18 +727,18 @@ Therefore, the OLS algorithm will use the training data to select the optimal va
     <div style="display: normal">
 <p style="font-weight: 900; font-size: x-large">Solution</p>
 
-\[\begin{align}
+\[\begin{aligned}
 \frac{de}{dw} &amp;= 0 \\
 &amp;= w^\star \sum_{i=1}^n 2 x_i^2 - \sum_{i=1}^n 2 x_i y_i   \\
 \sum_{i=1}^n 2 x_i y_i  &amp;= w^\star \sum_{i=1}^n 2 x_i^2  \\  
 w^\star &amp;=\frac{\sum_{i=1}^n x_i y_i}{\sum_{i=1}^n x_i^2}
-\end{align}\]
+\end{aligned}\]
 
 <p>If we take the second derivative of $e(w)$ we get:</p>
 
-\[\begin{align}
+\[\begin{aligned}
 \frac{d^2e}{dw^2} &amp;= \sum_{i=1}^n 2x_i^2 \enspace .
-\end{align}\]
+\end{aligned}\]
 
 <p>We can see from the form of the second derivative that it is always non-negative, and therefore the critical point at $w^\star$ corresponds to a minimum.</p>
 
@@ -855,12 +855,12 @@ Gradient</a></li>
     <div style="display: normal">
 <p style="font-weight: 900; font-size: x-large">Solution</p>
 
-\[\begin{align}
+\[\begin{aligned}
 \begin{bmatrix} x_1 \\ x_2 \\ x_3 \end{bmatrix}^\top \begin{bmatrix} a_{1,1} &amp; a_{1,2} &amp; a_{1,3} \\ a_{2,1} &amp; a_{2,2}
 &amp; a_{2,3} \\ a_{3,1} &amp; a_{3,2} &amp; a_{3,3} \end{bmatrix}\begin{bmatrix} x_1 \\ x_2 \\ x_3 \end{bmatrix} &amp;=  \begin{bmatrix} x_1 \\ x_2 \\ x_3 \end{bmatrix}^\top \begin{bmatrix} a_{1,1} x_1 + a_{1,2} x_2 + a_{1,3} x_3 \\ a_{2,1} x_1 + a_{2,2} x_2 + a_{2,3} x_3 \\ a_{3,1} x_1 + a_{3,2} x_2 + a_{3,3} x_3 \end{bmatrix}  \\
 &amp;= a_{1,1} x_1^2 + a_{1,2}x_1x_2 + a_{1,3} x_1 x_3 + a_{2,1}x_1 x_2 + a_{2,2} x_2^2  \nonumber \\
 &amp;+ a_{2,3} x_2 x_3 + a_{3,1} x_3 x_1 + a_{3,2} x_3 x_2 + a_{3,3} x_3^2
-\end{align}\]
+\end{aligned}\]
 
 
 </div>
@@ -889,10 +889,10 @@ answer here} \right)\)</p>
     <div style="display: normal">
 <p style="font-weight: 900; font-size: x-large">Solution</p>
 
-\[\begin{align}
+\[\begin{aligned}
 \begin{bmatrix} x_1 \\ x_2 \\ \vdots \\ x_d \end{bmatrix}^\top \begin{bmatrix} a_{1,1} &amp; a_{1,2} &amp; \ldots &amp; a_{1,d} \\ a_{2,1} &amp; a_{2,2} &amp; \ldots &amp; a_{2,d} \\ \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\ a_{d,1} &amp; a_{d,2} &amp; \ldots &amp; a_{d,d} \end{bmatrix}\begin{bmatrix} x_1 \\ x_2 \\ \vdots \\ x_d \end{bmatrix} &amp;= \begin{bmatrix} x_1 \\ x_2 \\ \vdots \\ x_d \end{bmatrix}^\top \begin{bmatrix} \sum_{j=1}^d a_{1,j} x_j \\ \sum_{j=1}^d a_{2,j} x_j  \\ \vdots \\ \sum_{j=1}^d a_{d,j} x_j \end{bmatrix}  \\   
 &amp;= \sum_{i=1}^d \sum_{j=1}^d a_{i,j}  x_i x_j
-\end{align}\]
+\end{aligned}\]
 
 </div>
 </div>
@@ -984,11 +984,11 @@ Note: to read the hints, you need to have the version of the assignment open tha
     <div style="display: normal">
 <p style="font-weight: 900; font-size: x-large">Solution</p>
 
-\[\begin{align}
+\[\begin{aligned}
 \mathbf{c}^\top \mathbf{x} &amp;= \sum_{j=1}^d c_j x_j  \\  
 \frac{\partial}{\partial x_i}  \sum_{j=1}^d c_j x_j  &amp;= c_i  \\  
 \nabla \mathbf{c}^\top \mathbf{x} &amp;= \mathbf{c}
-\end{align}\]
+\end{aligned}\]
 
 </div>
 </div>
@@ -1032,7 +1032,7 @@ Note: to read the hints, you need to have the version of the assignment open tha
     <div style="display: normal">
 <p style="font-weight: 900; font-size: x-large">Solution</p>
 
-\[\begin{align}
+\[\begin{aligned}
 \mathbf{x}^\top \mathbf{A} \mathbf{x} =&amp; \sum_{i=1}^d\sum_{j=1}^d   x_i  x_j  a_{i, j} &amp;\nonumber  \\   
 \frac{\partial \mathbf{x}^\top \mathbf{A} \mathbf{x}}{\partial x_k} &amp;= \sum_{i=1}^d\sum_{j=1}^d   a_{i,j} \left ( \frac{\partial{x_i }}{\partial x_k} x_j  +  x_i \frac{\partial{x_j}}{\partial x_k} \right)  \text{    } \text{apply the  product rule} \nonumber   \\   
  &amp;= \sum_{i=1}^d\sum_{j=1}^d   a_{i,j}  \frac{\partial{x_i }}{\partial x_k} x_j +   \sum_{i=1}^d\sum_{j=1}^d  a_{i,j}  x_i \frac{\partial{x_j}}{\partial x_k}  \text{      }\text{ split into two summations} \nonumber   \\   
@@ -1041,7 +1041,7 @@ Note: to read the hints, you need to have the version of the assignment open tha
 &amp;= 2  \sum_{j =1}^d a_{k,j}  x_j \text{      } \text{the two summations are the same} \nonumber   \\   
 &amp;= 2 \mathbf{row}_k^\top \mathbf{x} \text{         } \text{this is the dot product between $\mathbf{x}$ and the $k$th row of $\mathbf{A}$} \nonumber   \\   
 \nabla \mathbf{x}^\top \mathbf{A} \mathbf{x} &amp;= 2 \mathbf{A}\mathbf{x} \text{         }   \text{stacking up the partials gives this form} \nonumber
-\end{align}\]
+\end{aligned}\]
 
 </div>
 </div>
@@ -1142,12 +1142,12 @@ single exemplar of our dataset. We will store our $n$ training outputs as an $n$
     <div style="display: normal">
 <p style="font-weight: 900; font-size: x-large">Solution</p>
 
-\[\begin{align}
+\[\begin{aligned}
 \text{Sum of Squared Errors} &amp;= \sum_{i=1}^n \left ( \hat{y}_i - y_i \right)^2  \\  
 &amp;= \left (\mathbf{\hat y} - \mathbf{y} \right)^\top  \left (\mathbf{\hat y} - \mathbf{y} \right)  \\  
 &amp;=\left ( \mathbf{X} \mathbf{w} - \mathbf{y} \right)^\top  \left ( \mathbf{X} \mathbf{w} - \mathbf{y} \right)  \\  
 &amp;= \mathbf{w}^\top \mathbf{X}^\top \mathbf{X} \mathbf{w} - 2 \mathbf{w}^\top \mathbf{X}^\top \mathbf{y} + \mathbf{y}^\top \mathbf{y}
-\end{align}\]
+\end{aligned}\]
 
 </div>
 </div>
@@ -1168,9 +1168,9 @@ single exemplar of our dataset. We will store our $n$ training outputs as an $n$
     <div style="display: normal">
 <p style="font-weight: 900; font-size: x-large">Solution</p>
 
-\[\begin{align}
+\[\begin{aligned}
 \nabla \text{Sum of Squared Errors}  &amp;= 2 \mathbf{X}^\top \mathbf{X} \mathbf{w} - 2 \mathbf{X}^\top \mathbf{y}
-\end{align}\]
+\end{aligned}\]
 
 </div>
 </div>
@@ -1191,11 +1191,11 @@ single exemplar of our dataset. We will store our $n$ training outputs as an $n$
     <div style="display: normal">
 <p style="font-weight: 900; font-size: x-large">Solution</p>
 
-\[\begin{align}
+\[\begin{aligned}
 \nabla \text{Sum of Squared Errors}  &amp;= 0  \\  
 &amp;= 2 \mathbf{X}^\top \mathbf{X} \mathbf{w} - 2 \mathbf{X}^\top \mathbf{y}  \\  
 \mathbf{w} &amp;= \left ( \mathbf{X}^\top \mathbf{X} \right )^{-1} \mathbf{X}^\top \mathbf{y}
-\end{align}\]
+\end{aligned}\]
 
 </div>
 </div>
