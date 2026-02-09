@@ -25,10 +25,11 @@ Suppose you are given a training set of data points, $(\mathbf{x_1}, y_1), (\mat
 
 We typically also assume that there is some loss function, $\ell$, that determines the amount of loss that a particular prediction $\hat{y_i}$ incurs due to a mismatch with the actual output $y_i$.  We can define the best possible model, $\hat{f}^\star$ as the one that minimizes these losses over the training set.  This notion can be expressed with the following equation  (note: that $\argmin$ in the equation below just means the value that minimizes the expression inside of the $\argmin$, e.g., $\argmin_{x} (x - 2)^2 = 2$, whereas $\min_{x} (x-2)^2 = 0$).
 
-\begin{align}
+$$
+\begin{aligned}
 \hat{f}^\star &= \argmin_{\hat{f}} \sum_{i=1}^n \ell \left ( \hat{f}(\mathbf{x_i}), y_i \right )
-\end{align} 
-
+\end{aligned}
+$$
 
 # Linear Regression from the Top-Down
 
@@ -48,11 +49,11 @@ Given this model, we can now define our very first machine learning algorithm: [
 Therefore, the OLS algorithm will use the training data to select the optimal value of $\mathbf{w}$ (called $\mathbf{w}^\star$), which minimizes the sum of squared differences between the model's predictions and the training outputs.
 
 $$
-\begin{align*}
+\begin{aligned}
 \mathbf{w}^\star &= \argmin_{\mathbf{w}} \sum_{i=1}^n \ell \left ( \hat{f}(\mathbf{x_i}, \mathbf{w}) , y_i \right) \\
 &= \argmin_{\mathbf{w}} \sum_{i=1}^n \left ( \hat{f}(\mathbf{x_i}, \mathbf{w}) - y_i \right)^2 \\ 
 &= \argmin_{\mathbf{w}} \sum_{i=1}^n \left ( \mathbf{x_i} \mathbf{w} - y_i \right)^2
-\end{align*}
+\end{aligned}
 $$
 
 
@@ -146,10 +147,10 @@ Compute the derivative of the expression for the sum of squared errors from part
 {% endcapture %}
 {% capture part_b_sol %}
 $$
-\begin{align}
+\begin{aligned}
 \frac{de}{dw} & = \sum_{i=1}^n 2 \left ( x_i w  - y_i \right)x_i   \\  
 &= w \sum_{i=1}^n 2 x_i^2 - \sum_{i=1}^n 2 x_i y_i
-\end{align}
+\end{aligned}
 $$
 {% endcapture %}
 
@@ -162,20 +163,20 @@ Set the derivative to 0, and solve for $w^\star$.  $w^\star$ corresponds to a cr
 
 {% capture part_c_sol %}
 $$
-\begin{align}
+\begin{aligned}
 \frac{de}{dw} &= 0 \\
 &= w^\star \sum_{i=1}^n 2 x_i^2 - \sum_{i=1}^n 2 x_i y_i   \\
 \sum_{i=1}^n 2 x_i y_i  &= w^\star \sum_{i=1}^n 2 x_i^2  \\  
 w^\star &=\frac{\sum_{i=1}^n x_i y_i}{\sum_{i=1}^n x_i^2}
-\end{align}
+\end{aligned}
 $$
 
 If we take the second derivative of $e(w)$ we get:
 
 $$
-\begin{align}
+\begin{aligned}
 \frac{d^2e}{dw^2} &= \sum_{i=1}^n 2x_i^2 \enspace .
-\end{align}
+\end{aligned}
 $$
 
 We can see from the form of the second derivative that it is always non-negative, and therefore the critical point at $w^\star$ corresponds to a minimum.
@@ -242,12 +243,12 @@ Multiply out the expression $$\begin{bmatrix} x_1 \\ x_2 \\ x_3 \end{bmatrix}^\t
 {% capture part_a_sol %}
 
 $$
-\begin{align}
+\begin{aligned}
 \begin{bmatrix} x_1 \\ x_2 \\ x_3 \end{bmatrix}^\top \begin{bmatrix} a_{1,1} & a_{1,2} & a_{1,3} \\ a_{2,1} & a_{2,2}
 & a_{2,3} \\ a_{3,1} & a_{3,2} & a_{3,3} \end{bmatrix}\begin{bmatrix} x_1 \\ x_2 \\ x_3 \end{bmatrix} &=  \begin{bmatrix} x_1 \\ x_2 \\ x_3 \end{bmatrix}^\top \begin{bmatrix} a_{1,1} x_1 + a_{1,2} x_2 + a_{1,3} x_3 \\ a_{2,1} x_1 + a_{2,2} x_2 + a_{2,3} x_3 \\ a_{3,1} x_1 + a_{3,2} x_2 + a_{3,3} x_3 \end{bmatrix}  \\
 &= a_{1,1} x_1^2 + a_{1,2}x_1x_2 + a_{1,3} x_1 x_3 + a_{2,1}x_1 x_2 + a_{2,2} x_2^2  \nonumber \\
 &+ a_{2,3} x_2 x_3 + a_{3,1} x_3 x_1 + a_{3,2} x_3 x_2 + a_{3,3} x_3^2
-\end{align}
+\end{aligned}
 $$
 
 {% endcapture %}
@@ -266,10 +267,10 @@ answer here} \right)$$
 {% endcapture %}
 {% capture part_b_sol %}
 $$
-\begin{align}
+\begin{aligned}
 \begin{bmatrix} x_1 \\ x_2 \\ \vdots \\ x_d \end{bmatrix}^\top \begin{bmatrix} a_{1,1} & a_{1,2} & \ldots & a_{1,d} \\ a_{2,1} & a_{2,2} & \ldots & a_{2,d} \\ \vdots & \vdots & \ddots & \vdots \\ a_{d,1} & a_{d,2} & \ldots & a_{d,d} \end{bmatrix}\begin{bmatrix} x_1 \\ x_2 \\ \vdots \\ x_d \end{bmatrix} &= \begin{bmatrix} x_1 \\ x_2 \\ \vdots \\ x_d \end{bmatrix}^\top \begin{bmatrix} \sum_{j=1}^d a_{1,j} x_j \\ \sum_{j=1}^d a_{2,j} x_j  \\ \vdots \\ \sum_{j=1}^d a_{d,j} x_j \end{bmatrix}  \\   
 &= \sum_{i=1}^d \sum_{j=1}^d a_{i,j}  x_i x_j
-\end{align}
+\end{aligned}
 $$
 {% endcapture %}
 
@@ -304,11 +305,11 @@ Note: to read the hints, you need to have the version of the assignment open tha
 {% endcapture %}
 {% capture part_a_sol %}
 $$
-\begin{align}
+\begin{aligned}
 \mathbf{c}^\top \mathbf{x} &= \sum_{j=1}^d c_j x_j  \\  
 \frac{\partial}{\partial x_i}  \sum_{j=1}^d c_j x_j  &= c_i  \\  
 \nabla \mathbf{c}^\top \mathbf{x} &= \mathbf{c}
-\end{align}
+\end{aligned}
 $$
 {% endcapture %}
 {% include problem_part.html label="A" subpart=part_a solution=part_a_sol %}
@@ -330,7 +331,7 @@ If you are stuck and want a hint, but not the full solution, you can click on th
 
 {% capture part_b_sol %}
 $$
-\begin{align}
+\begin{aligned}
 \mathbf{x}^\top \mathbf{A} \mathbf{x} =& \sum_{i=1}^d\sum_{j=1}^d   x_i  x_j  a_{i, j} &\nonumber  \\   
 \frac{\partial \mathbf{x}^\top \mathbf{A} \mathbf{x}}{\partial x_k} &= \sum_{i=1}^d\sum_{j=1}^d   a_{i,j} \left ( \frac{\partial{x_i }}{\partial x_k} x_j  +  x_i \frac{\partial{x_j}}{\partial x_k} \right)  \text{    } \text{apply the  product rule} \nonumber   \\   
  &= \sum_{i=1}^d\sum_{j=1}^d   a_{i,j}  \frac{\partial{x_i }}{\partial x_k} x_j +   \sum_{i=1}^d\sum_{j=1}^d  a_{i,j}  x_i \frac{\partial{x_j}}{\partial x_k}  \text{      }\text{ split into two summations} \nonumber   \\   
@@ -339,7 +340,7 @@ $$
 &= 2  \sum_{j =1}^d a_{k,j}  x_j \text{      } \text{the two summations are the same} \nonumber   \\   
 &= 2 \mathbf{row}_k^\top \mathbf{x} \text{         } \text{this is the dot product between $\mathbf{x}$ and the $k$th row of $\mathbf{A}$} \nonumber   \\   
 \nabla \mathbf{x}^\top \mathbf{A} \mathbf{x} &= 2 \mathbf{A}\mathbf{x} \text{         }   \text{stacking up the partials gives this form} \nonumber
-\end{align}
+\end{aligned}
 $$
 {% endcapture %}
 {% include problem_part.html label="B" subpart=part_b solution=part_b_sol %}
@@ -388,12 +389,12 @@ Write an expression for the sum of squared errors for the vector $\mathbf{w}$ on
 {% endcapture %}
 {% capture part_b_sol %}
 $$
-\begin{align}
+\begin{aligned}
 \text{Sum of Squared Errors} &= \sum_{i=1}^n \left ( \hat{y}_i - y_i \right)^2  \\  
 &= \left (\mathbf{\hat y} - \mathbf{y} \right)^\top  \left (\mathbf{\hat y} - \mathbf{y} \right)  \\  
 &=\left ( \mathbf{X} \mathbf{w} - \mathbf{y} \right)^\top  \left ( \mathbf{X} \mathbf{w} - \mathbf{y} \right)  \\  
 &= \mathbf{w}^\top \mathbf{X}^\top \mathbf{X} \mathbf{w} - 2 \mathbf{w}^\top \mathbf{X}^\top \mathbf{y} + \mathbf{y}^\top \mathbf{y}
-\end{align}
+\end{aligned}
 $$
 {% endcapture %}
 
@@ -404,9 +405,9 @@ Compute the gradient of the sum of squared errors that you found in part (b) wit
 {% endcapture %}
 {% capture part_c_sol %}
 $$
-\begin{align}
+\begin{aligned}
 \nabla \text{Sum of Squared Errors}  &= 2 \mathbf{X}^\top \mathbf{X} \mathbf{w} - 2 \mathbf{X}^\top \mathbf{y}
-\end{align}
+\end{aligned}
 $$
 {% endcapture %}
 
@@ -417,11 +418,11 @@ Set the gradient to 0, and solve for $\mathbf{w}$ (note: you can assume that $\m
 {% endcapture %}
 {% capture part_d_sol %}
 $$
-\begin{align}
+\begin{aligned}
 \nabla \text{Sum of Squared Errors}  &= 0  \\  
 &= 2 \mathbf{X}^\top \mathbf{X} \mathbf{w} - 2 \mathbf{X}^\top \mathbf{y}  \\  
 \mathbf{w} &= \left ( \mathbf{X}^\top \mathbf{X} \right )^{-1} \mathbf{X}^\top \mathbf{y}
-\end{align}
+\end{aligned}
 $$
 {% endcapture %}
 

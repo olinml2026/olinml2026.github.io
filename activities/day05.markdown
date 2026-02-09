@@ -79,7 +79,7 @@ We are going to do a guided tour of [this Colab notebook on classification](http
 We've met the idea of classification. Logistic regression is one algorithm for binary classification. It builds nicely on linear regression and feeds nicely into neural networks (which we will explore soon). 
 
 {% include figure.html
-        img="../assignments/assignment05_old/figures/linearandlogistic.png"
+        img="../assignments/assignment06/figures/linearandlogistic.png"
         width="100%"
         alt="a schematic of a neural network is used to represent linear and logistic regression.  Circles represent nodes, which are connected to other nodes using arrows. Logistic regression looks like linear regression followed by a sigmoid function."
         caption="Graphical representation of both linear and logistic regression.  The key difference is the application of the squashing function shown in yellow. [Original Source - Towards Data Science](https://towardsdatascience.com/building-a-logistic-regression-in-python-301d27367c24)" %}

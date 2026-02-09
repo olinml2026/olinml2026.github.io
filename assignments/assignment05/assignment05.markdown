@@ -46,27 +46,27 @@ In the Companion Notebook, you manipulated the value of lambda ($\lambda$) to ch
 Ordinary least squares:
 
 $$
-\begin{align}
+\begin{aligned}
 \mathbf{w^\star} &= \argmin_\mathbf{w} \sum_{i=1}^n \left ( \mathbf{w}^\top \mathbf{x_i} - y_i \right)^2  \\  
 &= \argmin_\mathbf{w} \left ( \mathbf{X}\mathbf{w} - \mathbf{y} \right)^\top \left ( \mathbf{X}\mathbf{w} - \mathbf{y} \right)
-\end{align}
+\end{aligned}
 $$
 
 Formula for the optimal weights in linear regression:
 
 $$
-\begin{align}
+\begin{aligned}
 \mathbf{w^\star} = \left ( \mathbf{X}^\top \mathbf{X} \right)^{-1} \mathbf{X}^\top \mathbf{y}
-\end{align}
+\end{aligned}
 $$
 
 Ridge regression (note that $\lambda$ is a non-negative parameter that controls how much the algorithm cares about fitting the data and how much it cares about having small weights):
 
 $$
-\begin{align}
+\begin{aligned}
 \mathbf{w^\star} &= \argmin_\mathbf{w} \sum_{i=1}^n \left ( \mathbf{w}^\top \mathbf{x_i} - y_i \right)^2 + \lambda\sum_{i=1}^d w_i^2  \\  
 &= \argmin_\mathbf{w} \left ( \mathbf{X}\mathbf{w} - \mathbf{y} \right)^\top \left ( \mathbf{X}\mathbf{w} -  \mathbf{y} \right) + \lambda \mathbf{w}^\top \mathbf{w}
-\end{align}
+\end{aligned}
 $$
 
 The penalty term may seem a little arbitrary, but it can be motivated on a conceptual level pretty easily.  The basic idea is that in the absence of sufficient training data to suggest otherwise, we should try to make the weights small.  Small weights have the property that changes to the input result in minor changes to our predictions, which is a good default behavior.
@@ -187,9 +187,11 @@ An easy choice is to output a $1$ if the values don't match and a $0$ otherwise 
 {% capture part_b %}
 One natural choice for $\ell$, which you may have already come up with, is to define our loss function as $\ell(y, \hat{y}) = \mathbb{I}[y \neq \hat{y}]$. The funny looking $\mathbb{I}$ is the indicator function that takes on value 1 when the condition inside is true and 0 otherwise.  Given this choice the supervised learning problem becomes:
 
-\begin{align}
+\\[
+\begin{aligned}
 \hat{f}^\star = \argmin_{\hat{f}} \sum_{i=1}^n \mathbf{I} \left [  \hat{f}(\mathbf{x_i}) \neq y_i\right ]
-\end{align}
+\end{aligned}
+\\]
 
 Convert the equation above to English to make sure you understand it.
 
@@ -203,7 +205,6 @@ The equation says that $\hat{f}^\star$ is the function that minimizes the number
 <div id="loss01">
 {% include problem_with_parts.html problem=problem %}
 </div>
-
 
 While the loss function given in the exercise above on <a href="../assignment04/assignment04?showSolutions=true#loss01">0-1 loss</a> (minimizing mistakes on the training set) is a totally reasonable choice for the loss function, it turns out that it has a number of drawbacks.
  
