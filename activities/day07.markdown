@@ -1,24 +1,25 @@
 ---
-title: "Day 6: Starting COMPAS and Building Towards Autodifferentiation"
+title: "Day 7: Building Towards Autodifferentiation"
 toc_sticky: true 
 toc_h_max: 1
 layout: problemset
-published: false
+published: true
 ---
 
 {% capture agenda %}
-* 10:20-10:25am: Everyone come hang out in MAC128, we'll talk about the plan and answer any logistics questions.
-* 10:25-10:35am: Debrief at tables
-* 10:35-10:40am: Going Over Simplification in Logistic Regression Learning Rule
-* 10:40-10:50am: Preview of where we are going
-* 10:50-12:00pm: Foundations of Micrograd
+* 3:45-4:15pm: Debrief at tables and going over dataflow diagrams
+* 4:15-4:30pm: Going Over Simplification in Logistic Regression Learning Rule
+* 4:30-5:25pm: Foundations of Micrograd
 {% endcapture %}
 
 {% include agenda.html content=agenda %}
 
 # Debrief
 
-Based on responses to the survey, we think people are still a bit fuzzy on data flow diagrams.  We recommend you come up with a function, create a dataflow diagram to represent it, and then use that dataflow diagram to compute the partial derivative of the function with respect to each of its inputs.
+* We think people may still be a bit fuzzy on data flow diagrams.  We'll go over a quick example together as a class.
+* We also think people may be having trouble with simplifications in the logistic regression problem.  We'll do a 
+  quick overview.
+
 
 # Preview of where we are going
 
@@ -172,6 +173,8 @@ flowchart TB
 # Thinking Through Autodifferentiation in Python
 
 {% capture problem %}
-On assignment 7, you will be implementing autodifferentation in Python (using the exact procedure above).  We will guide you through a specific way to implement if (based on the micrograd framework by Andrej Karpathy).  If you have time though, you might think with your table about how to implement this algorithm.  You are probably not going to be able to get to the level of mapping our Python code, but you can think about the major building blocks you would need (e.g., you would need something to compute the forward pass through the dataflow diagram).
+On [assignment 7](../assignments/assignment07/assignment07), you will be implementing autodifferentation in Python 
+(using the exact procedure above). 
+We will guide you through a specific way to implement if (based on the micrograd framework by Andrej Karpathy).  If you have time though, you might think with your table about how to implement this algorithm.  You are probably not going to be able to get to the level of mapping our Python code, but you can think about the major building blocks you would need (e.g., you would need something to compute the forward pass through the dataflow diagram).
 {% endcapture %}
 {% include problem.html problem=problem solution="" %}

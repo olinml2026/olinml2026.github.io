@@ -4,7 +4,7 @@ toc_sticky: true
 toc_h_max: 1
 layout: problemset
 due_on_class: 8
-published: false
+published: true
 ---
 
 # Learning Objectives
@@ -17,4 +17,4 @@ published: false
 
 # Automatic Differentiation Through Micrograd
 
-The [exercises for this assignment](https://colab.research.google.com/github/olinml2024/notebooks/blob/main/ML24_Assignment07.ipynb) are embedded in a Colab notebook.
+The [exercises for this assignment](https://colab.research.google.com/drive/18AUAlnpgjXdQsgJJKl0-DuvP6xmRhw03?usp=sharing) are embedded in a Colab notebook.
