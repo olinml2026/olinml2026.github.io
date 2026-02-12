@@ -48,9 +48,11 @@ flowchart BT
 
 In order to compute $\frac{\partial f}{\partial t}$ we traced all possible paths from $t$ to $f$, multiplied the partial derivatives along the way, and then added up each of these paths.
 
-\begin{align}
+$$
+\begin{aligned}
 \frac{\partial f}{\partial t} &= \frac{\partial f}{\partial x} \frac{\partial x}{\partial t} +  \frac{\partial f}{\partial y} \frac{\partial y}{\partial t}
-\end{align}
+\end{aligned}
+$$
 
 This all seems well and good, but this approach is not quite as systematic as we might like and it suffers from some computational challenges.  Consider a more complex dataflow diagram in the next problem.
 
