@@ -159,32 +159,28 @@ customElements.define("confirm-link", ConfirmLink, { extends: "a" });
     <!-- start custom head snippets -->
 <script src="https://cdn.jsdelivr.net/npm/mermaid@11.9.0/dist/mermaid.min.js"></script>
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.css" integrity="sha384-ZPe7yZ91iWxYumsBEOn7ieg8q/o+qh/hQpSaPow8T6BwALcXSCS6C6fSRPIAnTQs" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.28/dist/katex.min.css" integrity="sha384-Wsr4Nh3yrvMf2KCebJchRJoVo1gTU6kcP05uRSh5NV3sj9+a8IomuJoQzf3sMq4T" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.28/dist/katex.min.js" integrity="sha384-+W9OcrYK2/bD7BmUAk+xeFAyKp0QjyRQUCxeU31dfyTt/FrPsUgaBTLLkVf33qWt" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.28/dist/contrib/auto-render.min.js" integrity="sha384-hCXGrW6PitJEwbkoStFjeJxv+fSOOQKOPbJxSfM6G5sWZjAyWhXiTIIAmQqnlLlh" crossorigin="anonymous"></script>
 
-<!-- The loading of KaTeX is deferred to speed up page rendering -->
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.js" integrity="sha384-ljao5I1l+8KYFXG7LNEA7DyaFvuvSCmedUf6Y6JI7LJqiu8q5dEivP2nDdFH31V4" crossorigin="anonymous"></script>
-
-<!-- To automatically render math in text elements, include the auto-render extension: -->
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/contrib/auto-render.min.js" integrity="sha384-+XBljXPPiv+OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR" crossorigin="anonymous"
-        onload="renderMathInElement(document.body);"></script>
 <script>
-    // https://github.com/KaTeX/KaTeX/blob/main/docs/autorender.md
-    document.addEventListener("DOMContentLoaded", function() {
-        renderMathInElement(document.body, {
-            // customised options
-            // • auto-render specific keys, e.g.:
-                delimiters: [
-                {left: '$$', right: '$$', display: true},
-                {left: '$', right: '$', display: false},
-                {left: "\begin{equation}", right: "\end{equation}", display: true},
-                {left: "\begin{align}", right: "\end{align}", display: true},
-            ],
-            // • rendering keys, e.g.:
-            throwOnError : false
-        });
-    });
-</script>
+document.addEventListener("DOMContentLoaded", async function () {
+  // Render Mermaid first, from untouched source.
+  mermaid.initialize({ startOnLoad: false });
+  await mermaid.run(); // renders all .mermaid blocks
 
+  // render KaTeX
+  renderMathInElement(document.body, {
+          delimiters: [
+              {left: '$$', right: '$$', display: true},
+              {left: '$', right: '$', display: false},
+              {left: '\\(', right: '\\)', display: false},
+              {left: '\\[', right: '\\]', display: true}
+          ],
+    throwOnError: false,
+  });
+});
+</script>
 
 <script type="text/javascript">
 function HideShowElement(divID) {
@@ -599,7 +595,7 @@ showAllSolutions=true#supervised-learning-problem-setup">Supervised learning pro
 
 \[\begin{align*}
 \sigma(-x) &amp;= \frac{1}{1+e^{x}} \\
-&amp;= \frac{e^{-x}}{e^{-x} + 1}~~\text{multiply by top and bottom by $e^{-x}$} \\
+&amp;= \frac{e^{-x}}{e^{-x} + 1}~~\text{multiply top and bottom by $e^{-x}$} \\
  \sigma(-x)  - 1&amp;= \ \frac{e^{-x}}{e^{-x} + 1} - \frac{1 + e^{-x}}{1 + e^{-x}} ~~\text{subtract $-1$ on both sides} \\
  &amp;= \frac{-1}{1+e^{-x}} \\
  &amp;= -\sigma(x) \\
@@ -1221,11 +1217,6 @@ flowchart BT
   h4 --&gt; h5
   y --&gt; h5
 </div>
-
-<p>If you are having trouble viewing this flow chart, try this static image.</p>
-
-<p><img src="/assignments/assignment06/figures/screenshotflowchart.png" alt="" /></p>
-
 
 
     <button hidden="true" onclick="HideShowElement(&quot;solution-6&quot;)" class="togglebutton">Show / Hide Solution</button>
