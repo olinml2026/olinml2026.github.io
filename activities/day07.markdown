@@ -80,7 +80,8 @@ flowchart BT
  t --> id3
 </div>
 
-Use the data flow diagram method to compute $\frac{\partial{f}}{\partial t}$.
+Use the data flow diagram method to compute $\frac{\partial{f}}{\partial t}$.  There will be quite a few terms, so 
+if you are finding that you are getting the idea (and this is getting repetitive), you can just move on.
 {% endcapture %}
 {% include problem.html problem=problem solution="" %}
 
