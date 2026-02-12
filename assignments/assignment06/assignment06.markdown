@@ -496,6 +496,10 @@ flowchart BT
   y --> h5
 </div>
 
+If you are having trouble viewing this flow chart, try this static image.
+
+![](figures/screenshotflowchart.png)
+
 {% endcapture %}
 {% capture solution %}
 <div>
