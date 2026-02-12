@@ -57,9 +57,11 @@ Suppose you are given a set of training data points, $(\mathbf{x_1}, y_1), (\mat
 
 We typically also assume that there is some loss function, $\ell$, that determines the amount of loss that a particular prediction $\hat{y_i}$ incurs due to a mismatch with the actual output $y_i$.  We can define the best possible model, $\hat{f}^\star$ as the one that minimizes these losses over the training set.  This notion can be expressed with the following equation  (note: that $\argmin$ in the equation below just means the value that minimizes the expression inside of the $\argmin$, e.g., $\argmin_{x} (x - 2)^2 = 2$, whereas $\min_{x} (x-2)^2 = 0$).
 
-\begin{align}
+$$
+\begin{aligned}
 \hat{f}^\star &= \argmin_{\hat{f}} \sum_{i=1}^n \ell \left ( \hat{f}(\mathbf{x_i}), y_i \right )
-\end{align} 
+\end{aligned} 
+$$
 
 # Getting Started on Linear Regression
 

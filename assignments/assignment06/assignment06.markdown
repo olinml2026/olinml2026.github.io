@@ -122,7 +122,7 @@ Show that $\sigma(-x) = 1 - \sigma(x)$.
 $$
 \begin{align*}
 \sigma(-x) &= \frac{1}{1+e^{x}} \\
-&= \frac{e^{-x}}{e^{-x} + 1}~~\text{multiply by top and bottom by $e^{-x}$} \\
+&= \frac{e^{-x}}{e^{-x} + 1}~~\text{multiply top and bottom by $e^{-x}$} \\
  \sigma(-x)  - 1&= \ \frac{e^{-x}}{e^{-x} + 1} - \frac{1 + e^{-x}}{1 + e^{-x}} ~~\text{subtract $-1$ on both sides} \\
  &= \frac{-1}{1+e^{-x}} \\
  &= -\sigma(x) \\
@@ -495,11 +495,6 @@ flowchart BT
   h4 --> h5
   y --> h5
 </div>
-
-If you are having trouble viewing this flow chart, try this static image.
-
-![](figures/screenshotflowchart.png)
-
 {% endcapture %}
 {% capture solution %}
 <div>
