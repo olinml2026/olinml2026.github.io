@@ -4,7 +4,8 @@ toc_sticky: true
 toc_h_max: 1
 layout: problemset
 due_on_class: 9
-published: false
+published: true
+no_solutions: true
 ---
 
 {% capture content %}
@@ -38,7 +39,7 @@ Note that the late penalty for this course is quiet lenient. Please prioritize c
 
 # A refresher on key metrics and a primer on subgroup effects.
 
-Read through [this website from Google](https://research.google.com/bigpicture/attacking-discrimination-in-ml/}) and play with the visualization. This should help refresh your memory on terms like false positive rate with some great visualizations. It also demonstrates what can happen when you have two subgroups with different rates.
+Read through [this website from Google](https://research.google.com/bigpicture/attacking-discrimination-in-ml/) and play with the visualization. This should help refresh your memory on terms like false positive rate with some great visualizations. It also demonstrates what can happen when you have two subgroups with different rates.
 
 
 # COMPAS Model: Race, Criminal Justice, and Machine Learning

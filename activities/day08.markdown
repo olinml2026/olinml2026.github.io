@@ -3,14 +3,14 @@ title: "Day 8: From Micrograd to Pytorch and Starting COMPAS"
 toc_sticky: true 
 toc_h_max: 1
 layout: problemset
-published: false
+published: true
 ---
 
 {% capture agenda %}
-* 10:20-10:25am: Everyone come hang out in MAC128, we'll talk about the plan and answer any logistics questions.
-* 10:25-10:45am: Instructor-led debrief of the homework... what just happened?!?
-* 10:45-11:05am: Cross-entropy loss
-* 11:05-12:00pm: From micrograd to Pytorch
+* 3:45-4:05pm: Instructor-led debrief of the homework... what just happened?!?
+* 4:05-4:25am: Cross-entropy loss
+* 4:25-5:15pm: From micrograd to Pytorch
+* 5:15-5:25pm: Preview of what's to come
 {% endcapture %}
 {% include agenda.html content=agenda %}
 
@@ -38,4 +38,11 @@ We're going to be introducing Pytorch functionality on an as needed basis, but i
 
 # Preview of Where We Are Going
 
-We’ll go over the upcoming gate on model evaluation. We’ll also talk about the COMPAS algorithm and the readings we will be doing / the discussions we will be having.
+* As part of the next assignment, you'll be doing your first quality-assessed deliverable.  This will go out on 
+  The deliverable will be open-Internet, closed GenAI, and done individually.  The assignment will cover concepts of 
+  model evaluation and metrics.
+* Next class, we'll be discussing the COMPAS algorithm for recidivism prediction, which is a famous case study on 
+  bias in machine learning systems.  The topics discussed are quite sensitive, and we ask that you approach the 
+  readings and class discussion with an open mind (see [this section of the next assignment](../assignments/assignment08/assignment08#compas-model-race-criminal-justice-and-machine-learning) for some specifics on 
+  this).  On Monday, Paul will provide some discussion guidelines to help 
+  guide class time.
