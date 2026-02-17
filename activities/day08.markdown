@@ -39,8 +39,8 @@ We're going to be introducing Pytorch functionality on an as needed basis, but i
 # Preview of Where We Are Going
 
 * As part of the next assignment, you'll be doing your first quality-assessed deliverable.  This will go out on 
-  The deliverable will be open-Internet, closed GenAI, and done individually.  The assignment will cover concepts of 
-  model evaluation and metrics.
+  The deliverable will be open-Internet, specific ground rules for use of GenAI (see assignment), and must be done 
+  individually.  The assignment will cover concepts of model evaluation and metrics.
 * Next class, we'll be discussing the COMPAS algorithm for recidivism prediction, which is a famous case study on 
   bias in machine learning systems.  The topics discussed are quite sensitive, and we ask that you approach the 
   readings and class discussion with an open mind (see [this section of the next assignment](../assignments/assignment08/assignment08#compas-model-race-criminal-justice-and-machine-learning) for some specifics on 
