@@ -8,7 +8,7 @@ published: true
 
 {% capture agenda %}
 * 3:45-4:05pm: Instructor-led debrief of the homework... what just happened?!?
-* 4:05-4:25am: Cross-entropy loss
+* 4:05-4:25pm: Cross-entropy loss
 * 4:25-5:15pm: From micrograd to Pytorch
 * 5:15-5:25pm: Preview of what's to come
 {% endcapture %}
@@ -17,6 +17,10 @@ published: true
 # Instructor-led Debrief
 
 We'll debrief on what happened in the previous assignment.  The focus will be on connecting mathematical concepts to Python.  We hope that by the end of this everything is coming into focus for you (it may take a little longer to fully click).
+
+# Cross Entropy and the Log Loss
+
+We're not going to get into a full discussion of this right now, but TODO
 
 # From Micrograd to Pytorch
 
@@ -30,7 +34,10 @@ While it may be tempting to ride our micrograd framework for the rest of the sem
 
 To help introduce `pytorch`, we're going to jump right into a looking at some `pytorch` code.  This is a great chance to practice reading code and looking up documentation.  Your goal should be to understand the given code as well as possible.  If there are pieces that you can't figure out, please ask us or make a note of your confusion so you can revisit it later.  You'll also get a head start on the assignment (so that is a bonus!).
 
-The code in question is in the [assignment 8, part 2 Colab notebook](https://colab.research.google.com/github/olinml2024/notebooks/blob/main/ML24_Assignment08_part_2.ipynb). The first two code cells load a dataset of handwritten digits and visualize them.  The third code cell is where the action is, we'd like you to go over that one, read documentation, ask ChatGPT, ask an instructor, etc., so that you leave here today with a solid understanding of a training / testing loop in `pytorch`.
+The code in question is in the [assignment 9, part 2 Colab notebook](https://colab.research.google.com/drive/1CJhGZU_0bs5EWrtY7PDKTeYgctJc7HXU?usp=sharing). The first two code cells load a dataset of handwritten digits and visualize them.  The third code cell is where the action is, we'd like you to go over that one, read documentation, ask ChatGPT, ask an instructor, etc., so that you leave here today with a solid understanding of a training / testing loop in `pytorch`.
+
+> Note: we're doing things a bit out of sequence in that the assignment linked above is not actually due until next 
+> Thursday.  You are getting a head start!
 
 # More Resources on Pytorch
 
