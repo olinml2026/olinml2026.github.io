@@ -25,3 +25,5 @@ We'll be going through [the day 9 notebook](https://colab.research.google.com/gi
 * We can use pytorch modules (e.g., `nn.Linear`) to make our lives easier.
 
 # Discussion on Trust and Trustworthiness of Machine Learning Systems
+
+# Mini-project Kickoff
