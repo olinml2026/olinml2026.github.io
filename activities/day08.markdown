@@ -18,6 +18,11 @@ published: true
 
 We'll debrief on what happened in the previous assignment.  The focus will be on connecting mathematical concepts to Python.  We hope that by the end of this everything is coming into focus for you (it may take a little longer to fully click).
 
+Here's a recorded version of this walkthrough.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/aBfTvlVvWCc?si=yLC2LEVD3rftnBzi" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+
 # Cross Entropy and the Log Loss
 
 On assignment 9, you will generate graphs that show the cross entropy of a model to classify 
@@ -26,7 +31,7 @@ handwritten digits.  These graphs will look something like this.
 {% include figure.html
 img="images/learning_curve_ce.png"
 width="100%"
-alt="A graph of training and test cross entroyp as a function of gradient descent step.  The curves begin near 2.4 and settle around 1.7"
+alt="A graph of training and test cross entropy as a function of gradient descent step.  The curves begin near 2.4 and settle around 1.7"
 caption="The cross entropy on the handwritten digit classification task.  The x-axis refers to the number of gradient descent steps." %}
 
 Right now we are going to help you interpret what these graphs mean.  The y-axis is cross entropy, which for now we can simply understand as a measure of the model's loss when its predictions are compared to the actual classes of the digits in either the training (blue line) or the test set (orange line).  The x-axis of this graph should be fairly easy to interpret.  The axis is labeled *step*, which refers to how many gradient descent steps have been taken by your optimizer in order to drive down the loss.
