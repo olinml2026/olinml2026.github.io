@@ -74,7 +74,7 @@ header:
 ## Other Important Documents
 [Notation conventions](assignments/assignment01/notation_conventions)
 
-[Learning as Optimization Key Concepts](assignments/assignment09/LearningAsOptimizationTakeaways)
+[Learning as Optimization Key Concepts](assignments/assignment09_old/LearningAsOptimizationTakeaways)
 
 ## Overlay Image Attribution
 

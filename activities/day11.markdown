@@ -66,7 +66,7 @@ The following exercise will take you through some important takeaways.
 
 
 # Small data mini-project on classification
-We'll talk about the ["Small data" mini-project on classification](../assignments/assignment09/assignment09).
+We'll talk about the ["Small data" mini-project on classification](../assignments/assignment09_old/assignment09).
 
 
 # Choosing data for your mini-project and start working

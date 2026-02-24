@@ -1,176 +1,153 @@
 ---
-title: "Assignment 9: Small data project on classification"
+title: Assignment 9
 toc_sticky: true 
 toc_h_max: 1
 layout: problemset
-due_on_class: 12
-published: false
+due_on_class: 10
+published: true
 ---
-
-# The project description
-
-You will be working solo on this project (1.5 to 2 weeks). The syllabus calls this a mini-project, but we'll just call it a project here. 
-
-In this project, you will contemplate a potential application for classification, you will implement and improve upon a machine learning algorithm on a data set in support of this application, and you will evaluate the models performance. 
-
-As part of this project, you will:
-* Select a "small data" dataset.
-    * "Small data" here is to indicate that you don't need to choose a giant data set (too much for Colab to hold in memory). The goal is to learn about the machine learning process, building your skills and intuition. There is no requirement to get high accuracy. That said, you do need a fair number of data points (exemplars) to meaningfully train your network. This varies by the size of your network and the number of parameters. (You'll be in rough shape if you have fewer than 30 exemplars per category even if your model has a small number of parameters.)
-* Document the important considerations for your application. For example: 
-    * What data are available for training?
-    * How well would the algorithm need to work to responsibly create value? 
-    * How could the algorithm and application be tested (beyond the testing you choose to implement)? 
-    * What are the implications of this application in the world; who are the stakeholders; what are the risks; how (if at all) could they be mitigated?
-* Build and iterate on a classification model as a step toward this application. 
-    * We don’t expect you to build the entire application, just to work toward implementing an early version of an algorithm that could be used for this application. Your dataset doesn't need to be sufficient (e.g.,  big or broad enough) to actually make the application.  
-    * The iteration aspect is important. You will build and test multiple versions of your model and document the effects of these changes. You will likely manipulate a parameter and see how your results change at different values of that parameter.
-        * For full credit, you should evaluate at least two major changes to your model (e.g., comparison of different types of models; manipulate the number of nodes in a hidden layer; manipulate the number of hidden layers; experiment with preprocessing or data augmentation techniques; experiment with different activation functions such as relu, sigmoid, etc.)
-    * You can use pre-built libraries like pytorch. It’s highly likely that you will use a neural network, but not required. Please talk with us if you plan on using a different type of model. 
-* Visualize key aspects of your data/model. Include at least 3 meaningful visualizations in your report with clear labeling and a discussion of their meaning (though you'll likely want more than three visualizations).
-    * You’ll probably find it valuable to visualize many aspects of the data and model as you work. This is helpful in sanity checking and can give good insight into how the model is working.
-    * It's likely that you'll visualize: some things about your data (before even making the model); a graph that shows the loss of your model as during the training process (see figures and caption at the end of [this page](https://livebook.manning.com/concept/deep-learning/training-loss)); changes in some key metrics as you manipulate a parameter (e.g., number of hidden layers); comparison of key metrics for different versions of your model; final training and testing metrics.
-* Test and evaluate your model. This will likely include accuracy and other key metrics on training and test sets. Depending on your application, you may consider testing with additional data from another source (e.g., data you collect; another internet dataset that's similar; simulated data based on theory). You will also evaluate the effectiveness of this model for your specific application and describe the limitations of your current model and data.
-    * Your accuracy and other metrics of your actual model don't have to be good enough for your application. The goal here is to iterate on your model, measure its effectiveness, and reflect on this in the context of an application. 
-* Document your final analysis pipeline for transparency. (A simplified version that does not need to include every parameter, visualization, or tweak that you tried.) It should be well-organized and easy to follow (this takes time, so budget for it).
-
-
 
 # Learning Objectives
 
 {% capture content %}
-This mini-project relates to all of the intended learning outcomes of this course:
-* Execute the iterative machine learning workflow of model design, fitting to training data, testing, and interpretation in order to be able to successfully apply machine learning techniques in specific contexts. 
-    * Yup, definitely this one.
-* Successfully implement machine learning algorithms in Python (both by using only minimal external libraries and by leveraging state-of-the-art machine learning libraries).
-    * You can use libraries (e.g., PyTorch)
-* Consider the potential impacts of a machine learning system when deployed in a real-world context and make design decisions to mitigate potential harmful impacts. 
-    * Definitely the first part of this, and you should think about the design decisions you would make.
-* Understand a variety of machine learning techniques from both a mathematical and algorithmic perspective.
-    * This project is not focused on the math, but in the past, this kind of project was where conceptual things clicked for several students (see Appendix).
+* Learn about multi-layer perceptrons (MLPs)
+* Implement an MLP in Pytorch
+* Understand how a multi-layer network can solve problems without the need for feature engineering.
 {% endcapture %}
 {% include learning_objectives.html content=content %}
 
+# Neural Networks Motivation
 
-# Goal-Setting and Customization
-A good project as one that successfully uses a neural net on a dataset and demonstrates iteration (you try the neural net, you make improvements, you try again, and you assess the model performance thinking about a specific application). If you wish to go farther, that's great!
+We're going to start out our journey into neural networks by revisiting the Titanic dataset that we saw a couple of classes ago.  The exercises are embedded within [assignment 8 Colab notebook part 1](https://colab.research.google.com/github/olinml2024/notebooks/blob/main/ML24_Assignment08_part_1.ipynb).  Go through those exercises, and then check back to unpack things further.
 
-We've highlighted the learning objectives, and we also (informally) ask you to consider your own learning goals. Is there a specific skill you want to practice? Is there a way of learning (like, asking for help more, trying code without looking at examples first, etc) that you want to practice?  You can customize this project to support your own learning, and we are happy to help you shape the project to support your goals and challenge yourself. 
+# Neural Networks as Stacked Logistic Regression Models
 
+Now that you've seen a neural network in action, we'll be digging into how a neural network works.  The presentation will be specific to a particular type of neural network that we used in the companion notebook known as a multilayer perceptron (MLP), but the main ideas generalize to many other types of networks.  While the name MLP might be a bit intimidating, what we'll see in just a bit is that an MLP is nothing more than some logistic regression models stacked on top of each other!
 
-# Timeline
+Thinking back to the Colab notebook, we observed that the features in the original dataset *age* and *sex* were not conducive to predicting whether someone would survive.  We showed that by augmenting the input features with a column called *is young male* that captured whether or not a person was young *and* male, that the algorithm could effectively learn the task.  The fundamental idea of a neural network is that the network automatically constructs useful representations of the input data *as a part of the learning process*.
 
-The project will officially launch on Thursday, October 3, 2024, and end on Thursday, October 17, 2024. While this is 2 weeks of time, we also want to note that Fall break is on October 14th and 15th (Monday and Tuesday, so no class on Oct 14), so we encourage you to work on this project like it is one week with a little time for revisions (but you should make your own choices based on your situation).
+Before moving on, let's show some diagrams that contrast these approaches.  First we'll show the logistic regression model that we applied in the notebook.
 
-# Use of external resources (including peers, the internet, and AI)
-You should lead your own project, and by "lead", we mean that you should be the active thinker and doer of the work. This is how you build your skills and intuition. You should write and understand the code and text in your project. 
+<div class="mermaid">
+flowchart BT
+id1["age"]
+id2["male"]
+id3["is young male"]
+id4["1"]
+id5["$$p(survival) = 1/(1+e^{-s})~~~~$$"]
+id6["$$s = w_1 \text{age} + w_2 \text{male} + w_3 \text{is young male} + w_4~~~$$"]
+id1 --"$$w_1$$"--> id6
+id2 --"$$w_2$$"--> id6
+id3 --"$$w_3$$"--> id6
+id4 --"$$w_4$$"--> id6
+id6 --> id5
+</div>
 
-We are extending our trust to you (we will not run your report through a plagiarism checker), and we expect that you will follow the [Olin Honor Code](https://www.olin.edu/student-life-student-affairs-and-resources/student-rights-responsibilities). The values of integrity and respect for others seem most directly relevant. We expect that your submitted work represents you own skills and understanding. However, we also recognize that this is a fuzzy thing to navigate. We've tried to articulate some guidelines here for equity and transparency, and we invite open discussion about what is appropriate and fair. We can navigate this fuzzy world together (like [James and his friends in the the giant peach](https://en.wikipedia.org/wiki/James_and_the_Giant_Peach)).
+ A few notes here:
+ * Instead of putting the weights (e.g., $w_1$) as separate boxes (which we've done when computing partial derivatives), here we are putting them on the arrows between the features and the $s$.  This is a common way of writing the architecture for neural networks, and we want you to be familiar with it.  If you prefer to think of a separate box for each weight connecting to $s$, that is fine too.
+ * To be consistent with the notebook, we are using a variable that takes on 1 if the sex of the passenger is male (this is different than what we did a few classes ago when we used 1 for female).
 
+Notice how we had to manually introduce the feature *is young male* in order for the logistic regression model to utilize it to make its prediction.  Before giving you the equivalent figure for the multi-layer perceptron, let's look at a little bit more cartoonish version of the multi-layer perceptron.  This version will leave off the math and the particular notation we are using.  Once you have a good sense of what this model is doing, we will draw a diagram to represent the multi-layer perceptron that you met in the notebook.  If you are looking for more information on how to think about MLPs, check out the 3B1B videos we linked previously.
 
-## Peer collaboration (students in this class or other humans, squirrels, and monkeys with typewriters)
-We encourage collaboration and supporting each other to enhance everyone's learning. However, it's inappropriate to have someone else write your code for you. It is okay to talk to someone about something that you're stuck on. It's also okay for them to show you how they solved it. It's not okay to mindlessly copy several lines of code or text directly from someone else's assignment. 
-
-
-## The (not actually) magical world of the internet and artificial intelligence
-It's quite likely that someone has used your dataset for a machine learning project and posted that somewhere online. You can use these materials to help you when you are stuck, but you should not just copy and paste large chunks of code from the internet or AI (likely scraped from the internet). You do not need to turn off the auto-complete functions in Colab or your IDE, but please be aware that these also make mistakes.
-
-You should not start this project by having AI generate your first draft; the thought process of thinking through each of the steps is important to build your understanding. It is great to look at examples online that use a different dataset in order to build your understanding of the process, and then to emulate that in your own code. 
-
-
-## Class-owned editable resources file
-
-We will continue to use Slack and office hours to answer questions. However, we also know that a great deal of learning happens outside of those places. [This shared, class-owned, editable document](https://docs.google.com/document/d/15zNjQp32oBqaD4CY4gAsgSnkAWUs3JbTJYNRAEr1H28/edit?usp=sharing) is intended to serve as a communal set of resources for troubleshooting as we figure things out together. Anyone can add to it, so as you run into problems (you will) and figure out solutions (sometimes on your own, sometimes with help), please add to this document to help others. Learning is not a zero-sum game.
-
-This shared document already has two years of notes from Machine Learning students in the past (from a image-focused project), so some things may be outdated (you can delete something if it no longer works or applies to this project). We also want to note that the field of machine learning is constantly changing, as are things like libraries and toolboxes. It's likely that you'll run into something that worked 3 years ago and does not work now. Please help us find and fix these things!
-
-# Deliverables & Assessment
-
-## Deliverables
-
-1. A clean report in notebook (.ipynb) format with thoughtful explanations of the considerations for your classification application and important highlights of your analysis. This should include in-line code and figures. This should **not** include every analysis and figure that you generated. Choose the important pieces of information to meet the project description and rubric. You can mention other things that you investigated in the text and include supplemental code in your repository. This is about quality, not quantity. 
-* The submission can be an uploaded .ipynb notebook or link to a notebook on Colab (please make sure you have appropriate sharing settings selected and test with someone else so we don't have to request access; let us know if you'd like our Colab account email addresses).
-
-2. A PDF of your clean notebook with all of the cells run and graphs appearing clearly. If you run into issues with this, try a different browser and experiment with the print function within Colab. If you have a problem and then figure something out, add it to [the shared, class-owned, editable document](https://docs.google.com/document/d/15zNjQp32oBqaD4CY4gAsgSnkAWUs3JbTJYNRAEr1H28/edit?usp=sharing).
-
-There are rubrics in the appendices in this document. The intention of these rubrics is to create shared expectations about the project, while also giving you lots of latitude to explore and emphasize your own learning.
-
-## Check-in Deliverables (Grading Option B)
-
-By October 4, you will submit a progress goal that you will be accountable to. 
+{% capture external %}
+Here are some additional resources that explain the concept of a multi-layer perceptron.  If the explanations we give below are not working for you, consider checking out some of these.  **You do not need to consult these resources if you feel like our explanations are working well for you.**
+* [3B1B: What is a neural network?](https://www.youtube.com/watch?v=aircAruvnKk)
+* [2D fully connected network visualization](https://adamharley.com/nn_vis/mlp/2d.html)
+{% endcapture %}
+{% include external_resources.html content=external %}
 
 
-Before class on October 10, you will self-evaluate on the progress toward your goal and include a link or copy of your current notebook. In class, we will have a brief meeting with you to review your status and your self-evaluation. 
+<div class="mermaid">
+flowchart BT
+id1["age"]
+id2["male"]
+id4["1"]
+id10["$$p(survival) = 1/(1+e^{-s_3})~~~~$$"]
+id6["$$s_1 = w_{1,1} \text{age} + w_{1,2} \text{male} + w_{1,3}~~~$$"]
+id8["$$s_2 = w_{2,1} \text{age} + w_{2,2} \text{male} + w_{2,3}~~~$$"]
+id7["$$h_1 = 1/(1+e^{-s_1})$$"]
+id9["$$h_2 = 1/(1+e^{-s_2})$$"]
+id11["1"]
+id12["$$s_3 = w_{3,1} h_1 + w_{3,2} h_2 + w_{3,3}$$"]
+id1 --"$$w_{1,1}$$"--> id6
+id2 --"$$w_{1,2}$$"--> id6
+id4 --"$$w_{1,3}$$"--> id6
+id1 --"$$w_{2,1}$$"--> id8
+id2 --"$$w_{2,2}$$"--> id8
+id4 --"$$w_{2,3}$$"--> id8
+id6 --> id7
+id8 --> id9
+id7 --"$$w_{3,1}$$"--> id12
+id9 --"$$w_{3,2}$$"--> id12
+id11 --"$$w_{3,3}$$"--> id12
+id12 --> id10
+</div>
+
+Oh no! Our notation has gotten more complicated.  Notice here that we are using subscripts to differentiate between our various summation nodes ($s_1$ versus $s_2$).  We are also using $w_{i,j}$ to refer to weight that corresponds to the $i$th summation node and the $j$th feature (e.g., $w_{1,2}$ tell us how much the feature *age* influences $s_2$).
+
+Input data (in this case we just use age, male, and a bias term) are propagated via a set of connection weights to a set of hidden representations ($h_1$ and $h_2$).  These hidden representations are propagated via another set of a connection weights to the output of the network.   In the companion notebook we showed that for the Titanic dataset, the network learned two hidden representations: one that seemed to encode *is young male* and the another that encoded sex.  Of particular importance is that we did not have to manually introduce the *is young male* feature.
+
+{% capture problem %}
+Before going on, let's make sure you have a firm handle on what's being represented in the figure above.
+* Just as in logistic regression, we will try to tune the weights to fit the data.  How many weights are there to tune in this network?
+* While the figure looks pretty crazy, it has a lot of similarities with the logistic regression model.  Where does the logistic regression model show up in the figure?
+{% endcapture %}
+{% capture solution %}
+* There are a total of 9 weights in the network.  There are 6 connecting the 3 input units to the 2 hidden summation units.  There are another 3 connecting the 1 output summation unit.
+* There are three different logistic regression models represented.  There is one going from the inputs to the $s_1$.  There is another going from the inputs to $s_2$.  There is a third going from the hidden units ($h_1$ and $h_2$) to $s_3$.  The models are connected together such that the two lower logistic models feed into the higher-level one.
+{% endcapture %}
+{% include problem.html problem=problem solution=solution %}
 
 
-## Assessment
+{% capture content %}
+For each of the 3 behavors described below (questions a, b, and c), determine reasonable values for the weights in this network ($w_{1,1}, w_{1,2}, w_{1,3}, w_{2,1}, w_{2,2}, w_{2,3}, w_{3,1}, w_{3,2}, w_{3,3}$) so that the MLP behaves as described. You will not need to use any training data except general knowledge that a person's reported sex is recorded as 0 or 1 and age is within a set of reasonable numbers (this question is about testing your understanding of the model itself).  Recall that the first input to the model is the passenger's age, the second is a binary variable that is 1 if the passenger is male and 0 if female, and the third is always 1.
+{% capture parta %}
+$h_1$ encodes whether or not the passenger is female (i.e., it should take a value close to 1 when the passenger is female and close to 0 when the passenger is male).
+{% endcapture %}
+{% capture partasol %}
+Setting $w_{1,2} = -10$, $w_{1,1} = 0$, and $w_{1,3} = 5$ will do the trick.  If the passenger is male then $h_1 = \sigma(-10 + 5) = \sigma(-5) = 0.0067$ and if the passenger is female then $h_1 = \sigma(5) = 0.9933$
+{% endcapture %}
+{% include problem_part.html label="A" subpart=parta solution=partasol %}
 
-Assessment for this project will be based on the **quality of project work**, which will be assessed by the teaching team. 
+{% capture partb %}
+$h_2$ encodes whether or not the passenger is a young male (i.e., it should take a value close to 1 when the passenger is male under the age of say 5 and close to 0 otherwise).
+{% endcapture %}
+{% capture partbsol %}
+Setting $w_{2,2} = 15$, $w_{2,1} = -1$, and $w_{2,3} = -10$ will do the trick.  If the passenger is female and one years-old $h_2 = \sigma(-10 - 1) = \sigma(-11) \approx 0$ (any older female passengers will have even lower values. and if the passenger is male and 1 years-old then $h_2 = \sigma(15 - 1 - 10) = \sigma(4) = 0.982$.  A four year old male would have $h_2 = \sigma(15 - 4 - 10) = \sigma(1) = 0.731$.  An older male (e.g., a 10 year old) would have $h_2 = \sigma(15 - 10 - 10) = \sigma(-5) = 0.0067$
+{% endcapture %}
+{% include problem_part.html label="B" subpart=partb solution=partbsol %}
+{% capture partc %}
+$p(\text{suvival})$ should be close to 1 (i.e., predict survival) when the passenger is female \emph{or} a male under the age of 5 and close to 0 otherwise.
+{% endcapture %}
+{% capture partcsol %}
+Set $w_{3,1} = 2$ and $w_{3,2} = 2$ and $w_{3,3} = -1$.  That way if either $h_1$ or $h_2$ are close to 1, then $p(\text{suvival}) \approx \sigma(1) = 0.73$.
+{% endcapture %}
+{% include problem_part.html label="C" subpart=partc solution=partcsol %}
 
-During the week of October 7, we will have a project check-in. For students who chose assessment partially based on process (grading Option B), this will be an assessed check-in to create an accountability system to help you make progress on your project. It will count in the "Daily assignments with markup" category. Project check-ins will also be available to students who chose grading Option A. 
+{% endcapture %}
+{% include problem_with_parts.html problem=content %}
 
-At the end of the project, the teaching will assess and provide feedback on your final report. We apologize if this takes us a while, as this is a large class and we're also redesigning many aspects of it given advances in machine learning.
+Believe it or not, computing these weights by hand was fairly common before we had algorithms for automatically tuning weights from data.  The reason for this was that early techniques for learning the weights were very inefficient and often unable to converge to good solutions.  By now you've seen how to tune these weights using gradient descent for a logistic regresion model, and given what we've learned from implementing the micrograd framework, you probably suspect that the same approach could be used here.
 
-We want to acknowledge that we are all coming to this course with varying experience with machine learning. This is great, and we’re actively trying to help you all have positive learning experiences. We intend for the course not to require prior experience with machine learning to participate, learn new things, and feasibly receive a high grade. With this in mind, we want to be explicit about how we anticipate this playing out in assessment.
+# Neural Networks in Pytorch
 
-With the project work and report, we will assess with a mental model of a team beginning the course with no real machine learning experience. The key aspects of this assessment are described in the rubric and project description. In practice, this means that everyone could receive an A for this project, and it will be more challenging for some people than others.
+Next, we'll go back over to Colab to show how we can tune these weights automatically using pytorch.  Here is a listing of what you'll do in this notebook.
+* You'll implement a multilayer perceptron to recognize handwritten digits (similar to [this previously linked example](https://adamharley.com/nn_vis/mlp/2d.html)).
+* You'll see how overfitting can become an issue for more complex networks
+* We'll introduce (at a very high-level) three methods for dealing with overfitting.
 
-
-# Appendix A: Some questions to consider
-[These questions built from from this webpage.](https://www.notion.so/ANN-Project-Framing-76e1b6af347f475a983487996ac9760d)
-
-- What do you want your model to be able to do?
-- How can you imagine your model (or an extension of it) being used in the real world? Feel free to get creative.
-- If those ideas came true, who might they affect? In what ways?
-- What measures would your model's real-world implementers need to take to ensure its effects live up to your intentions?
-- What pitfalls might your model fall into, and what could you quantitatively measure to avoid those?
-- Why was the dataset you used to train your model created?
-- In what other ways could the same data be used? How do you feel about those possibilities?
-- How was that dataset assembled? From where was the data sourced? Who or what labeled it? If there are any elements of this process you think were either particularly well done or problematic, how so?
-- If your dataset contains information about people, to what degree did those people have agency over their inclusion? Do you feel that matters in this case (your application and/or for a college project)? Why or why not?
-- Skimming through your dataset, does anything stand out to you about representation in its contents?
-- Do you feel the potential use cases for this dataset justify it being created and published? Why or why not?
-
-# Appendix B: Lessons from those that have come before you  
-
-In a prior version of the class, we did a classification project using images with something called a convolutional neural network or CNN, which we'll learn about later (the images part of this course). Here we're doing a mini-project with simpler data, though you can use images if you want. At the end, we asked students to reflect on their project. We thought it might be helpful or entertaining to see [what they had to say](https://drive.google.com/file/d/1z5bXMRp2Np30TTa34uQh-GBnKykWI7rJ/view?usp=sharing).
-
-
-# Appendix C: Rubrics
+Okay, back to [Colab for round 2](https://colab.research.google.com/github/olinml2024/notebooks/blob/main/ML24_Assignment08_part_2.ipynb).
+But don't forget about the stuff below!
 
 
-### Jupyter Notebook
-Please submit both a PDF of your Jupyter Notebook (with the code executed) and an executable Jupyter Notebook (or link to Colab with appropriate sharing set and tested) to Canvas.
+# Dataset exploration
 
-You should refer to the Project Description at the top of this document for what to include (we try to refer to that section here). Your project will be graded on the following aspects.
+{% capture problem %}
+Shortly, we will begin a mini-project in which you'll perform classification on an existing dataset. We'd like you to take 10-20 minutes to explore potential datasets that you might be interested in and add one to our group slide deck (so others might use it too). The slide deck is linked on Canvas under this assignment on the home page. As you search, think about the size and type of the data (you could always take a small subset of an existing dataset). 
 
-**General**
+There are lots of data repositories to explore.  [Kaggle](https://www.kaggle.com/datasets), [Hugging Face](https://huggingface.co/datasets), and [OpenML.org](https://openml.org/search?type=data&sort=runs&status=active) might be good places to start. You can often filter by the type of data as well as the topic.
 
-1. The notebook is well-organized.
-2. The notebook balances code and text well.
-3. The notebook runs without errors in the Google CoLab environment.
-4. The notebook is free of typos.
-5. The notebook demonstrates good coding practices, including but not limited to docstrings, appropriate variable names, and comments as appropriate.
-6. The code demonstrates a significant amount of effort (roughly 3 assignments' worth), made clear by careful consideration of the data, model, and implications for the model you developed.
+{% endcapture %}
+{% include problem.html problem=problem %}
 
-**Motivation (See: Document the important considerations for your application.)**
 
-1. It is clear what data you used.
-2. The application of your algorithm is clear and well-motivated.
-3. The notebook explains how well the algorithm would need to work to provide value.
-4. The notebook explains how the algorithm is to be evaluated (how do you know it is working well?).
-5. The notebook explains the implications of this approach (including risks and stakeholders).
-
-**Implementation (See: Build and iterate on a classification model as a step toward this application.)**
-
-1. The notebook explains the dataset and the features, in text and/or graphics.
-2. The notebook contains a classification model.
-3. The model(s) are implemented correctly.
-4. The notebook includes experimentation and evaluation of at least two major changes to your model (e.g., comparison of different types of models; manipulate the number of nodes in a hidden layer; manipulate the number of hidden layers; experiment with preprocessing or data augmentation techniques; experiment with different activation functions such as relu, sigmoid, etc.)
-
-**Interpretation and Visualization (See: Build and iterate;  Visualize key aspects of your data/model; Test and evaluate your model.)**
-
-1. The code generates at least 3 meaningful visualizations of the data, model, and/or outputs.
-2. The visualizations have clear and appropriate labels and connections to the text.
-3. The evaluation uses appropriate key metrics based on the proposed application and dataset.
-4. The notebook accurately describes the effectiveness and limitations of the model on both training and test data in text and numbers.
-5. The text explains the relationship between the effectiveness and limitations of the model and the proposed application.
