@@ -24,7 +24,7 @@ Go through the [day 9 notebook](https://colab.research.google.com/github/olinml2
 
 Pytorch is quite similar in its basic concepts to the micrograd framework you implemented.
 We can use pytorch to compute a line of best fit. This will allow us to visualize the optimization process more easily.
-We can use pytorch modules (e.g., nn.Linear) to make our lives easier.
+We can use pytorch modules (e.g., ``nn.Linear``) to make our lives easier.
 Read the [small data mini project assignment](https://olinml2024.github.io/assignments/assignment09/assignment09), 
 which we will start on Thursday. I will update the assignment to reflect a shorter duration this year (with a 
 corresponding reduction in scope). Last year we did this in 3 class sessions, and this year we will aim for 2 
