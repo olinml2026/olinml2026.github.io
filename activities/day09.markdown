@@ -1,40 +1,36 @@
 ---
-title: "Day 9: COMPAS discussion"
+title: "Day 9: Validation sets, project planning, and multilayer perceptron"
 toc_sticky: true 
 toc_h_max: 1
 layout: problemset
-published: false
+published: true
 ---
 
 {% capture agenda %}
-* 10:20-10:25am: Everyone come hang out in MAC128, we'll talk about the plan and answer any logistics questions.
-* 10:25-10:45am: Gathering information based on sources
-* 10:45-11:00am: Large group debrief and introduction of impossibility theorem 
-* 11:00-11:20am: Small group exploration and sense-making of fairness metrics
-* 11:20-12:00pm: Large group discussion of the big picture
+Asynchronous class due to snowday.
 {% endcapture %}
-
 {% include agenda.html content=agenda %}
 
-# Gather information based on external sources
+Watch this [video on train, test, and validation sets](https://www.youtube.com/watch?v=dSCFk168vmo). While we have 
+covered train and test set, we haven’t covered validation sets.  When the video creator talks about hyperparameters, 
+these are settings for your machine learning algorithm that are not explicitly fit to the training data (they are 
+not part of the gradient descent optimization process). We haven’t learned about many of these hyperparameters yet, 
+but we will learn about more soon.  One example of a hyperparameter is the value of lambda in ridge regression (this 
+is the amount we penalize error in fitting the training data versus the penalty for large values in our weights).  
+In this case, the training data would tune the weights of the linear regression, the validation set would let us 
+pick the best value of lambda, and the test set would give us an unbiased estimate of performance.
 
-On the whiteboard, please gather pieces of information that we learned from the readings or other sources. Take turns having each person share one thing that they wrote down for Exercise 1 in the last assignment.
+Go through the [day 9 notebook](https://colab.research.google.com/github/olinml2024/notebooks/blob/main/ML24_Day09.ipynb). There are three things we want you to get out of this notebook.
 
-# Large group debrief and introduction of the impossibility theorem 
+Pytorch is quite similar in its basic concepts to the micrograd framework you implemented.
+We can use pytorch to compute a line of best fit. This will allow us to visualize the optimization process more easily.
+We can use pytorch modules (e.g., nn.Linear) to make our lives easier.
+Read the [small data mini project assignment](https://olinml2024.github.io/assignments/assignment09/assignment09), 
+which we will start on Thursday. I will update the assignment to reflect a shorter duration this year (with a 
+corresponding reduction in scope). Last year we did this in 3 class sessions, and this year we will aim for 2 
+sessions. By the end of our asynchronous class session you should have at least one concrete idea for a project 
+(meaning an application and a potential dataset). Please populate your current thinking into this shared
+[Google doc](https://docs.google.com/document/d/11rHezUutorn5D6OqLT1PfIPUu083lT4M6ZhNtmjelO8/edit?usp=drivesdk).
 
-Here are some [summary slides](https://docs.google.com/presentation/d/1I1rMkqJYiOuaYAmzKzj3oshUxqdPa_wiOlqtnt4qbLc/edit?usp=sharing), which also include refernce to the study Sam mentioned with humans attempting to predict re-arrest.
-
-We'll summarize some key takeaways and show an example from an extreme version to help us wrap our heads around different models of fairness.
-[https://medium.com/@alex.liu.roc/understanding-the-impossibility-of-fairness-199bba6c9072](https://medium.com/@alex.liu.roc/understanding-the-impossibility-of-fairness-199bba6c9072)
-
-# Small group exploration and sense-making of fairness metrics 
-
-The field of fairness and applications to human or algorithmic decision making is vast. Here are a few resources to guide your exploration of fairness metrics:
-* [IBM's exploration of COMPAS and fairness metrics](https://aif360.res.ibm.com/data)
-* [One group that made a tool for fairness and has a flowchart](https://www.datasciencepublicpolicy.org/our-work/tools-guides/aequitas/)
-* [Orange and blue dot example of fairness from the last assignment](https://research.google.com/bigpicture/attacking-discrimination-in-ml/)
-* [Fair prediction with disparate impact - math paper on COMPAS](https://www.andrew.cmu.edu/user/achoulde/files/disparate_impact.pdf)
-
-# Large group discussion of the big picture
-
-We will close our computers for this part and have a large group guided discussion. 
+(As time allows) Start [the next assignment](../assignments/assignment09/assignment09).  I highly recommend that you 
+watch the videos in the external resources section (since we are moving this material into a class session, the videos will provide important framing)
