@@ -18,7 +18,7 @@ published: true
 
 # Neural Networks Motivation
 
-We're going to start out our journey into neural networks by revisiting the Titanic dataset that we saw a couple of classes ago.  The exercises are embedded within [assignment 8 Colab notebook part 1](https://colab.research.google.com/github/olinml2024/notebooks/blob/main/ML24_Assignment08_part_1.ipynb).  Go through those exercises, and then check back to unpack things further.
+We're going to start out our journey into neural networks by revisiting the Titanic dataset that we saw a couple of classes ago.  The exercises are embedded within [assignment 9 Colab notebook part 1](https://colab.research.google.com/drive/1lYHsuQ17QuVOcot9ivynM6MFKQry1Xnw?usp=sharing).  Go through those exercises, and then check back to unpack things further.
 
 # Neural Networks as Stacked Logistic Regression Models
 
@@ -136,7 +136,7 @@ Next, we'll go back over to Colab to show how we can tune these weights automati
 * You'll see how overfitting can become an issue for more complex networks
 * We'll introduce (at a very high-level) three methods for dealing with overfitting.
 
-Okay, back to [Colab for round 2](https://colab.research.google.com/github/olinml2024/notebooks/blob/main/ML24_Assignment08_part_2.ipynb).
+Okay, back to [Colab for round 2](https://colab.research.google.com/drive/1U6W7j52wZRmWWn4-bB1w8rgJGnItbsaw?usp=sharing).
 But don't forget about the stuff below!
 
 

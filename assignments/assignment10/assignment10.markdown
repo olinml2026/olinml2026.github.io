@@ -1,157 +1,176 @@
 ---
-title: "Assignment 10: Bag of Words and Text Classification"
+title: "Assignment 9: Small data project on classification"
 toc_sticky: true 
 toc_h_max: 1
 layout: problemset
-due_on_class: 13
+due_on_class: 12
 published: false
 ---
+
+# The project description
+
+You will be working solo on this project (1.5 to 2 weeks). The syllabus calls this a mini-project, but we'll just call it a project here. 
+
+In this project, you will contemplate a potential application for classification, you will implement and improve upon a machine learning algorithm on a data set in support of this application, and you will evaluate the models performance. 
+
+As part of this project, you will:
+* Select a "small data" dataset.
+    * "Small data" here is to indicate that you don't need to choose a giant data set (too much for Colab to hold in memory). The goal is to learn about the machine learning process, building your skills and intuition. There is no requirement to get high accuracy. That said, you do need a fair number of data points (exemplars) to meaningfully train your network. This varies by the size of your network and the number of parameters. (You'll be in rough shape if you have fewer than 30 exemplars per category even if your model has a small number of parameters.)
+* Document the important considerations for your application. For example: 
+    * What data are available for training?
+    * How well would the algorithm need to work to responsibly create value? 
+    * How could the algorithm and application be tested (beyond the testing you choose to implement)? 
+    * What are the implications of this application in the world; who are the stakeholders; what are the risks; how (if at all) could they be mitigated?
+* Build and iterate on a classification model as a step toward this application. 
+    * We don’t expect you to build the entire application, just to work toward implementing an early version of an algorithm that could be used for this application. Your dataset doesn't need to be sufficient (e.g.,  big or broad enough) to actually make the application.  
+    * The iteration aspect is important. You will build and test multiple versions of your model and document the effects of these changes. You will likely manipulate a parameter and see how your results change at different values of that parameter.
+        * For full credit, you should evaluate at least two major changes to your model (e.g., comparison of different types of models; manipulate the number of nodes in a hidden layer; manipulate the number of hidden layers; experiment with preprocessing or data augmentation techniques; experiment with different activation functions such as relu, sigmoid, etc.)
+    * You can use pre-built libraries like pytorch. It’s highly likely that you will use a neural network, but not required. Please talk with us if you plan on using a different type of model. 
+* Visualize key aspects of your data/model. Include at least 3 meaningful visualizations in your report with clear labeling and a discussion of their meaning (though you'll likely want more than three visualizations).
+    * You’ll probably find it valuable to visualize many aspects of the data and model as you work. This is helpful in sanity checking and can give good insight into how the model is working.
+    * It's likely that you'll visualize: some things about your data (before even making the model); a graph that shows the loss of your model as during the training process (see figures and caption at the end of [this page](https://livebook.manning.com/concept/deep-learning/training-loss)); changes in some key metrics as you manipulate a parameter (e.g., number of hidden layers); comparison of key metrics for different versions of your model; final training and testing metrics.
+* Test and evaluate your model. This will likely include accuracy and other key metrics on training and test sets. Depending on your application, you may consider testing with additional data from another source (e.g., data you collect; another internet dataset that's similar; simulated data based on theory). You will also evaluate the effectiveness of this model for your specific application and describe the limitations of your current model and data.
+    * Your accuracy and other metrics of your actual model don't have to be good enough for your application. The goal here is to iterate on your model, measure its effectiveness, and reflect on this in the context of an application. 
+* Document your final analysis pipeline for transparency. (A simplified version that does not need to include every parameter, visualization, or tweak that you tried.) It should be well-organized and easy to follow (this takes time, so budget for it).
+
+
 
 # Learning Objectives
 
 {% capture content %}
-* Learn about the field of natural language processing (NLP) and see some important problems from NLP
-* Learn about bag of words methods for representing text as data
-* Use a bag of words methods for text classification
+This mini-project relates to all of the intended learning outcomes of this course:
+* Execute the iterative machine learning workflow of model design, fitting to training data, testing, and interpretation in order to be able to successfully apply machine learning techniques in specific contexts. 
+    * Yup, definitely this one.
+* Successfully implement machine learning algorithms in Python (both by using only minimal external libraries and by leveraging state-of-the-art machine learning libraries).
+    * You can use libraries (e.g., PyTorch)
+* Consider the potential impacts of a machine learning system when deployed in a real-world context and make design decisions to mitigate potential harmful impacts. 
+    * Definitely the first part of this, and you should think about the design decisions you would make.
+* Understand a variety of machine learning techniques from both a mathematical and algorithmic perspective.
+    * This project is not focused on the math, but in the past, this kind of project was where conceptual things clicked for several students (see Appendix).
 {% endcapture %}
 {% include learning_objectives.html content=content %}
 
-# Text as Data
 
-The theme of this module is text as data.  In this module we will begin to explore how we can use machine learning approaches to process text in order to solve problems (e.g., text classification or language translation).  Throughout this module, we will learn different methods to convert text to numbers that can be operated upon using the machine learning techniques we learned about in the last module (e.g., logistic regression and MLPs).
+# Goal-Setting and Customization
+A good project as one that successfully uses a neural net on a dataset and demonstrates iteration (you try the neural net, you make improvements, you try again, and you assess the model performance thinking about a specific application). If you wish to go farther, that's great!
 
-## Key Properties
-
-Before we dive into some of the key applications of machine learning for text processing, let's take some time to think about what makes processing text different than much of the data we've looked at thus far.
-
-### Text consists of symbols
-
-Pieces of text are comprised of symbols.  For example, the text you are reading right now consists of symbols that include letters, numbers, punctuation, and other special characters.  Perhaps the most important distinction for us as machine learning practitioners is that these symbols do not necessarily have a meaningful numerical representation that we can use for learning.  As we move forward in this module, we're going to learn different methods for changing these symbols into useful numerical representations so that we can use techniques like logistic regression and MLPs for further processing.  It's also worth mentioning that when representing text we can also choose the symbols that we use.  Some models treat each letter as an individual symbol, and others treat each word as a symbol.  Other models treat parts of words as symbols.  We'll be digging into all of this in a few assignments.
-
-### Text has sequential structure
-
-When we first met the supervised learning problem, we represented our input to the model as a d-dimensional vector $\mathbf{x}$.  Each of the dimensions of this vector represented some characteristic of the data.  In the logistic regression model and the MLP, each dimension of $\mathbf{x}$ was treated more-or-less independently.  We did not assume any specific relationship between $x_i$ and $x_j$ (we could just as easily have shuffled the dimensions of the data and our learning approaches wouldn't have behaved any differently).  When processing text, we need to consider that pieces of text have sequential structure.  The order of the symbols matters.  Our first attempts (in this assignment) to map machine learning onto text processing will not do a great job encoding this sequential structure, but as we move through the module we will begin to represent this sequential structure in important ways.
-
-### Text has variable length
-
-Again, thinking back to our input vector $\mathbf{x}$, it had a fixed number of dimensions (we used $d$ to refer to the number of dimensions).  Pieces of text consist of sequences of symbols *of variable length*.  As a concrete example, later in this document you'll learn about sentiment analysis (predicting if a piece of text is positive or negative) from text.  The individual pieces of text will contain varying numbers of symbols.  Our machine learning methods must handle this variability, and so far it's not obvious how we can make this happen (but we'll see one way by the end of this assignment).
-
-## Important Problems in the Field of Natural Language Processing
-
-Before we get into how to process text, let's ask *why* we might want to process text.  Perhaps this seems like a silly question given the fact that everywhere you turn these days folk are talking about processing text with large language models (LLMs).  We're going to go over a few of the specific problems that arise in a field called Natural Language Processing (or NLP for short), but we're also going to have you do some of your own research.  NLP is a field concerned with, not surprisingly, processing and making sense of natural language.  Don't let the term "natural language" confuse you, all we mean here is that we want to be able to process text that is written in natural form (i.e., how humans communicate).  In this case the world "natural" might be seen as a contrast to the notion of processing text that is constructed in some specific way as to be easily interpretable by a computer (e.g., a programming language is a good example).
-
-Here are some examples (not even close to an exhaustive list) of NLP problems that are commonly studied in the field.
-
-* **Machine translation:** translating text from one language to another.
-* **Text completion:** given the beginning of a piece of text, complete it (this is at the heart of LLMs)
-* **Question answering:** given a question, answer it in natural language (again this is a big part of LLMs)
-* **Named entity recognition:** "seeks to locate and classify named entities mentioned in unstructured text into pre-defined categories such as person names, organizations, locations, medical codes, time expressions, quantities, monetary values, percentages, etc." ([source](https://en.wikipedia.org/wiki/Named-entity_recognition))
-* **Sentence parsing:** given a sentence, determine parts of speech and how they relate to each other
-* **Sentiment analysis:** given a sentence, determine whether the sentiment contained is positive or negative (this could be generalized to emotion detection or transferred to thinking about other types of text classification, e.g., spam filters for email).
-
-{% capture content %}
-Choose one of the natural language processing tasks listed above (or substitute one of your own).  Do some research to determine some applications for algorithms that solve the problems listed above.  The distinction here is between problems and how a solution to that problem can be used for some purpose (an application).  Some of these problems may be harder to find information on than others, so do your best.  Aim for a medium length paragraph, 5-6 sentences, for your response.  If you choose an NLP problem not listed above, include a brief description of the problem itself along with the applications you found.
-{% endcapture %}
-{% include problem_with_parts.html problem=content %}
-
-## Text Processing Beyond Natural Language
-
-Many of the same techniques we will be learning about can be used to process text data other than natural language.  Examples of this sort of text data could be genomic sequences (where each symbol in the sequence consists of nucleotides A, C, T, and G), amino acid chains (where each symbol is one of the 20 amino acids present in the human body), structured text (e.g., Python code), etc.  For example, the Google's DeepMind team's [AlphaFold program for protein structure prediction just led to a Nobel prize in chemistry](https://www.nature.com/articles/d41586-024-03214-7).  [AlphaFold](https://www.nature.com/articles/s41586-021-03819-2) predicts protein structure from an Amino acid chain.  We won't be going into this sort of text processing in this module (although some of the methods we will learn could be adapted fairly easily).  If you are interested in the idea of processing non-linguistic text, this might be a fruitful topic for a final project.
-
-# Bag of Words
-
-Next, we're going to learn about our first technique for adapting the machine learning approaches from the previous module to processing text.  In doing so, we're going to find ways of dealing with some of the unique features of text that initially might seem to make text incompatible with the techniques we've learned about.  Our first technique of the module is called "bag of words," and it deals with two important challenges we've already discussed in using machine learning methods with text.  First, it converts the symbols in a piece of text into a numerical representation.  Second, the technique is able to handle pieces of text that are variable in length.  We hope you will enjoy these great external resources for learning about bag of words.
-
-{% capture resources %}
-Let's learn about bag of words!  Begin by watching [a video from IBM called "What is Bag of Words?"](https://www.youtube.com/embed/pF9wCgUbRtc?si=zd1AYDQTJifqLtcZ).  Towards the end, this video gets into two more advanced topics that we'll be digging into shortly.  The first is tf-idf and you'll learn about that in the notebook.  The second is the idea of word embeddings (or word2vec), and you'll see that in the assignment after this one.  We point this out since we want you to focus on the bag of words content and avoid getting thrown off by this other content.  If you want one more (shorter video), we also recommend [this video from Socratica](https://www.youtube.com/embed/kLMhePA3BiY?si=MEfYE_SyhzkGBnch).
-{% endcapture %}
-{% include external_resources.html content=resources %}
-
-{% capture problem %}
-As a quick check of your understanding, encode the following three pieces of text using bag of words.  What would you need to do to normalize the data?  What does it mean that the bag of words is a sparse representation?  How do you see that in your solution to the exercise?
-
-1. goodnight moon
-2. goodnight cow jumping over the moon
-3. and a little toy house and a young mouse
-4. and goodnight mouse
-{% endcapture %}
-{% capture solution %}
-
-If we examine the texts as a whole, we can identify the unique words that occur and assign each word to a dimension in our bag of words vector.  As long as we're consistent in how we do so, It doesn't matter how we assign words to vector dimensions (we could shuffle the rows of the table below, and we would still have a valid bag of words representation).  Here is what the sentences could look like in bag of words form.
-
-| dimension | word    | text 1 | text 2 | text 3 | text 4 |
-| -------- | ------- | ------- | ----- | ----- | ---- |
-| 1 | goodnight  |  1   | 1 | 0 | 1 |
-| 2 | moon |   1 | 1 | 0 | 0   |
-| 3 | cow    |  0 | 1 | 0 | 0   |
-| 4 | jumping  | 0 | 1  |  0 | 0   |
-| 5 | over    |  0 | 1 | 0 | 0   |
-| 6 | the    |  0 | 1 | 0 | 0   |
-| 7 | and    |  0 | 0 | 2 | 1   |
-| 8 | a    |  0 | 0 | 2 | 0   |
-| 9 | little    |   0 | 0 | 1 | 0  |
-| 10 | toy    |  0 | 0 | 1 | 0   |
-| 11 | house    |  0 | 0 | 1 | 0   |
-| 12 | young    |  0 | 0 | 1 | 0   |
-| 13 | mouse    |  0 | 0 | 1 | 1  |
+We've highlighted the learning objectives, and we also (informally) ask you to consider your own learning goals. Is there a specific skill you want to practice? Is there a way of learning (like, asking for help more, trying code without looking at examples first, etc) that you want to practice?  You can customize this project to support your own learning, and we are happy to help you shape the project to support your goals and challenge yourself. 
 
 
-If we were to normalize these representations, we would divide each column by the sum of the column (i.e., the total number of words in each piece of text).
+# Timeline
 
-The bag of words representation is sparse as most of the entries in the table are 0.  If we had a larger vocabulary the sparsity would be even more apparent (a higher proportion of entries that are 0).
+The project will officially launch on Thursday, October 3, 2024, and end on Thursday, October 17, 2024. While this is 2 weeks of time, we also want to note that Fall break is on October 14th and 15th (Monday and Tuesday, so no class on Oct 14), so we encourage you to work on this project like it is one week with a little time for revisions (but you should make your own choices based on your situation).
 
+# Use of external resources (including peers, the internet, and AI)
+You should lead your own project, and by "lead", we mean that you should be the active thinker and doer of the work. This is how you build your skills and intuition. You should write and understand the code and text in your project. 
 
-{% endcapture %}
-
-{% include problem.html problem=problem solution=solution %}
-
-## Text Classification with Bag of Words
-
-In the video from IBM, there were several examples used to motivate the notion of bag of words for text classification.  Let's use one of the problems mentioned, sentiment analysis, and apply it to analyzing movie reviews.  We'll be using a fairly old dataset for our analysis, but it is one that is easy to work with and big enough for us to learn some important skills about working with text.  The dataset is Stanford's [Large Movie Review Dataset](https://ai.stanford.edu/~amaas/data/sentiment/). Here is a snippet from the README.md file that is included with the dataset.
-
-> Large Movie Review Dataset v1.0
-> 
-> Overview
-> 
-> This dataset contains movie reviews along with their associated binary
-> sentiment polarity labels. It is intended to serve as a benchmark for
->sentiment classification. This document outlines how the dataset was
-> gathered, and how to use the files provided. 
-> 
-> Dataset
->
-> The core dataset contains 50,000 reviews split evenly into 25k train
-> and 25k test sets. The overall distribution of labels is balanced (25k
-> pos and 25k neg). We also include an additional 50,000 unlabeled
-> documents for unsupervised learning. 
->
-> In the entire collection, no more than 30 reviews are allowed for any
-> given movie because reviews for the same movie tend to have correlated
-> ratings. Further, the train and test sets contain a disjoint set of
-> movies, so no significant performance is obtained by memorizing
-> movie-unique terms and their associated with observed labels.  In the
-> labeled train/test sets, a negative review has a score <= 4 out of 10,
-> and a positive review has a score >= 7 out of 10. Thus reviews with
-> more neutral ratings are not included in the train/test sets. In the
-> unsupervised set, reviews of any rating are included and there are an
-> even number of reviews > 5 and <= 5.
-
-In the [assignment 10 notebook](https://colab.research.google.com/github/olinml2024/notebooks/blob/main/ML24_Assignment10.ipynb), you'll be working with this dataset and implementing your own machine learning system for predicting the sentiment of a movie review using a bag of wordsd representation.
-
-## Bag of Words and Machine Learning Bias
+We are extending our trust to you (we will not run your report through a plagiarism checker), and we expect that you will follow the [Olin Honor Code](https://www.olin.edu/student-life-student-affairs-and-resources/student-rights-responsibilities). The values of integrity and respect for others seem most directly relevant. We expect that your submitted work represents you own skills and understanding. However, we also recognize that this is a fuzzy thing to navigate. We've tried to articulate some guidelines here for equity and transparency, and we invite open discussion about what is appropriate and fair. We can navigate this fuzzy world together (like [James and his friends in the the giant peach](https://en.wikipedia.org/wiki/James_and_the_Giant_Peach)).
 
 
-{% capture problem %}
-Let's do a little spiraling back to one of the big ideas in machine learning we started the semester with.  We want to draw your attention to this specific example.
+## Peer collaboration (students in this class or other humans, squirrels, and monkeys with typewriters)
+We encourage collaboration and supporting each other to enhance everyone's learning. However, it's inappropriate to have someone else write your code for you. It is okay to talk to someone about something that you're stuck on. It's also okay for them to show you how they solved it. It's not okay to mindlessly copy several lines of code or text directly from someone else's assignment. 
 
-> You may have heard that [Amazon
-> scrapped a secret AI recruiting tool that showed bias against women](https://www.reuters.com/article/us-amazon-com-jobs-automation-insight/amazon-scraps-secret-ai-recruiting-tool-that-showed-bias-against-women-idUSKCN1MK08G).
-More specifically, the tool performed automatic keyword analysis of job applications to predict whether or not the applicant was worth forwarding on to a human for further evaluation. Early in the development of this system researchers discovered that the model the system had learned placed a negative weight on words such as "women's" as well as the names of some women's colleges.
 
-Given what you just learned about the bag of words approach and what we learned about [confounding variables in assignment 4](../assignment05/assignment04#confounding-variables), how might Amazon's system have learned to associate negative feature weights with the gendered words or words associated with women's colleges?
+## The (not actually) magical world of the internet and artificial intelligence
+It's quite likely that someone has used your dataset for a machine learning project and posted that somewhere online. You can use these materials to help you when you are stuck, but you should not just copy and paste large chunks of code from the internet or AI (likely scraped from the internet). You do not need to turn off the auto-complete functions in Colab or your IDE, but please be aware that these also make mistakes.
 
-{% endcapture %}
-{% capture solution %}
-The Amazon engineers probably didn't think to screen out particular words from their machine learning model.  Likely, they assigned a dimension in their bag of words to all unique words as a way to increase the predictive power of the model.  In the data there was likely a correlation between resumes not doing as well and the presence of gendered words and the names of women's colleges.  It's hard to say why this correlation might have existed without more investigation (e.g., it could have been conscious or subconscious bias on the part of the evaluations that were used to make the training set, some systemic factor, or a combination).  Given this correlation, the machine learning model associated a negative weight with these words and baked it into the model.  In this way a correlation (that having these words in your resume was correlated with being screened out) was made causal by the model (if this model were to be applied to real resumes, then people with these words would be more likely to be discriminated against).
-{% endcapture %}
-{% include problem.html problem=problem solution=solution %}
+You should not start this project by having AI generate your first draft; the thought process of thinking through each of the steps is important to build your understanding. It is great to look at examples online that use a different dataset in order to build your understanding of the process, and then to emulate that in your own code. 
+
+
+## Class-owned editable resources file
+
+We will continue to use Slack and office hours to answer questions. However, we also know that a great deal of learning happens outside of those places. [This shared, class-owned, editable document](https://docs.google.com/document/d/15zNjQp32oBqaD4CY4gAsgSnkAWUs3JbTJYNRAEr1H28/edit?usp=sharing) is intended to serve as a communal set of resources for troubleshooting as we figure things out together. Anyone can add to it, so as you run into problems (you will) and figure out solutions (sometimes on your own, sometimes with help), please add to this document to help others. Learning is not a zero-sum game.
+
+This shared document already has two years of notes from Machine Learning students in the past (from a image-focused project), so some things may be outdated (you can delete something if it no longer works or applies to this project). We also want to note that the field of machine learning is constantly changing, as are things like libraries and toolboxes. It's likely that you'll run into something that worked 3 years ago and does not work now. Please help us find and fix these things!
+
+# Deliverables & Assessment
+
+## Deliverables
+
+1. A clean report in notebook (.ipynb) format with thoughtful explanations of the considerations for your classification application and important highlights of your analysis. This should include in-line code and figures. This should **not** include every analysis and figure that you generated. Choose the important pieces of information to meet the project description and rubric. You can mention other things that you investigated in the text and include supplemental code in your repository. This is about quality, not quantity. 
+* The submission can be an uploaded .ipynb notebook or link to a notebook on Colab (please make sure you have appropriate sharing settings selected and test with someone else so we don't have to request access; let us know if you'd like our Colab account email addresses).
+
+2. A PDF of your clean notebook with all of the cells run and graphs appearing clearly. If you run into issues with this, try a different browser and experiment with the print function within Colab. If you have a problem and then figure something out, add it to [the shared, class-owned, editable document](https://docs.google.com/document/d/15zNjQp32oBqaD4CY4gAsgSnkAWUs3JbTJYNRAEr1H28/edit?usp=sharing).
+
+There are rubrics in the appendices in this document. The intention of these rubrics is to create shared expectations about the project, while also giving you lots of latitude to explore and emphasize your own learning.
+
+## Check-in Deliverables (Grading Option B)
+
+By October 4, you will submit a progress goal that you will be accountable to. 
+
+
+Before class on October 10, you will self-evaluate on the progress toward your goal and include a link or copy of your current notebook. In class, we will have a brief meeting with you to review your status and your self-evaluation. 
+
+
+## Assessment
+
+Assessment for this project will be based on the **quality of project work**, which will be assessed by the teaching team. 
+
+During the week of October 7, we will have a project check-in. For students who chose assessment partially based on process (grading Option B), this will be an assessed check-in to create an accountability system to help you make progress on your project. It will count in the "Daily assignments with markup" category. Project check-ins will also be available to students who chose grading Option A. 
+
+At the end of the project, the teaching will assess and provide feedback on your final report. We apologize if this takes us a while, as this is a large class and we're also redesigning many aspects of it given advances in machine learning.
+
+We want to acknowledge that we are all coming to this course with varying experience with machine learning. This is great, and we’re actively trying to help you all have positive learning experiences. We intend for the course not to require prior experience with machine learning to participate, learn new things, and feasibly receive a high grade. With this in mind, we want to be explicit about how we anticipate this playing out in assessment.
+
+With the project work and report, we will assess with a mental model of a team beginning the course with no real machine learning experience. The key aspects of this assessment are described in the rubric and project description. In practice, this means that everyone could receive an A for this project, and it will be more challenging for some people than others.
+
+
+# Appendix A: Some questions to consider
+[These questions built from from this webpage.](https://www.notion.so/ANN-Project-Framing-76e1b6af347f475a983487996ac9760d)
+
+- What do you want your model to be able to do?
+- How can you imagine your model (or an extension of it) being used in the real world? Feel free to get creative.
+- If those ideas came true, who might they affect? In what ways?
+- What measures would your model's real-world implementers need to take to ensure its effects live up to your intentions?
+- What pitfalls might your model fall into, and what could you quantitatively measure to avoid those?
+- Why was the dataset you used to train your model created?
+- In what other ways could the same data be used? How do you feel about those possibilities?
+- How was that dataset assembled? From where was the data sourced? Who or what labeled it? If there are any elements of this process you think were either particularly well done or problematic, how so?
+- If your dataset contains information about people, to what degree did those people have agency over their inclusion? Do you feel that matters in this case (your application and/or for a college project)? Why or why not?
+- Skimming through your dataset, does anything stand out to you about representation in its contents?
+- Do you feel the potential use cases for this dataset justify it being created and published? Why or why not?
+
+# Appendix B: Lessons from those that have come before you  
+
+In a prior version of the class, we did a classification project using images with something called a convolutional neural network or CNN, which we'll learn about later (the images part of this course). Here we're doing a mini-project with simpler data, though you can use images if you want. At the end, we asked students to reflect on their project. We thought it might be helpful or entertaining to see [what they had to say](https://drive.google.com/file/d/1z5bXMRp2Np30TTa34uQh-GBnKykWI7rJ/view?usp=sharing).
+
+
+# Appendix C: Rubrics
+
+
+### Jupyter Notebook
+Please submit both a PDF of your Jupyter Notebook (with the code executed) and an executable Jupyter Notebook (or link to Colab with appropriate sharing set and tested) to Canvas.
+
+You should refer to the Project Description at the top of this document for what to include (we try to refer to that section here). Your project will be graded on the following aspects.
+
+**General**
+
+1. The notebook is well-organized.
+2. The notebook balances code and text well.
+3. The notebook runs without errors in the Google CoLab environment.
+4. The notebook is free of typos.
+5. The notebook demonstrates good coding practices, including but not limited to docstrings, appropriate variable names, and comments as appropriate.
+6. The code demonstrates a significant amount of effort (roughly 3 assignments' worth), made clear by careful consideration of the data, model, and implications for the model you developed.
+
+**Motivation (See: Document the important considerations for your application.)**
+
+1. It is clear what data you used.
+2. The application of your algorithm is clear and well-motivated.
+3. The notebook explains how well the algorithm would need to work to provide value.
+4. The notebook explains how the algorithm is to be evaluated (how do you know it is working well?).
+5. The notebook explains the implications of this approach (including risks and stakeholders).
+
+**Implementation (See: Build and iterate on a classification model as a step toward this application.)**
+
+1. The notebook explains the dataset and the features, in text and/or graphics.
+2. The notebook contains a classification model.
+3. The model(s) are implemented correctly.
+4. The notebook includes experimentation and evaluation of at least two major changes to your model (e.g., comparison of different types of models; manipulate the number of nodes in a hidden layer; manipulate the number of hidden layers; experiment with preprocessing or data augmentation techniques; experiment with different activation functions such as relu, sigmoid, etc.)
+
+**Interpretation and Visualization (See: Build and iterate;  Visualize key aspects of your data/model; Test and evaluate your model.)**
+
+1. The code generates at least 3 meaningful visualizations of the data, model, and/or outputs.
+2. The visualizations have clear and appropriate labels and connections to the text.
+3. The evaluation uses appropriate key metrics based on the proposed application and dataset.
+4. The notebook accurately describes the effectiveness and limitations of the model on both training and test data in text and numbers.
+5. The text explains the relationship between the effectiveness and limitations of the model and the proposed application.
