@@ -53,7 +53,17 @@ usp=sharing), which also include reference to the study Sam mentioned with human
 
 We'll summarize some key takeaways and show an example from an extreme version to help us wrap our heads around 
 different models of fairness. [https://medium.com/@alex.liu.
-roc/understanding-the-impossibility-of-fairness-199bba6c9072](https://medium.com/@alex.liu.roc/understanding-the-impossibility-of-fairness-199bba6c9072)
+roc/understanding-the-impossibility-of-fairness-199bba6c9072](https://medium.com/@alex.liu.
+roc/understanding-the-impossibility-of-fairness-199bba6c9072).  Also consider looking at [the original source that 
+showed the impossibility result](https://journals.sagepub.com/doi/pdf/10.1089/big.2016.0047).  In that work, the 
+authors shows that the following equation must hold for all groups according to the prevalence of a positive for 
+members of that group, $p$.
+
+$$
+\begin{aligned}
+\text{FPR} = \frac{p}{1-p} \frac{1 - \text{PPV}}{\text{PPV}} (1 - \text{FNR})
+\end{aligned}
+$$
 
 # Small group exploration and sense-making of fairness metrics 
 
