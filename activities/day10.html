@@ -481,8 +481,16 @@ turns having each person share one thing that they wrote down for Exercise 1 in 
 usp=sharing">summary slides</a>, which also include reference to the study Sam mentioned with humans attempting to predict re-arrest.</p>
 
 <p>We’ll summarize some key takeaways and show an example from an extreme version to help us wrap our heads around 
-different models of fairness. <a href="https://medium.com/@alex.liu.roc/understanding-the-impossibility-of-fairness-199bba6c9072">https://medium.com/@alex.liu.
-roc/understanding-the-impossibility-of-fairness-199bba6c9072</a></p>
+different models of fairness. <a href="https://medium.com/@alex.liu.
+roc/understanding-the-impossibility-of-fairness-199bba6c9072">https://medium.com/@alex.liu.
+roc/understanding-the-impossibility-of-fairness-199bba6c9072</a>.  Also consider looking at <a href="https://journals.sagepub.com/doi/pdf/10.1089/big.2016.0047">the original source that 
+showed the impossibility result</a>.  In that work, the 
+authors shows that the following equation must hold for all groups according to the prevalence of a positive for 
+members of that group, $p$.</p>
+
+\[\begin{aligned}
+\text{FPR} = \frac{p}{1-p} \frac{1 - \text{PPV}}{\text{PPV}} (1 - \text{FNR})
+\end{aligned}\]
 
 <h1 id="small-group-exploration-and-sense-making-of-fairness-metrics">Small group exploration and sense-making of fairness metrics</h1>
 
