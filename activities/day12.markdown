@@ -18,6 +18,7 @@ published: true
 
 We want to celebrate and share about your small data mini-projects. Hooray, you did it! We'll do a little share-out so that you can learn from each other and give high fives!
 
+
 ## Share at tables
 
 Let's start out by sharing what you did with the folks around you.  Take about 2 minutes each to go over what you did for the project and how it turned out.

@@ -16,6 +16,7 @@ header:
 ## Final project
 [Final Project Documents](assignments/assignment17/FinalProject)
 -->
+
 ## In-class Activities
 
 | Day # | Activity                                                                      |
