@@ -13,7 +13,12 @@ published: false
 {% endcapture %}
 {% include agenda.html content=agenda %}
 
-# Reflection, Reflection
+
+# Reflection on the course so far
+
+We're approaching the midpoint of the course (not quite yet), but this felt like a good time to pause and reflect on how things are going.
+
+First we'll debrief at tables. Then we'll devote a some time to reflecting via a survey (see "Interim reflection on course so far" in Canvas).
 
 # Assignment Debrief
 

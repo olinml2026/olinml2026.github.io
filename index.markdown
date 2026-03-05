@@ -20,7 +20,7 @@ header:
 
 | Day # | Activity                                                                      |
 |-------|-------------------------------------------------------------------------------|
-{% for d in (1..11) %}
+{% for d in (1..12) %}
 {%- assign dd = d -%}
 {%- if d < 10 -%}{% assign dd = '0' | append: d %}{% endif -%}
 {%- assign fname = 'activities/day' | append: dd | append: '.markdown' -%}
