@@ -1,0 +1,645 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.17.2 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<script>
+class AnchorNoProxy extends HTMLElement {
+  constructor() {
+    super();
+    this.attachShadow({ mode: "open" });
+    this._$a = null;
+  }
+  connectedCallback() {
+    const href = this.getAttribute("href") || "#";
+    if (this.dataset.hasOwnProperty('canvas')) {
+        const canvasURL = this.dataset.canvas;
+        this.shadowRoot.innerHTML = `<style>a:hover, a:active { outline: 0; }\na { color: #5197ad; }\na:visited { color: #5197ad; }\na:hover { color: #266477; outline: 0; }</style><a href="${href}" data-canvas="${canvasURL}"><slot></slot></a>`;
+    } else {
+        this.shadowRoot.innerHTML = `<style>a:hover, a:active { outline: 0; }\na { color: #5197ad; }\na:visited { color: #5197ad; }\na:hover { color: #266477; outline: 0; }</style><a href="${href}"><slot></slot></a>`;
+    }
+    this._$a = this.shadowRoot.querySelector("a");
+    this._$a.addEventListener("click", e => {
+      var url = this.getAttribute('href');
+      e.preventDefault();
+      if (document.referrer.startsWith('https://lms.hypothes.is') && this.dataset.hasOwnProperty('canvas')) {
+        // get rid of proxy if it was added
+        var n = this.dataset.canvas.search('https://olin.instructure.com');
+        window.open(this.dataset.canvas.substring(n), '_blank');
+      } else {
+        window.open(url, '_blank');
+      }
+    });
+  }
+  static get observedAttributes() { return ["href"]; }
+  attributeChangedCallback(name, oldValue, newValue) {
+    if (oldValue !== newValue) {
+      if (this._$a === null) return;
+      this._$a.setAttribute("href", newValue);
+    }
+  }
+}
+
+customElements.define("a-no-proxy", AnchorNoProxy);
+
+class NoProxy extends HTMLAnchorElement {
+  connectedCallback() {
+    this.addEventListener("click", e => {
+      e.preventDefault();
+      if (document.referrer.startsWith('https://lms.hypothes.is') && this.dataset.hasOwnProperty('canvas')) {
+        // get rid of proxy if it was added
+        var n = this.dataset.canvas.search('https://olin.instructure.com');
+      	window.open(this.dataset.canvas.substring(n), '_blank');
+      } else {
+      	window.open(this.href, '_blank');
+      }
+    });
+  }
+}
+
+customElements.define("no-proxy", NoProxy, { extends: "a" });
+
+class ConfirmLink extends HTMLAnchorElement {
+  connectedCallback() {
+    this.addEventListener("click", e => {
+      const result = confirm(`Are you sure you want to go to '${this.href}'?`);
+      if (!result) e.preventDefault();
+    });
+  }
+}
+
+customElements.define("confirm-link", ConfirmLink, { extends: "a" });
+
+</script>
+
+<!-- begin _includes/seo.html --><title>Assignment 12: Generative Pre-Trained Transformers (GPTs) Part 1 - Machine Learning Spring 2026 @ Olin College</title>
+<meta name="description" content="Website">
+
+
+
+<meta property="og:type" content="website">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Machine Learning Spring 2026 @ Olin College">
+<meta property="og:title" content="Assignment 12: Generative Pre-Trained Transformers (GPTs) Part 1">
+<meta property="og:url" content="/assignments/assignment12/assignment12.html">
+
+
+  <meta property="og:description" content="Website">
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="canonical" href="/assignments/assignment12/assignment12.html">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": null,
+      "url": "/"
+    
+  }
+</script>
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Machine Learning Spring 2026 @ Olin College Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+<script src="https://cdn.jsdelivr.net/npm/mermaid@11.9.0/dist/mermaid.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.28/dist/katex.min.css" integrity="sha384-Wsr4Nh3yrvMf2KCebJchRJoVo1gTU6kcP05uRSh5NV3sj9+a8IomuJoQzf3sMq4T" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.28/dist/katex.min.js" integrity="sha384-+W9OcrYK2/bD7BmUAk+xeFAyKp0QjyRQUCxeU31dfyTt/FrPsUgaBTLLkVf33qWt" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.28/dist/contrib/auto-render.min.js" integrity="sha384-hCXGrW6PitJEwbkoStFjeJxv+fSOOQKOPbJxSfM6G5sWZjAyWhXiTIIAmQqnlLlh" crossorigin="anonymous"></script>
+
+<script>
+document.addEventListener("DOMContentLoaded", async function () {
+  // Render Mermaid first, from untouched source.
+  mermaid.initialize({ startOnLoad: false });
+  await mermaid.run(); // renders all .mermaid blocks
+
+  // render KaTeX
+  renderMathInElement(document.body, {
+          delimiters: [
+              {left: '$$', right: '$$', display: true},
+              {left: '$', right: '$', display: false},
+              {left: '\\(', right: '\\)', display: false},
+              {left: '\\[', right: '\\]', display: true}
+          ],
+    throwOnError: false,
+  });
+});
+</script>
+
+<script type="text/javascript">
+function HideShowElement(divID) {
+    const x = document.getElementById(divID);
+    if (x.style.display === "none") {
+        x.style.display = "block";
+    } else {
+        x.style.display = "none";
+    }
+}
+</script>
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" rel="stylesheet">
+
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', function() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const showSolutions = urlParams.get('showSolutions');
+    const showAllSolutions = urlParams.get('showAllSolutions');
+    const divs = document.querySelectorAll('button.togglebutton');
+
+    if (showSolutions == 'true') {
+        // Loop through the selected divs and manipulate them
+        divs.forEach(div => {
+            div.removeAttribute('hidden');
+        });
+    }
+
+    const solutionDivs = document.querySelectorAll('[id^=solution]');
+    const subpartSolutionDivs = document.querySelectorAll('[id^=subpartsolution]');
+
+    if (showAllSolutions == 'true') {
+        solutionDivs.forEach(div => {
+            console.log('test')
+            div.style.display = 'block';
+        });
+
+        subpartSolutionDivs.forEach(div => {
+            console.log('test')
+            div.style.display = 'block';
+        });
+    }
+});
+</script>
+
+<script type="text/javascript">
+function HideShowElement(divID) {
+    const x = document.getElementById(divID);
+    if (x.style.display === "none") {
+        x.style.display = "block";
+    } else {
+        x.style.display = "none";
+    }
+}
+</script>
+<style>
+:root {
+    --box-bg-color: #fff; /* Default background color */
+}
+
+.homework-box {
+    background-color: var(--box-bg-color);
+    border: 2px solid #ccc;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    width: 300px;
+}
+
+.homework-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    position: relative;
+}
+
+.homework-icon {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+}
+
+/* Handle missing or empty src attribute */
+.homework-icon[src=""],
+.homework-icon:not([src]) {
+    content: url('https://upload.wikimedia.org/wikipedia/commons/a/ab/Games_for_Learning_%2827470%29_-_The_Noun_Project.svg');
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+}
+
+.homework-title {
+    margin: 0;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.homework-content {
+    font-size: 16px;
+    color: #333;
+}
+</style>
+
+<style>
+.solution {
+    display: none; /* Hide solutions by default */
+    background-color: #f9f9f9;
+    padding: 10px;
+    border-left: 4px solid #007bff;
+    margin-top: 10px;
+}
+
+.toggle-button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    display: inline-block;
+}
+
+.toggle-button.hide-solution {
+    background-color: #dc3545; /* Red background for hide button */
+}
+
+img.mermaid {
+     max-width:500px;
+     text-align: center;
+}
+
+</style>
+
+<div style="display:none;">
+$
+\newcommand{\mlvec}[1]{\mathbf{#1}}
+\newcommand{\mlmat}[1]{\mathbf{#1}}
+\DeclareMathOperator*{\argmax}{arg\,max\,}
+\DeclareMathOperator*{\argmin}{arg\,min\,}
+$
+</div>
+
+  </head>
+
+  <body class="layout--problemset">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+          <a class="site-logo" href="/"><img src="https://qeacourse.github.io/RoboNinjaWarrior/website_graphics/olinlogo.png" alt=""></a>
+        
+        <a class="site-title" href="/">
+          Machine Learning Spring 2026 @ Olin College
+          
+        </a>
+        <ul class="visible-links"></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Assignment 12: Generative Pre-Trained Transformers (GPTs) Part 1">
+    
+    
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">Assignment 12: Generative Pre-Trained Transformers (GPTs) Part 1
+</h1>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On this page</h4></header>
+	      
+                <ul class="toc__menu">
+  <li><a href="#learning-objectives">Learning Objectives</a></li>
+  <li><a href="#demystifying-gpt">Demystifying GPT</a></li>
+  <li><a href="#word-embeddings-and-predicting-the-next-word">Word Embeddings and Predicting the Next Word</a></li>
+  <li><a href="#self-attention-under-the-hood">Self-attention Under the Hood</a></li>
+  <li><a href="#implementing-self-attention">Implementing Self-Attention</a></li>
+</ul>
+	      	
+            </nav>
+          </aside>
+        
+        <blockquote>
+  <p>Note: still finalizing this</p>
+</blockquote>
+
+<h1 id="learning-objectives">Learning Objectives</h1>
+
+<div class="tip" style="
+    border-left: 6px solid #000000;
+    margin: 2em 2em 2em 2em;">
+	<div style="background-color: #C6EBD5;
+	                column-gap: 1rem;
+					display: flex;
+					padding: 1em 1em 1em 1em;">
+	<div class="notice-bulb" style="
+	    font-family: 'Font Awesome 5 Free',serif;
+	    vertical-align: middle;
+	    font-weight: 900;
+	    font-size: xx-large;
+	    color: #000000;">
+        <i class="fas fa-brain"></i>
+</div>
+	<div style="font-size: xx-large; font-weight: 900;">Learning Objectives</div>
+	</div>
+	<div style="padding: 1em 1em 1em 1em;">
+	   
+<ul>
+  <li>Learn about the concept of self-attention in neural networks and the role it plays in Generative Pre-trained Transformers (GPTs)</li>
+  <li>Implement self-attention in Pytorch</li>
+</ul>
+
+	</div>
+</div>
+
+<h1 id="demystifying-gpt">Demystifying GPT</h1>
+
+<p>This assignment and the next one are building towards the goal of demystifying large language models (LLMs) like ChatGPT.  While we won’t be able to learn everything there is to know about these models, we will be learning, in-depth, about the concept of Generative Pre-Trained Transformers (GPTs).  We hope that by seeing the GPT mechanism up close, you are able to develop a better understanding of how LLMs work, giving you the option to explore LLMs further in your final projects.  You’ll also learn some useful, generalizable tricks for text processing along the way.</p>
+
+<p>The roadmap for our work (over this and the next assignment) is that we are going to use two video resources.  First, we’ll watch a sequence of two videos from 3B1B that will help us build a conceptual understanding of GPTs through a visual approach. The second, is a walkthrough of how to turn our conceptual understanding into an implementation of a GPT in Pytorch (we’ll use NanoGPT from Andrej Karpathy for that).</p>
+
+<h1 id="word-embeddings-and-predicting-the-next-word">Word Embeddings and Predicting the Next Word</h1>
+
+<div class="tip" style="
+    border-left: 6px solid #000000;
+    margin: 2em 2em 2em 2em;">
+	<div style="background-color: #FFD1DC;
+	                column-gap: 1rem;
+					display: flex;
+					padding: 1em 1em 1em 1em;">
+	<div class="notice-bulb" style="
+	    font-family: 'Font Awesome 5 Free',serif;
+	    vertical-align: middle;
+	    font-weight: 900;
+	    font-size: xx-large;
+	    color: #000000;">
+        <i class="fas fa-external-link-alt"></i>
+</div>
+	<div style="font-size: xx-large; font-weight: 900;">External Resources</div>
+	</div>
+	<div style="padding: 1em 1em 1em 1em;">
+	   
+<p>Let’s start off by watching the 3B1B video <a href="https://www.youtube.com/watch?v=wjZofJX0v4M">How large language models work, a visual intro to transformers</a>.</p>
+
+<p>Here are some of the key things we would like you to take away from this video.</p>
+<ul>
+  <li>That text can be tokenized in different ways (either as letters, chunks of words, or whole words)</li>
+  <li>How predicting the next token (or word) given a piece of text can be used repeatedly to do text completion.</li>
+  <li>That we can use the concept of embeddings to represent tokens in a high-dimensional space (make sure you understand how this connects to word embeddings)</li>
+  <li>Why the context that surrounds a word might be important for updating its embedding vector (e.g., to disambiguate between multiple meanings of the same word).</li>
+  <li>That the last layer of a GPT model maps from the embedding space to a real number for each possible next token (this is called the “unembedding matrix” in the video).  These numbers are called “logits”.</li>
+  <li>To take our real numbers from the previous step into a probability of the next token, we use the softmax function.</li>
+  <li>Make a note of what materials are review from this video (based on things we’ve already done).</li>
+</ul>
+
+	</div>
+</div>
+
+<h1 id="self-attention-under-the-hood">Self-attention Under the Hood</h1>
+
+<p>Hopefully, you found that video to connect some dots from the last assignment and set the stage nicely for where we are going next.  Our next move is going to be to watch the next chapter in the 3B1B series on deep learning.  This is where we will meet the concept of self-attention, which is going to be at the heart of our GPT model.</p>
+
+<div class="tip" style="
+    border-left: 6px solid #000000;
+    margin: 2em 2em 2em 2em;">
+	<div style="background-color: #FFD1DC;
+	                column-gap: 1rem;
+					display: flex;
+					padding: 1em 1em 1em 1em;">
+	<div class="notice-bulb" style="
+	    font-family: 'Font Awesome 5 Free',serif;
+	    vertical-align: middle;
+	    font-weight: 900;
+	    font-size: xx-large;
+	    color: #000000;">
+        <i class="fas fa-external-link-alt"></i>
+</div>
+	<div style="font-size: xx-large; font-weight: 900;">External Resources</div>
+	</div>
+	<div style="padding: 1em 1em 1em 1em;">
+	   
+<p>Now, let’s watch the 3B1B video <a href="https://www.youtube.com/watch?v=eMlx5fFNoYc">Attention in transformers, visually explained</a>.</p>
+
+<p>Here are some of the key things we would like you to take away from this video.</p>
+<ul>
+  <li>That the initial embedding of a token also encodes its position (not just the token’s identity)</li>
+  <li>That it is useful for words to be able to ask questions (query) of other words.</li>
+  <li>That queries can be specified as vectors and the answers to those queries can also be specified as vectors (called keys).</li>
+  <li>That the degree to which a key answers a query can be determined by taking the dot product of the key vector and the query vector and that we can compute the dot product of each query token and each query key as $QK^\top$.  Note that the way Grant Sanderson (the creator of the video) has defined the matrices Q and K, the correct equation for him woudl be $K^\top Q$ (he discusses this issue in the video’s top comment).  In our presentation, we are sticking with the original equation $QK^\top$.</li>
+  <li>At 9:04, Grant Sanderson talks about the key attending to the query.  This is backwards from our understanding of how this language is typically used (there is some discussion of this in the comments).  We think of the query as attending to the key.</li>
+  <li>Applying a softmax to the matrix of dot products of queries and keys gives us a probability distribution of which tokens each token should attend to.</li>
+  <li>That the idea of causal attention (where we are predicting future tokens from past tokens) requires that future tokens are not allowed to send information to past tokens.  Further, to accomplish this goal, we can force entries in our query-key matrix corresponding to future tokens influencing past tokens to negative infinity (before applying softmax).  This is called “masking”.</li>
+  <li>That the token embeddings are updated by adding the value vectors from other tokens (weighted by attention).  (Note: this is presented in the video through the example of using adjectives to update the meaning of a noun.)</li>
+  <li>Note: there is a discussion of how to cut down the number of parameters in the value map by decomposing it into the product of the value up and the value down matrices ($V_{\uparrow}$ and $V_{\downarrow}$).  While this is interesting, and we are happy to talk about it,  we don’t advise getting hung up on this detail (we will not be using this architecture in the implementation to follow).  Similarly, don’t worry about the note about how the $V_{\uparrow}$ matrices are all combined into one matrix called the output matrix.</li>
+  <li>That multiple heads of attention can be used to capture multiple ways in which token embeddings can influence each other.  Note: you shouldn’t have a super precise notion of what this means, but you should have a notion that multiple heads of attention might be useful.</li>
+</ul>
+
+	</div>
+</div>
+
+<h1 id="implementing-self-attention">Implementing Self-Attention</h1>
+
+<div class="tip" style="
+    border-left: 6px solid #000000;
+    margin: 2em 2em 2em 2em;">
+	<div style="background-color: #FFD1DC;
+	                column-gap: 1rem;
+					display: flex;
+					padding: 1em 1em 1em 1em;">
+	<div class="notice-bulb" style="
+	    font-family: 'Font Awesome 5 Free',serif;
+	    vertical-align: middle;
+	    font-weight: 900;
+	    font-size: xx-large;
+	    color: #000000;">
+        <i class="fas fa-external-link-alt"></i>
+</div>
+	<div style="font-size: xx-large; font-weight: 900;">External Resources</div>
+	</div>
+	<div style="padding: 1em 1em 1em 1em;">
+	   
+<p>Next, we’re going to see how we can do that by implementing self-attention in Pytorch.  We are going to consult our old friend Karpathy (of micrograd fame) and go through his video <a href="https://www.youtube.com/watch?v=kCc8FmEb1nY">Let’s build GPT: from scratch, in code, spelled out</a>.  In this assignment, we’re going to go from the beginning to time stamp 1:11:39.  Watching videos like this is way more valuable when you actively try things out as the video is unfolding.  To help scaffold this, below we have a sequence of time stamps in the video along with things to think about or try.</p>
+
+<p>Before you start the video, you should probably pull up the <a href="https://colab.research.google.com/drive/1JMLa53HDuA-i7ZBmqV7ZnA3c_fvtXnx-?usp=sharing">gpt-dev.ipynb Colab notebook</a> (linked in the video description).</p>
+
+<ul>
+  <li><a href="https://youtu.be/kCc8FmEb1nY?t=613">10:13</a>: make sure you understand the encoder and decoder for characters.  Try it out in the notebook on some sequences you feed in.</li>
+  <li><a href="https://youtu.be/kCc8FmEb1nY?t=834">13:45</a>: (something to ponder if you’d like, but not super critical) think through what Karpathy is doing when choosing the train / test split.  Is it a good idea to choose the first 90% of the data as train and the last 10% as test?</li>
+  <li><a href="https://youtu.be/kCc8FmEb1nY?t=1019">16:59</a>: make sure to understand the role of <code class="language-plaintext highlighter-rouge">block_size</code> as an upperbound on context length as well as the importance of extracting shorter contexts for training to allow the transformer to generate text starting from just a little bit of context.</li>
+  <li><a href="https://youtu.be/kCc8FmEb1nY?t=1259">20:59</a>: make sure to notice how the print outs of “inputs” and “targets” relate to each other.  Notice that targets(i,j) is what needs to be predicted given the context represented in the $i$th row of inputs up to column $j$.</li>
+  <li><a href="https://youtu.be/kCc8FmEb1nY?t=1364">22:44</a>: at this point Karpathy introduces the bigram language model.  The implementation of this Bigram model is Karpathy’s way of starting with a simple model and gradually transforming it into a GPT.  This move may be a little bit unintuitive given where we are coming from, but we think it will all gel as the video goes on.  While we haven’t seen the bigram model in this class, it’s a pretty straightforward idea.  Imagine training a multiclass logistic regression model (linear layer followed by a softmax) that predicts the probability of the next token given the current token.  To represent these probabilities, we’ll use a lookup table (implemented as a pytorch embedding) where the entry $i$, $j$ will be larger (more positive) if token $j$ often follows token $i$ and negative if token $j$ is unlikely to follow token $i$.  The entries of this lookup table will be learned from data (these would be the weights in our logistic regression model).</li>
+  <li><a href="https://youtu.be/kCc8FmEb1nY?t=1645">27:25</a>: you may want to play around (meaning running code in the notebook) with the the <code class="language-plaintext highlighter-rouge">tensor.view</code> function to get a sense for how Karpathy is using it to “unroll” the tensor with dimensions <code class="language-plaintext highlighter-rouge">B, T, C</code>.</li>
+  <li><a href="https://youtu.be/kCc8FmEb1nY?t=1693">28:13</a>: notice that Karpathy is actually passing the loss as an output from the forward function.  That’s a bit different to what we’ve been doing, but it’s just a stylistic difference.  Don’t get to hung up on it.</li>
+  <li><a href="https://youtu.be/kCc8FmEb1nY?t=1747">29:07</a>: Karpathy shows code for generating text (basically, continuously feeding the models predictions back into itself).  How this happens is a bit beside the point for us, so we recommend not worrying about the details of how he does this.</li>
+  <li><a href="https://youtu.be/kCc8FmEb1nY?t=2134">35:34</a>: now we are setting up our training loop.  This should look very familiar to what we’ve done earlier in this class.</li>
+  <li><a href="https://youtu.be/kCc8FmEb1nY?t=2417">40:17</a>: we’ve now transitioned to using a script.  We are estimating loss by averaging over multiple batches.  This is to avoid computing loss on the entire training set (which we’ve tended to do since our datasets have been relatively small).  Notice the cool decorator he uses on the <code class="language-plaintext highlighter-rouge">estimate_loss</code> function though (that could be handy to avoid having to using <code class="language-plaintext highlighter-rouge">with torch.no_grad():</code>)</li>
+  <li><a href="https://youtu.be/kCc8FmEb1nY?t=2596">43:16</a>: notice that Karpathy is now switching to thinking of embedding the tokens in a space (in this case a 2-dimensional space) rather than using the embeddings as a convenient way to implement a bigram model.  This is similar to what we did when we thought about embeddings is the last assignment.  Instead of computing embeddings using <code class="language-plaintext highlighter-rouge">nn.Embedding</code>, we’re just generating them randomly to allow us to focus on the machinery of self-attention.</li>
+  <li><a href="https://youtu.be/kCc8FmEb1nY?t=2712">45:12</a>: our old friend the bag of words!  As mentioned in the video, we’re only doing this simple averaging step as a brief stepping stone to the attention mechanism we learned about in the 3B1B videos.</li>
+  <li><a href="https://youtu.be/kCc8FmEb1nY?t=2868">47:48</a>: Karpathy really breaks this down nicely.  We recommend you interact with this toy example by running it yourself and making sure you understand the connection between the code and the matrix math.</li>
+  <li><a href="https://youtu.be/kCc8FmEb1nY?t=3215">53:35</a>: a quick note that if you actually run this code <code class="language-plaintext highlighter-rouge">torch.allclose</code> will actually give false!  Presumably some of the default values have changed in pytorch since this video was made.  Passing the keyword argument <code class="language-plaintext highlighter-rouge">atol=10**-7</code> along with the two matrices should give you <code class="language-plaintext highlighter-rouge">True</code>.</li>
+  <li><a href="https://youtu.be/kCc8FmEb1nY?t=3332">55:35</a>: this should look familiar!  This is the masking we saw earlier.</li>
+  <li><a href="https://youtu.be/kCc8FmEb1nY?t=3550">59:10</a>: now we are making our bigram model look more like self-attention!  Notice how we are introducing the idea of <code class="language-plaintext highlighter-rouge">n_embd</code> to capture the number of embedding dimensions (this was 2 in the toy problem we did earlier).</li>
+  <li><a href="https://youtu.be/kCc8FmEb1nY?t=3617">1:00:17</a>: the version run at this point is still not doing any attention, but we have added some of the machinery necessary to implement self-attention.</li>
+  <li><a href="https://youtu.be/kCc8FmEb1nY?t=3657">1:00:57</a>: we are introducing position embedding, which was mentioned briefly in 3B1B videos since it can be important to self-attention.</li>
+  <li><a href="https://youtu.be/kCc8FmEb1nY?t=3911">1:05:11</a>: we now introduce the variable <code class="language-plaintext highlighter-rouge">head_size</code>, which we previously referred to as the query dimension ($n_q$).  Also, not that if we didn’t set <code class="language-plaintext highlighter-rouge">bias=False</code> we would have a constant added to the computation of our queries and keys, which we don’t want.</li>
+  <li><a href="https://youtu.be/kCc8FmEb1nY?t=4028">1:07:08</a>: the way that the multiplication of two tensors works is a bit confusing for us, but hopefully we can leverage what we know about matrix multiplication.  If you want to go into this, you can check out <a href="https://www.geeksforgeeks.org/understanding-broadcasting-in-pytorch/">Understanding Broadcasting in Pytorch</a>.</li>
+  <li><a href="https://youtu.be/kCc8FmEb1nY?t=4297">1:11:37</a>: we made it to our stopping point for this assignment.  Look at the code to compute <code class="language-plaintext highlighter-rouge">out</code>.  Can you connect the dots to the equation we learned about earlier for computing the output of our attention head, $softmax(mask(\mathbf{Q}\mathbf{K}^\top))\mathbf{V}$, and see how it corresponds?</li>
+</ul>
+
+	</div>
+</div>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+        
+      </footer>
+
+      
+
+      
+    </div>
+
+    
+  </article>
+
+  
+  
+</div>
+
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2026 Machine Learning Spring 2026 @ Olin College.</div>
+
+      </footer>
+    </div>
+
+    <script src="/assets/js/copyCode.js"></script>
+
+
+  <script src="/assets/js/main.min.js"></script>
+  <script src="https://kit.fontawesome.com/4eee35f757.js"></script>
+
+
+
+
+
+
+
+
+
+
+  </body>
+</html>
