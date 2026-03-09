@@ -5,9 +5,8 @@ toc_h_max: 1
 layout: problemset
 due_on_class: 14
 published: true
+no_solutions: true
 ---
-
-> Note: still finalizing this
 
 # Learning Objectives
 
