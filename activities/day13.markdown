@@ -33,3 +33,9 @@ Here are some guiding questions (use them to the extent they are helpful for goo
 We'll start on the homework together by watching one of the 3B1B videos and pausing to talk through each of the steps.
 
 To close, let's check out Figure 5 in the  paper [What does BERT look at? An Analysis of BERT’s Attention](https://aclanthology.org/W19-4828.pdf)
+
+# ML as Optimization Quiz (for your reference)
+
+If you are interested in taking a look at [the quiz from last time on ML as optimization](ml_as_optimization_quiz.pdf), 
+you can find it using the 
+preceding link.
