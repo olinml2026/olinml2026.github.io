@@ -1,41 +1,26 @@
 ---
-title: "Day 13: Word Embeddings Introduction"
+title: "Day 13: Introduction to Transformers"
 toc_sticky: true 
 toc_h_max: 1
 layout: problemset
-published: false
+published: true
 ---
 
 {% capture agenda %}
-* 10:25-10:30am: Reflection reflection 
-* 10:30-11:10am: Assignment debrief and preview
-* 11:10-12:00pm: Quality Assessed Deliverable - Key concepts of Learning as Optimization	
+* 3:45-4:15pm: Course feedback activity
+* 4:15-4:45pm: Discussion of Reading on Bias in Word Embeddings
+* 4:45-5:25pm: Introduction to Transformers
 {% endcapture %}
 {% include agenda.html content=agenda %}
 
+# Course Feedback
 
-# Reflection on the course so far
+Todo
 
-We're approaching the midpoint of the course (not quite yet), but this felt like a good time to pause and reflect on how things are going.
+# Discussion of Reading on Bias in Word Embeddings
 
-First we'll debrief at tables. Then we'll devote a some time to reflecting via a survey (see "Interim reflection on course so far" in Canvas).
+Man is to Computer Programmer as Woman is to Homemaker? Debiasing Word Embeddings
 
-# Assignment Debrief
+# Introduction to Transformers
 
-Let's bring our heads together and clear up any issues with the previous assignment.
-
-# Motivating Example for Our Next Assignment
-
-We'll be going over the concept of word embeddings using a combination of a mini-lecture and [a Colab notebook](https://colab.research.google.com/github/olinml2024/notebooks/blob/main/ML24_Day13.ipynb).
-
-# Quality Assessed Deliverable - Key concepts of Learning as Optimization
-We will take an in-class quiz on the key concepts of Learning as Optimization.
-
-As discussed last class:
-One of the quality assessed deliverables for this course is a check-in on Key Concepts of ML as Optimization. In class last week, you made concept maps of the course content related to ML as optimization. We are planning to use an in-class, on paper assessment. The goal of this assessment is for you to demonstrate your understanding of the key concepts related to ML as optimization (see this [Learning As Optimization Takeaways](../assignments/assignment10/LearningAsOptimizationTakeaways) for details about what we expect). 
-
-While we know that you'll be using external resources for any future ML work that you do, we want to take this time to check in about your conceptual understanding of key ideas. We also want you to get a sense of what you understand well enough to articulate, which may be different than what we understand well enough to nod along to. The assessment will be designed to be done without the need for external sources (if calculators are needed, we'll let you use your phones for this part). Through some recent conversations, we're wrestling with how to both extend trust and also not ask you to carry the burden of willpower to not use external resources for a take-home assessment. We're curious to hear what you think about this!
-
-If you have any accommodations that we need to prepare for to make this assessment work for you, please let us know so we can best support you. Our tentative plan is to give lots of time to complete the assessment in class and have it be the last activity before lunch (so folks can leave when they are done without putting time pressure on folks who want more time). 
-
-Please show up to class for this assessment if you can. If you are out sick, we can schedule a make-up time (tentative date is Wednesday afternoon).
+We'll start on the homework together by watching one of the 3B1B videos and pausing to talk through each of the steps.

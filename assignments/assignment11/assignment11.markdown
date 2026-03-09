@@ -156,7 +156,7 @@ As mentioned before, word2vec was introduced in the paper [Efficient Estimation 
 {% capture problem %}
 Depending on what experiments you tried with word2vec, you may have already seen some examples of bias.  We would like you to read the paper [Man is to Computer Programmer as Woman is to Homemaker? Debiasing Word Embeddings](https://www.researchgate.net/profile/Venkatesh-Saligrama/publication/305615978_Man_is_to_Computer_Programmer_as_Woman_is_to_Homemaker_Debiasing_Word_Embeddings/links/57a20cd508aeef8f311e0871/Man-is-to-Computer-Programmer-as-Woman-is-to-Homemaker-Debiasing-Word-Embeddings.pdf).  The paper gets quite technical in places, although many of the ideas you have seen before (PCA??!?).  We would like you to read sections 1-4 of the paper (sadly PCA only shows up in the later sections of the paper).  Please take notes on key takeaways and unanswered questions.  If you'd like to go into the latter sections of the paper (section 5 and beyond), please feel free to do so (this is not required, at all).
 
-It's also probably worth mentioning that the literature on bias in word embeddings is quite extensive with a lot of fascinating things to explore (and we'd love to learn from you if you if you do more explorations!).
+It's also probably worth mentioning that the literature on bias in word embeddings is quite extensive with a lot of fascinating things to explore (and we'd love to learn from you if you do more explorations!).
 
 {% endcapture %}
 {% include problem_with_parts.html problem=problem %}
