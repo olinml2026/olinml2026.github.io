@@ -16,6 +16,14 @@ no_solutions: true
 {% endcapture %}
 {% include learning_objectives.html content=content %}
 
+{% capture problem %}
+There are no formal exercises this time.  If you are in assessment B, please turn in your notes or other 
+investigations related to the three videos below.
+
+(totally optional), if you want some practice in the mechanics of self-attention, you might consider the exercise 1 
+and 2 from [the 2024 version of this assignment](https://olinml2024.github.io/assignments/assignment12/assignment12). 
+{% endcapture %}
+{% include problem.html problem=problem %}
 
 # Demystifying GPT
 
