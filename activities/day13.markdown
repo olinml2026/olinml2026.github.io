@@ -20,17 +20,24 @@ you in the course.
 
 # Discussion of Reading on Bias in Word Embeddings
 
-1. Write the main points or themes of the paper on the board.
+Write the main points or themes of the paper on the board.
 Here are some guiding questions (use them to the extent they are helpful for good conversation):
-    * How did the paper attempt to remove bias?
-    * How well did it work?
-    * What other strategies could you imagine trying?
-    * Do you think it's easier to debias a person or a large language model? Why?
-    * What questions are you wrestling with about removing bias? What's the world you want these models to reflect?
+
+* How did the paper attempt to remove bias?
+* How well did it work?
+* What other strategies could you imagine trying?
+* Do you think it's easier to debias a person or a large language model? Why?
+* What questions are you wrestling with about removing bias? What's the world you want these models to reflect?
+
+> Further Reading
+> * [Fair is Better than Sensational: Man is to Doctor as Woman is to Doctor](https://arxiv.org/pdf/1905.09866)
+> * [Lipstick on a Pig: Debiasing Methods Cover up Systematic Gender Biases in Word Embeddings But do not Remove Them](https://arxiv.org/abs/1903.03862)
 
 # Introduction to Transformers
 
-We'll start on the homework together by watching one of the 3B1B videos and pausing to talk through each of the steps.
+We'll start on [the homework](../assignments/assignment12/assignment12) together by watching one of the 3B1B videos and 
+pausing to talk through each of the 
+steps.
 
 To close, let's check out Figure 5 in the  paper [What does BERT look at? An Analysis of BERT’s Attention](https://aclanthology.org/W19-4828.pdf)
 
