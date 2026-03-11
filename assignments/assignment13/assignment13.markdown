@@ -28,8 +28,3 @@ directions, describe three important takeaways from the paper and pose three pot
 class.
 {% endcapture %}
 {% include problem.html problem=problem %}
-
-{% capture problem %}
-Engage with EchoMinds work... answer a prompt.
-{% endcapture %}
-{% include problem.html problem=problem %}
