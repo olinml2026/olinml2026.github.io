@@ -208,7 +208,7 @@ $$
 Next, let's see how a position embedding might help us.
 
 {% capture problem %}
-Suppose we want our attention head to take in a sequence of letters and output the vector $$\begin{bmatrix} 1 \\ 0 \end{bmatrix}$$ if there is a consonant at position 1 (where 1 is the first position in the sequence) and $\begin{bmatrix} 0 \\ 0 \end{bmatrix}$ otherwise.
+Suppose we want our attention head to take in a sequence of letters and output the vector $$\begin{bmatrix} 1 \\ 0 \end{bmatrix}$$ if there is a consonant at position 1 (where 1 is the first position in the sequence) and $$\begin{bmatrix} 0 \\ 0 \end{bmatrix}$$ otherwise.
 
 1. Input text: "eacia", our attention head should output $$\begin{bmatrix} 0 \\ 0 \end{bmatrix}$$, $$\begin{bmatrix} 0 \\ 0 \end{bmatrix}$$, $$\begin{bmatrix} 0 \\ 0 \end{bmatrix}$$, $$\begin{bmatrix} 0 \\ 0 \end{bmatrix}$$, $$\begin{bmatrix} 0 \\ 0 \end{bmatrix}$$ (token 1 is a vowel).
 2. Input text: "ccrs", our attention head should output $$\begin{bmatrix} 1 \\ 0 \end{bmatrix}$$, $$\begin{bmatrix} 1 \\ 0 \end{bmatrix}$$, $$\begin{bmatrix} 1 \\ 0 \end{bmatrix}$$, $$\begin{bmatrix} 1 \\ 0 \end{bmatrix}$$ (the first token is a consonant).
@@ -322,7 +322,7 @@ $$
 {% capture partd_prob %}
 Determine $\mathbf{W_V}$ to compute the value of each token as $\mathbf{W_V} \mathbf{r}_i$.  $\mathbf{V}$ will be formed by laying out each of these values as a row of the matrix. Show that taking your attention matrix from Part C and multiplying it on the right by $\mathbf{V}$ computes the output of the attention head which will give a vector close to $\begin{bmatrix} 1 \\ 0 \end{bmatrix}$ if the first token is a consonant and close to $\begin{bmatrix} 0 \\ 0 \end{bmatrix}$ otherwise.
 
-**Hint:** you'll want to construct $\mathbf{V}$ so consonants are mapped to the vector $\begin{bmatrix} 1 \\ 0 \end{bmatrix}$ and vowels are mapped to the vector $\begin{bmatrix} 0 \\ 0 \end{bmatrix}$.
+**Hint:** you'll want to construct $\mathbf{V}$ so consonants are mapped to the vector $$\begin{bmatrix} 1 \\ 0 \end{bmatrix}$$ and vowels are mapped to the vector $$\begin{bmatrix} 0 \\ 0 \end{bmatrix}$$.
 {% endcapture %}
 
 {% capture partd_sol %}
