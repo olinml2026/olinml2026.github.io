@@ -78,7 +78,7 @@ customElements.define("confirm-link", ConfirmLink, { extends: "a" });
 
 </script>
 
-<!-- begin _includes/seo.html --><title>Assignment 13: Trust and Trustworthiness of Machine Learning Models - Machine Learning Spring 2026 @ Olin College</title>
+<!-- begin _includes/seo.html --><title>Day 14: Self-Attention in Transformers - Machine Learning Spring 2026 @ Olin College</title>
 <meta name="description" content="Website">
 
 
@@ -86,8 +86,8 @@ customElements.define("confirm-link", ConfirmLink, { extends: "a" });
 <meta property="og:type" content="website">
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Machine Learning Spring 2026 @ Olin College">
-<meta property="og:title" content="Assignment 13: Trust and Trustworthiness of Machine Learning Models">
-<meta property="og:url" content="/assignments/assignment13/assignment13.html">
+<meta property="og:title" content="Day 14: Self-Attention in Transformers">
+<meta property="og:url" content="/activities/day14.html">
 
 
   <meta property="og:description" content="Website">
@@ -103,7 +103,7 @@ customElements.define("confirm-link", ConfirmLink, { extends: "a" });
 
 
 
-<link rel="canonical" href="/assignments/assignment13/assignment13.html">
+<link rel="canonical" href="/activities/day14.html">
 
 
 
@@ -380,7 +380,7 @@ $
   
 
   <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
-    <meta itemprop="headline" content="Assignment 13: Trust and Trustworthiness of Machine Learning Models">
+    <meta itemprop="headline" content="Day 14: Self-Attention in Transformers">
     
     
     
@@ -388,7 +388,7 @@ $
     <div class="page__inner-wrap">
       
         <header>
-          <h1 id="page-title" class="page__title" itemprop="headline">Assignment 13: Trust and Trustworthiness of Machine Learning Models
+          <h1 id="page-title" class="page__title" itemprop="headline">Day 14: Self-Attention in Transformers
 </h1>
           
         </header>
@@ -401,18 +401,24 @@ $
               <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On this page</h4></header>
 	      
                 <ul class="toc__menu">
-  <li><a href="#learning-objectives">Learning Objectives</a></li>
+  <li><a href="#">Agenda</a></li>
+  <li><a href="#assignment-debrief">Assignment Debrief</a></li>
+  <li><a href="#walkthrough-of-attention-by-hand-problems">Walkthrough of attention by hand problems</a></li>
+  <li><a href="#overview-of-first-half-of-nanogpt">Overview of first-half of NanoGPT</a></li>
+  <li><a href="#upcoming-assignments">Upcoming Assignments</a></li>
 </ul>
 	      	
             </nav>
           </aside>
         
-        <h1 id="learning-objectives">Learning Objectives</h1>
+        <blockquote>
+  <p>Note: still finalizing</p>
+</blockquote>
 
 <div class="tip" style="
     border-left: 6px solid #000000;
     margin: 2em 2em 2em 2em;">
-	<div style="background-color: #C6EBD5;
+	<div style="background-color: #4c00b0;
 	                column-gap: 1rem;
 					display: flex;
 					padding: 1em 1em 1em 1em;">
@@ -421,45 +427,24 @@ $
 	    vertical-align: middle;
 	    font-weight: 900;
 	    font-size: xx-large;
-	    color: #000000;">
-        <i class="fas fa-brain"></i>
+	    color: #FFFFFF;">
+        <i class="fas fa-list"></i>
 </div>
-	<div style="font-size: xx-large; font-weight: 900;">Learning Objectives</div>
-	</div>
+	<h1 style="font-size: xx-large; font-weight: 900; color: white;">Agenda</h1>
+    </div>
 	<div style="padding: 1em 1em 1em 1em;">
 	   
 <ul>
-  <li>Learn about issues of trust and trustworthiness in machine learning models</li>
+  <li>3:45-3:55pm: Assignment debrief</li>
+  <li>3:55-4:15pm: Walkthrough of attention by hand problems</li>
+  <li>4:15-4:35pm: Overview of first-half of NanoGPT</li>
+  <li>4:35-5:25pm: Start on next assignment(s)</li>
 </ul>
 
 	</div>
 </div>
 
-<div class="tip" style="
-    border-left: 6px solid #000000;
-    margin: 2em 2em 2em 2em;">
-	<div style="background-color: #FFD1DC;
-	                column-gap: 1rem;
-					display: flex;
-					padding: 1em 1em 1em 1em;">
-	<div class="notice-bulb" style="
-	    font-family: 'Font Awesome 5 Free',serif;
-	    vertical-align: middle;
-	    font-weight: 900;
-	    font-size: xx-large;
-	    color: #000000;">
-        <i class="fas fa-external-link-alt"></i>
-</div>
-	<div style="font-size: xx-large; font-weight: 900;">External Resources</div>
-	</div>
-	<div style="padding: 1em 1em 1em 1em;">
-	   
-<p>Read the paper <a href="https://olin.instructure.com/courses/1000/files?preview=270066">Trust in AI: progress, challenges, and future
-directions</a>.  It’s long and it’s a short turnaround. 
-If you need to skim parts, that’s okay.</p>
-
-	</div>
-</div>
+<h1 id="assignment-debrief">Assignment Debrief</h1>
 
 <div style="display: normal;
         border-left: 6px solid #0065B4;
@@ -480,9 +465,8 @@ If you need to skim parts, that’s okay.</p>
     </div>
 <div style="display: normal; padding: 1em 1em 1em 1em;">
 	
-<p>For the paper Trust in AI: progress, challenges, and future
-directions, describe three important takeaways from the paper and pose three potential discussion questions for the 
-class.</p>
+<p>With people around you, given an input sentence, describe each of the computations performed to arrive at the 
+self-attention matrix (i.e., how much token i attends to token j).</p>
 
 
     <button hidden="true" onclick="HideShowElement(&quot;solution-1&quot;)" class="togglebutton">Show / Hide Solution</button>
@@ -503,45 +487,21 @@ class.</p>
 </div>
 </div>
 
-<div style="display: normal;
-        border-left: 6px solid #0065B4;
-        margin: 2em 0em 2em 0em;">
-    <div class="tip" style="background-color: #ECF7FF;
-        padding: 1em 1em 1em 1em;
-        display: flex;
-        column-gap: 1rem;">
-        <div class="notice-bulb" style="
-	    font-family: 'Font Awesome 5 Free',serif;
-	    vertical-align: middle;
-	    font-weight: 900;
-	    font-size: xx-large;
-	    color: #ff6f00;">
-            <i class="fas fa-question"></i>
-</div>
-	<div style="font-size: xx-large; font-weight: 900;">Exercise 2</div>
-    </div>
-<div style="display: normal; padding: 1em 1em 1em 1em;">
-	
-<p>Engage with EchoMinds work… answer a prompt.</p>
+<h1 id="walkthrough-of-attention-by-hand-problems">Walkthrough of attention by hand problems</h1>
 
+<h1 id="overview-of-first-half-of-nanogpt">Overview of first-half of NanoGPT</h1>
 
-    <button hidden="true" onclick="HideShowElement(&quot;solution-2&quot;)" class="togglebutton">Show / Hide Solution</button>
+<h1 id="upcoming-assignments">Upcoming Assignments</h1>
 
-<div id="solution-2" class="solution" style="
-    background-color: #cefad0;
-    border-left: 6px solid #6500B4;
-    padding: 1em 1em 1em 1em;
-    display: none;
-    column-gap: 2rem;
-    margin: 2em 2em 2em 2em;">
-    <div style="display: normal">
-<p style="font-weight: 900; font-size: x-large">Solution</p>
-
-
-     </div>
-</div>
-</div>
-</div>
+<ul>
+  <li><a href="../assignments/assignment13/assignment13">Assignment 13</a>, which is due tomorrow, involves reading a paper on trust 
+and trustworthiness in machine learning 
+systems.  If you can’t read every word of the paper, please at least familiarize yourself with the contents.<br />
+we’ll be discussing some of the key themes in class on Thursday.</li>
+  <li><a href="../assignments/assignment13/assignment14">Assignment 14</a>, involves finishing up the NanoGPT video and the final 
+3B1B.  You’ll also learn about the idea of ablation experiments as a way to understand machine learning models.<br />
+This assignment is due after Spring break.</li>
+</ul>
 
         
       </section>
