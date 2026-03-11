@@ -3,13 +3,16 @@ title: "Assignment 14: Generative Pre-Trained Transformers (GPTs) Part 3"
 toc_sticky: true 
 toc_h_max: 1
 layout: problemset
-due_on_class: 17
-published: false
+due_on_class: 16
+published: true
 ---
+
+> Note: still being finalized
 
 # Learning Objectives
 
 {% capture content %}
+* Learn about the role of MLPs in a transformer
 * How to generalize from single-headed to multi-headed attention
 * How to Interleave attention and MLPs to create a transformer
 * Understand the importance of skip connections and layer normalization
@@ -18,28 +21,26 @@ published: false
 {% endcapture %}
 {% include learning_objectives.html content=content %}
 
-# Optional: Exploring AI, Building Equity into Innovation at Wellesley on Sunday
-Sunday, November 3, 2024, 3-5pm  
-Wellesley College, Tishman Commons  
-Register here: https://forms.gle/C5REwqZ4B5f7Jx5y6  
-
-Please join us for the 2024 World of Wellesley Community Book Read of Unmasking AI: My Mission to Protect What Is Human in a World of Machines by Joy Buolamwini. In her research, Dr. Joy Buolamwini uncovered what she calls “the coded gaze”, evidence of encoded discrimination and exclusion in tech products. How can we benefit from AI and also build equity into innovation? Come hear from a panel of Artificial Intelligence experts including:  
-Aaron Pressman, The Boston Globe, Technology Industry Journalist  
-Tanuj Barman, WHS student class of 2025, Co-founder nextgenkids.ai  
-Carolyn Anderson, Wellesley College, Asst. Professor of Computer Science  
-Michael Dupin, Wolters Kluwer, Director Technology - Generative AI, Merrimack  
-College, Data Science Adjunct Professor  
-Zachary Ziegler, Co-founder and CTO, OpenEvidence  
-
-
-
 # Review of What We've Done So Far
 Before getting into some new stuff, let's review what we did in assignments 12 and 13.
 * We learned that GPT stands for "Generative Pre-trained Transform"
 * A GPT model consists of a pipeline of interleaving two major types of layers: attention and MLPs.
 * The attention layers are responsible for allowing tokens to pass information to other tokens. The degree to which a token passes information to another token depends on taking a dot product between a key and query vector, which is then passed through a softmax.  The specific value passed to the other token depends on a value vector which is computed from the input to the attention layer multiplied by a matrix ($W_V$).
-* While we haven't gotten our hands dirty with MLPs in this module, we've seen them in previous parts of the course.  The MLPs in a GPT take the output of the attention block and perform computation on them.  In the 3B1B video, we saw that one theory of what these MLPs are doing is that they are representing facts that the GPT has learned.
+* We haven't yet learned about MLPs in transformers yet (we will do so in this assignment)
 * We started to implement NanoGPT by starting with a simple Bigram model and then adding in a self-attention mechanism so that tokens could communicate with each other.
+
+# The Role of MLPs in Transformers
+{% capture resources %}
+Now, let's watch the 3B1B video [How might LLMs store facts](https://www.youtube.com/watch?v=9-Jl0dxWQs8).  Here are some of the key things we would like you to take away from this video.
+* A transformer consists of interleaved blocks of attention and multi-layer perceptrons.
+* Roughly two thirds of the parameters in a transformer are in the MLPs.
+* MLPs operate on the output vectors from the attention block in parallel (i.e., the vector from two different positions do not interact with each other in the MLP).
+* One way to interpret each row of the weight matrix corresponding $\mathbf{W}_{\uparrow}$ is that they each encode some sort of question (e.g., in the video's example we can think of one row as asking the question whether the input emedding corresponds to the concept "Michael Jordan").
+* We can think of the role of the non-linearity in the MLP (e.g., ReLU) as deciding whether a given embedding is positive enough to consider as having answered the question in the affirmative (e.g., is this vector "Michael Jordan" versus "Michael Phelps" or "Alexis Jordan").  We can think of the neuron as being "active" if the activation exceeds the threshold and "inactive" if it does not.
+* We can think of columns of the matrix $\mathbf{W}_{\downarrow}$ as referring to different concepts that we would like to add to the input embedding when forming the output from the MLP.  In the example, these concepts could relate to things like "baseketball", "Chicago Bulls", etc.
+* With regards to superposition, you don't need to worry about this too much.  The main idea is that if we think of concepts in a neural network as representing vectors in the embeddings space, then we can encode a lot of facts by ensuring that each pair of these vectors is nearly perpendicular to each other.  This idea allows us to "fit" many more concepts within our embedding space.
+{% endcapture %}
+{% include external_resources.html content=resources %}
 
 
 # Finishing Our Implementation of NanoGPT
@@ -291,13 +292,3 @@ The experiments show that the skip connections are tremendously important.  With
 {% include problem_part.html subpart=partb solution=partbsol label="B" %}
 {% endcapture %}
 {% include problem_with_parts.html problem=prob %}
-
-# Proposing an LLM for an Application and Context You Care About
-
-{% capture problem %}
-Before closing out this module, we'd like to give some creative space to think through how LLMs might apply in some context you care about.  Please think respond to the following prompts. 
-* What do you think is an interesting application of of LLMs (either at Olin or in some other context you care about).  You can choose something you think is positive, negative, or neutral (no judgment).  Describe your chosen application.  What value does it create and for whom?
-* If you were to develop such an application, at a high-level how would you come about doing so.  Some areas to focus on could be dataset collection and curation and model evaluation and testing.  When sourcing your data to train your model, how would you navigate risks of data privacy, legal / regulator compliance, avoiding model bias, while achieving good performance with respect to the application you've chosen.  What guardrails would you need to put in place to make sure your system is not used in a harmful way that, presumably, you did not intend.  These guardrails could be technical in nature or specific licensing conditions you would impose on your system.
-* For many of these prompts you will probably not have a very detailed idea of how to go about achieving these outcomes.  That's okay.  Please write at a high level and make a note if you don't know something or would need to do more research.
-{% endcapture %}
-{% include problem_with_parts.html problem=problem %}
