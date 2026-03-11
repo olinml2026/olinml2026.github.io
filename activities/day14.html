@@ -747,7 +747,7 @@ softmax(mask(\mathbf{Q} \mathbf{K}^\top)) &amp;= \begin{bmatrix}    1 &amp;  0 &
     </div>
 <div style="display: normal; padding: 1em 1em 1em 1em;">
 
-<p>Suppose we want our attention head to take in a sequence of letters and output the vector \(\begin{bmatrix} 1 \\ 0 \end{bmatrix}\) if there is a consonant at position 1 (where 1 is the first position in the sequence) and $\begin{bmatrix} 0 \ 0 \end{bmatrix}$ otherwise.</p>
+<p>Suppose we want our attention head to take in a sequence of letters and output the vector \(\begin{bmatrix} 1 \\ 0 \end{bmatrix}\) if there is a consonant at position 1 (where 1 is the first position in the sequence) and \(\begin{bmatrix} 0 \\ 0 \end{bmatrix}\) otherwise.</p>
 
 <ol>
   <li>Input text: “eacia”, our attention head should output \(\begin{bmatrix} 0 \\ 0 \end{bmatrix}\), \(\begin{bmatrix} 0 \\ 0 \end{bmatrix}\), \(\begin{bmatrix} 0 \\ 0 \end{bmatrix}\), \(\begin{bmatrix} 0 \\ 0 \end{bmatrix}\), \(\begin{bmatrix} 0 \\ 0 \end{bmatrix}\) (token 1 is a vowel).</li>
@@ -891,7 +891,7 @@ softmax(mask(\mathbf{Q} \mathbf{K}^\top)) &amp;= \begin{bmatrix}    1.0000     &
 
 <p>Determine $\mathbf{W_V}$ to compute the value of each token as $\mathbf{W_V} \mathbf{r}_i$.  $\mathbf{V}$ will be formed by laying out each of these values as a row of the matrix. Show that taking your attention matrix from Part C and multiplying it on the right by $\mathbf{V}$ computes the output of the attention head which will give a vector close to $\begin{bmatrix} 1 \ 0 \end{bmatrix}$ if the first token is a consonant and close to $\begin{bmatrix} 0 \ 0 \end{bmatrix}$ otherwise.</p>
 
-<p><strong>Hint:</strong> you’ll want to construct $\mathbf{V}$ so consonants are mapped to the vector $\begin{bmatrix} 1 \ 0 \end{bmatrix}$ and vowels are mapped to the vector $\begin{bmatrix} 0 \ 0 \end{bmatrix}$.</p>
+<p><strong>Hint:</strong> you’ll want to construct $\mathbf{V}$ so consonants are mapped to the vector \(\begin{bmatrix} 1 \\ 0 \end{bmatrix}\) and vowels are mapped to the vector \(\begin{bmatrix} 0 \\ 0 \end{bmatrix}\).</p>
 
 <p><button hidden="true" onclick="HideShowElement(&quot;subpartsolution-54&quot;)" class="togglebutton">Show / Hide Solution</button></p>
 
