@@ -1,42 +1,43 @@
 ---
-title: "Day 16: GPTs Part 3 and Context Discussion"
+title: "Day 16: Trust and Trustworthiness in Machine Learning and Starting BERT"
 toc_sticky: true 
 toc_h_max: 1
 layout: problemset
-published: false
+published: true
 ---
 
 {% capture agenda %}
-* 10:20-10:25am: Everyone come hang out in MAC128, we'll talk about the plan and answer any logistics questions.
-* 10:25-10:40am: Debrief on last two assignments
-* 10:45-11:20am: Discuss Prior Readings on Bias and Regulations
-* 11:20-12:00pm: Preview of the next assignment
+* 3:45-4:35pm: Discussion of Trust and Trustworthiness in Machine Learning Systems
+* 4:35-5:25pm: Introduction to BERT
 {% endcapture %}
 {% include agenda.html content=agenda %}
 
-# Debrief on last two assignments
-We have two assignments due today. We'll give a little time to debrief and ask questions.
+# Discussion on Trust and Trustworthiness Paper
 
-# Discuss Prior Readings on Bias and Regulations
+Let's summarize the main points from the paper in small groups.
 
-Over the past two weeks, we had two readings that we'd now like to come back to:  
-* In [Assignment 11](../assignments/assignment11_old/assignment11#bias-in-word-embeddings), we read sections 1-4 of the paper [Man is to Computer Programmer as Woman is to Homemaker? Debiasing Word Embeddings](https://www.researchgate.net/profile/Venkatesh-Saligrama/publication/305615978_Man_is_to_Computer_Programmer_as_Woman_is_to_Homemaker_Debiasing_Word_Embeddings/links/57a20cd508aeef8f311e0871/Man-is-to-Computer-Programmer-as-Woman-is-to-Homemaker-Debiasing-Word-Embeddings.pdf).
+Make sure you cover the various parameters of trust
+* Parameter one: Benevolence.  Social Responsibility, Ethical Behavior, Sustainability, Fairness 
+* Parameter two: Integrity.  Standards and Guidelines, Certifications, Government Regulations
+* Parameter three: Ability.  Technical correctness, transparency, explainability, reliability, privacy and data 
+  governance, technical robustness and safety.
 
-* In [Assignment 13](../assignments/assignment13/assignment13#issues-in-regulation-minimizing-harms-and-maximizing-benefits-for-ai), we read the [FACT SHEET: Biden-⁠Harris Administration Announces New AI Actions and Receives Additional Major Voluntary Commitment on AI](https://www.whitehouse.gov/briefing-room/statements-releases/2024/07/26/fact-sheet-biden-harris-administration-announces-new-ai-actions-and-receives-additional-major-voluntary-commitment-on-ai/).  You were asked to take notes on the main takeaways.  You were asked to (if you had time) follow at least one link from the document and writeup the main points of that report or resource.
+We're revisiting the EchoMinds case study as an entry point into the issues around Trust and Trustworthiness in 
+machine learning systems.  Here are some relevant examples from the summer work.
 
-Let's form medium sized groups (6-12 people) and do some discussion on these.
-1. Write the main points or themes of each reading on the board. Your group should write down at least 10 things.
-2. Discuss the status of the government fact sheet. Here are some guiding questions (use them to the extent they are helpful for good conversation):  
-    * What were you already aware of?
-    * What (if anything) were you surprised about?
-    * Where do you think the US should be putting more or fewer resources?
-    * What roles do you see engineers playing in this space? What about other disciplines? 
-3. Now go back to the Debiasing Word Embeddings paper. Here are some guiding questions (use them to the extent they are helpful for good conversation):  
-    * How did the paper attempt to remove bias?
-    * How well did it work?
-    * What other strategies could you imagine trying?
-    * Do you think it's easier to debias a person or a large language model? Why?
-    * What questions are you wrestling with about removing bias? What's the world you want these models to reflect?
+Analyze the following case studies using the framework in the paper.
+* [Ashley's anecdote of the positive COVID test](https://olincollege.sharepoint.com/:v:/s/EducateAI/IQC_dRtNEQL3QJj78LLZV-PGAXDSS_DK_NaW4m3Z47qKwyA)
+* ![A Facebook post detailing an experience with having an AI app flag a bill as $9](images/ninedollar.png)
+* The EchoMinds app (recall the EchoMinds app returns only notes entered into the app rather than generating content 
+  given a prompt).
+* https://www.reddit.com/r/Blind/comments/1nqw16e/meta_glasses_total_gamechanger_for_meanyone_else/
 
-# Preview of the next assignment
-We'll be wrapping up our exploration of LLMs with one last assignment [Assignment 14 - Generative Pre-Trained Transformers (GPTs) Part 3](../assignments/assignment14/assignment14).
+Come up with your own case and evaluate it with respect to the parameters of trust.
+
+# Introduction to BERT
+
+We're going to close out our text as data module by learning about how transformer architectures can be used in 
+defining text similarity.  We'll show how this capability is at the core of the EchoMinds app, and you'll get a 
+chance to implement a series of models that will get increasingly good performance.
+
+I'll talk a little bit about BERT and draw some things on the chalkboard.  You'll also have some time to 
