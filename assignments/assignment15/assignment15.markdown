@@ -1,163 +1,197 @@
 ---
-title: "Assignment 15: Images as Data and Convolutions"
+title: "Assignment 15: Transformers for Text Embedding"
 toc_sticky: true 
 toc_h_max: 1
 layout: problemset
-due_on_class: 18
-published: false
+due_on_class: 17
+published: true
 ---
+
+> Note: Still finalizing
 
 # Learning Objectives
 
 {% capture content %}
-* Identify and explain key components of a convolutional neural network (CNN)
-* Create and apply filters like a CNN
-* Calculate the output size and values resulting from a given filter
+* Articulate the weaknesses of traditional word embedding models like word2vec
+* Understand how transformers can be used to improve word embeddings
+* Extend word embeddings to embed text with multiple words
 {% endcapture %}
 {% include learning_objectives.html content=content %}
 
 
-# Meet Convolutional Neural Networks
-Convolutional neural networks were a major step in the world of computer vision (and image generation). In [class 17](../../activities/day17), we did some exploration of why these are cool and how they work. If you missed class, please review these materials. Now, you'll spend some more time solidifying your understanding. 
+# Intro
+
+While we used the idea of text generation as a way to motivate the transformer, the transformer architecture is used 
+in many other contexts.  As was mentioned in some of the sources we've consulted, the paper ["Attention is All You 
+Need"](https://dl.acm.org/doi/pdf/10.5555/3295222.3295349), which introduced the transformer architecture, contained 
+results on the problem of machine translation (translating text from one language to another).
+
+In the next two assignments, we're going to revisit the problem of text similarity and information retrieval.  You 
+will recall, that being able to retrieve relevant pieces of text from a query is the core computational problem that 
+lies at the heart of the EchoMinds app.
 
 
-There are a huge number of resources out there. We suggest you look at two types: 
-1. One that gives a high level overview and a visualization. We suggest the first one, but are providing a few other great options:
-    * This [interactive visual overview of CNNs from a collaboration between Georgia Tech and Oregon State](https://poloclub.github.io/cnn-explainer/){:target="_blank"}. This one will allow you to explore each of the layers and functions. You can click on each of the parts to see more. There's a little video at the end that shows how to use the tool. 
-    * This [write-up with some helpful visualizations by Ujjwal Karn](https://ujjwalkarn.me/2016/08/11/intuitive-explanation-convnets){:target="_blank"}.
-    * [One of the earlier types of these visualizations focused on handwritten numbers](https://adamharley.com/nn_vis/){:target="_blank"}  by Adam Harley.
-    * [Training on MNIST in the browser by Karpathy](https://cs.stanford.edu/people/karpathy/convnetjs/demo/mnist.html){:target="_blank"}. This one shows the weights and the gradients.
-2. This [lecture by Serena Yeung of Stanford (part of one of the most famous academic AI labs) explaining convolutional neural networks](https://www.youtube.com/watch?v=bNb2fEVKeEo&list=PL3FW7Lu3i5JvHM8ljYj-zLfQRF3EO8sYv&index=6){:target="_blank"}. This lecture provides a little bit of history and does a nice job explaining some key terms and concepts, getting into the specifics and the math. This also gives you a taste of a classic academic lecture on this topic. Here's the [website from their class](https://cs231n.github.io/convolutional-networks/#conv){:target="_blank"}, which may also be a helpful but not required resource.
+<img alt="A screenshot of the EchoMinds app showing notes on various access technology"
+src="figures/echominds_screenshot.png" style="float: right; width: 250px; margin: 0 0 1rem 1rem;"/>
+{% capture content %}
 
-As always, you're welcome to find alternative resources (and share them with everyone if they are awesome)!  
+Remember that the Echominds app was developed in the summer of 2025 as a notetaking tool for the blind and low 
+vision users.  The app's core value proposition is to enable notes to be capture easily (either through voice or 
+text input) and then retrieved using natural language queries.  The design process that was used to arrive at the 
+EchoMinds app was explored in [assignment 3](../assignment03/assignment03.markdown).
 
+The team chose to design the app using a retrieval approach (returning the content the user has explicitly entered 
+or imported into the app) rather than a generative approach (e.g., ChatGPT) because 
+in their community-engaged design process, the team heard form users that they had been lied to by GenAI systems in the 
+past.  By returning only the data that the user had directly put into the system, the user would have confidence in the
+accuracy of the results.  This decision closely relates to the topic of trust and trustworthiness of Machine 
+learning systems that we explored in [assignment 13](../assignment13/assignment13.markdown).
 
-For these first two exercises, we'd like you to **attempt to recall the answers based on what you learned above (without immediately looking back at these resources)**. The act of trying to recall things from your memory helps slow the forgetting process (see this [article by researcher Dr. Kathleen McDermott](https://www.annualreviews.org/content/journals/10.1146/annurev-psych-010419-051019){:target="_blank"} if you want evidence of this). Then you can check your answers with the resources and make your answers better.  
+As an example of the usage model for the EchoMinds app, consider the screenshot on the right, which shows the 
+EchoMinds app with many preloading accessibility technology facts.  A student who has recently lost their vision and 
+is retraining to do their previous job non-visually, may be learning how to use the JAWS screenreader.  They may 
+want to know how to navigate a list of links using JAWS.  They may pose the question "How do I navigate links 
+quickly in JAWS?" and the EchoMinds app would search through the accessible technology facts that have been stored 
+in the app and return: "Press INSERT+F7 to display a list of all links on the page."
+{% endcapture %}
+
+{% include notice.html content=content %}
+
+Over the next two assignment, we'll learn about a series of progressively more powerful approaches to solving the 
+task of text similarity and information retrieval.  We'll start from a very simple approach based on word2vec, 
+add in the idea of transformers through an approach called BERT (Bidirectional Encoder Representations from 
+Transformers), learn how to move from word 
+embeddings to sentence embeddings using an approach called SBERT (Sentence BERT), and finally learn how we can 
+fine-tune a sentence embedding on our own dataset to squeeze out more performance.
+
+# Initial Approach and Problem Statement
+
+Let's formalize the problem we're trying to solve in the creation of the EchoMinds app.  Given a series of notes 
+$x_1, x_2, \ldots, x_n$ where each $x_i$ is some piece of text, given query text $x_q$, return a sorted list of 
+notes that are most similar to the query.  The notion of similarity is intentional ambiguous here, but you might 
+imagine that the idea of similarity should conform the user's expectations and the structure of natural language.
+
+As an example, let's say we have the following notes.
+1. To silence JAWS speech immediately press the Control key.
+2. To read the current time in JAWS press Insert + F12.
+3. To silence TalkBack speech tap the screen with two fingers once.
+4. Moovit is often used by blind travelers for accessible public transit planning.
+
+Let's say we have a query term **"How do I stop JAWS from talking?"**.  Given a particular algorithm for defining 
+similarity, we might return the notes in the following order (from most to 
+least similar): (1), (3), (2), (4).
+
+To start ourselves off, you'll think through a very simple model for text similarity.
 
 {% capture problem %}
-Based on the materials above, explain the following terms/concepts:
-* Convolution (conceptually and as a dot product)
-* Filter size (F)
-* Stride
-* Padding (e.g., zero padding)
-* Max pool 
-* ReLu
-* Flatten
+Let's consider an approach to text similarity based on text embeddings.  Let's define a text embedding function 
+$\bm{\phi}(x)$ where $x$ is some piece of text and $\bm{\phi}(x)$ returns a vector of numbers in a 
+$d$-dimensional space.  We
+assume that the directions of the vectors $\bm{\phi}(x)$ in this space captures something about the meaning of the 
+text.Given a query $x_q$ and a potential item to retrieve $x_i$ we define the similarity between the pieces of text using
+[cosine similarity](https://en.wikipedia.org/wiki/Cosine_similarity).
 
-{% endcapture %}
-
-{% capture sol %}
-The questions below will help you figure out if you understand some of these terms. The answers are in the suggested resources or you can look them up from other resources. We're intentionally not providing them here as we want you to practice making sense of other resources and summarizing, but feel free to use other resources or an LLM to check your understanding.
-{% endcapture %}
-{% include problem.html problem=problem solution=sol %}
-
-{% capture problem %}
-Describe the general architecture of a convolutional neural network for image classification. You don't need to go into a lot of detail here, we just want to draw your attention to the major things that happen and the order that they happen in. 
-
-{% endcapture %}
-{% capture sol %}
-In CNNs, we start with an input image. We then apply a series of filters by sliding them across the image and getting a set of outputs that preserve the spatial information. This is typically followed by a non-linear activation function (e.g., ReLU). We often shrink the overall size by using some combination of pooling (e.g., max pool) and stride during the convolution. This can be repeated multiple times depending on the depth of the model. Finally, the output layers (that still have spatial information in their organization) are flattened (put into a vector) and then go through a series of multilayer perceptrons (or other linear layers) until a final classification layer.
-{% endcapture %}
-{% include problem.html problem=problem solution=sol %}
-
-{% capture problem %}
-{% capture part_a %}
-Given an input feature map of size 32 × 32 with a single channel, a filter size of 5 × 5, a stride of 1, and no padding, calculate the dimensions of the output feature map after a single convolution operation.
-{% endcapture %}
-{% capture part_a_sol %}
-The value after the filter (convolutional filter) goes into the spot that is the center of the filter. This means we'll lose two rows and two columns on each side (since we have no padding). This will give us an output of 28x28.
-{% endcapture %}
-{% include problem_part.html label="A" subpart=part_a solution=part_a_sol %}
-{% capture part_b %}
-Repeat the above exercise for a filter of size 4 x 4. Why would we not want this filter?
-{% endcapture %}
-{% capture part_b_sol %}
-A 4x4 filter doesn't have a center that we can index (it's either the 2nd or 3rd item). It also changes or image size from an even to an odd number, shifting the middle of our image and losing some information in an asymmetrical way.
-{% endcapture %}
-{% include problem_part.html label="B" subpart=part_b solution=part_b_sol %}
-
-{% endcapture %}
-{% include problem_with_parts.html problem=problem %}
-
-{% capture problem %}
-For an RGB image of size 28x28, apply 6 different 7x7x3 filters with zero-padding of 3 and a stride of 1. What is the size of the output (give all dimensions)?
-{% endcapture %}
-
-{% capture sol %}
-28x28x6. Each filter takes the image from a depth of 6 to a depth of 1, but there are 6 of them that get stacked. The padding of 3 balances out the filter size of 7, keeping the height and width at 28.
-{% endcapture %}
-{% include problem.html problem=problem solution=sol %}
-
-
-{% capture problem %}
-Given a grayscale image of size 64×64, apply a convolutional layer with the following parameters:<br/>
-Filter size: 5×5 <br/>
-Stride: 2 <br/>
-Padding: 0 (no padding) <br/>
-Calculate the size of the output feature map after applying this convolution.
-{% endcapture %}
-
-{% capture sol %}
-$$ Output Dimension = \frac{Input Size - Filter  Size + (2 * Padding)}{Stride} + 1 $$
-$$ \frac{64 - 5 + (2 * 0)}{2} + 1$$
-The output will be 30 x 30. 
-{% endcapture %}
-{% include problem.html problem=problem solution=sol %}
-
-{% capture problem %}
-Calculate the output from the following filter by hand (calculator fine).  There is no padding for the image. 
-  
-Filter:  
+<div>
 $$
-\begin{bmatrix}
-0 & -1 & 0 \\  
--1 & 4 & -1 \\  
-0 & -1 & 0 \\  
-\end{bmatrix}
+\text{cosine\_similarity}(x_q, x_i) = \frac{\bm{\phi}(x)^\top \bm{\phi}(x)}{\|\bm{\phi}(x)\| \|\bm{\phi}(x_q)\|}
 $$
+</div>
 
-Image:  
-$$
-\begin{bmatrix}
-10 & 0 & 10 & 0 \\  
-10 & 0 & 10 & 0 \\  
-10 & 10 & 10 & 10 \\  
-0 & 0 & 10 & 60 \\  
-\end{bmatrix}
-$$
+While this formula might look daunting it is nothing more than $\cos(\theta)$ where $\theta$ is the angle between
+the vectors $\bm{\phi}(x_q)$ and $\bm{\phi}(x_i)$ (to understand why this is the case, you just need to 
+recall 
+some  facts about the dot product).
 
+Recall that the Continuous Bag of Words model (CBOW), we assign each word in our vocabulary to a $300$-dimensional 
+vector.  Assuming you have a trained version of the CBOW model on hand, propose a method for using the CBOW model to 
+compute an embedding of a piece of text.  If you can come up with several approaches, list them here.  Be as 
+creative as you like.  For each of the approaches you come up with, describe the key limitations of the approach for 
+capturing the underlying meaning of the piece of text (e.g., what are some things your approach would not consider 
+about the piece of text that might be important for understanding its meaning).
 {% endcapture %}
+{% capture solution %}
+A simple approach would be to take a piece of text and segment it into a bunch of words $w_1, \ldots w_k$.  For each 
+word, we could compute its embedding using word2vec (yielding a sequence of 300-dimensional vectors).  As a first 
+pass, we can add these 300-dimensional vectors up to capture the overall meaning of the piece of text.
 
-{% capture sol %}
-Because there is no padding, the output image will be smaller. You might realize that the setup for the top right and the bottom left have the same numbers, so you only have to do the math once. Notice how the relevant values in the bottom right are all 10s, so the filter outputs zero. Also notice how the big number in the bottom right corner makes no difference at all in this filtering.
-
-$$
-\begin{bmatrix}
--30 & 20 \\  
-20 & 0  \\  
-\end{bmatrix}
-$$
-
-Please note that ChatGPT4o got this wrong when we put it in, but ChatGPTo1-preview got it correct. 
-
+This approach would fail to encode the order of the words in the text.  It would also fail to model how a specific 
+word modifies the meaning of another word (e.g., the word "Queen" in "The rock band Queen" and "Queen Victoria" 
+would both be assigned the same 300-dimensional vector).  The fact that word2vec is basically just a lookup table 
+from words to vectors is the reason for this limitation.
 {% endcapture %}
+{% include problem.html problem=problem solution=solution %}
 
-{% include problem.html problem=problem solution=sol %}
+## BERT architecture
 
+Now we're going to learn about an approach to encoding words as vectors called BERT (Bidirectional Encoder 
+Representations from Transformers).
 
+Another transformer
+* 12 transformer layers, each with a multi-headed attention block and a feed-forward layer
+* Bidirectional self-attention (as opposed to the causal self-attention in GPTs)
 
+(INSERT) Image comparing translation, GPT, and BERT transformer architectures:
 
+Chris McCormick blog post (explains how to use BERT but not the architecture): (https://mccormickml.com/2019/05/14/BERT-word-embeddings-tutorial/)
 
-{% capture problem %}
-In this notebook, you will create your own filters and apply them like they are part of a convolutional neural network. You will need to do a little research on filter types. 
+No need for students to run the code unless they want to
 
-[https://colab.research.google.com/github/olinml2024/notebooks/blob/main/ML2024_Assignment_15_Manual_Convolutions.ipynb](https://colab.research.google.com/github/olinml2024/notebooks/blob/main/ML2024_Assignment_15_Manual_Convolutions.ipynb){:target="_blank"}
+(INSERT) The histogram in the blog post is weirdly cropped. Here’s a full version with labeled axes:
 
-{% endcapture %}
+## How BERT is trained (NSP, MLM)
 
-{% capture sol %}
-We are not giving solutions here because we want you to come up with your own filters so we can discuss and compare variations of the filters in class. If you're stuck on how to write any of the functions, please come to office hours or post in the Slack.
+BERT paper section 3.1 (approx 1 page) (https://arxiv.org/pdf/1810.04805)
 
-{% endcapture %}
+The loss functions for these tasks are just added I believe
 
-{% include problem.html problem=problem solution=sol %}
+Some kind of output to look at
+
+Maybe comparison of BERT word embeddings with Word2Vec embeddings
+
+What can BERT do that Word2Vec can't (embed context) (word2vec is effectively a lookup table after training, while BERT takes in the context of the entire sentence a word is in)
+
+Why might BERT work well for our Notebook AI app? (non-generative) What is it still missing? (It doesn’t compare question-answer pairs)
+
+## How can we use BERT for our Notebook AI model?
+
+BERT predicts token embeddings, but we need a way to compare two sentences together. Looks like we’re missing something.
+
+We’re going to need to make some modifications to BERT. We have a couple options:
+
+Find a way get BERT to make sentence embeddings, and then compare those embeddings for similarity
+
+Give BERT two sentences and get it to somehow output how similar the sentences are
+
+# BERT for sentence embeddings
+
+Let’s look at the first option. We could try averaging all of the token embeddings in a sentence. (this is known as mean-pooling)
+
+Some kind of output
+
+Now, the second option. BERT has a [CLS] token (short for classification) that is meant to be used for classification tasks. It is inputted before the first token in the first sentence that is put into the model. We could try putting a feed-forward layer on the output of the [CLS] token, which will output whether the sentences are a match or not.
+
+## Output?
+
+Unfortunately, neither of these approaches will work very well because BERT wasn’t trained on exactly these tasks. It doesn’t know to put information on the similarity of sentences in the [CLS] token or to create its token embeddings so that they can be averaged to make a meaningful sentence embedding. But not to fear, we have another trick up our sleeve—fine-tuning.
+
+Explanation of fine-tuning (we will go more in depth on this later in the assignment)
+
+Let’s look at some setups for fine-tuning BERT for these two tasks.
+
+## Introducing SBERT
+
+Biencoder model
+
+Introducing cross-encoders
+
+Classification layer on top of BERT
+
+## Reflection
+
+Which of these approaches do you think would be better for the Notebook AI, considering inference time?
+
+Why is SBERT inference time faster?
+
+How do you determine what is a good balance between inference speed and accuracy? (BERT as a cross-encoder is more accurate but slower)
+
+You can combine both of these approaches, using SBERT to get an initial “promising” set of results, then using the cross-encoder to “re-rank” those results. This might be a good balance between inference speed and accuracy.
