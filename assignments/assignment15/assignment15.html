@@ -1,0 +1,738 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.17.2 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<script>
+class AnchorNoProxy extends HTMLElement {
+  constructor() {
+    super();
+    this.attachShadow({ mode: "open" });
+    this._$a = null;
+  }
+  connectedCallback() {
+    const href = this.getAttribute("href") || "#";
+    if (this.dataset.hasOwnProperty('canvas')) {
+        const canvasURL = this.dataset.canvas;
+        this.shadowRoot.innerHTML = `<style>a:hover, a:active { outline: 0; }\na { color: #5197ad; }\na:visited { color: #5197ad; }\na:hover { color: #266477; outline: 0; }</style><a href="${href}" data-canvas="${canvasURL}"><slot></slot></a>`;
+    } else {
+        this.shadowRoot.innerHTML = `<style>a:hover, a:active { outline: 0; }\na { color: #5197ad; }\na:visited { color: #5197ad; }\na:hover { color: #266477; outline: 0; }</style><a href="${href}"><slot></slot></a>`;
+    }
+    this._$a = this.shadowRoot.querySelector("a");
+    this._$a.addEventListener("click", e => {
+      var url = this.getAttribute('href');
+      e.preventDefault();
+      if (document.referrer.startsWith('https://lms.hypothes.is') && this.dataset.hasOwnProperty('canvas')) {
+        // get rid of proxy if it was added
+        var n = this.dataset.canvas.search('https://olin.instructure.com');
+        window.open(this.dataset.canvas.substring(n), '_blank');
+      } else {
+        window.open(url, '_blank');
+      }
+    });
+  }
+  static get observedAttributes() { return ["href"]; }
+  attributeChangedCallback(name, oldValue, newValue) {
+    if (oldValue !== newValue) {
+      if (this._$a === null) return;
+      this._$a.setAttribute("href", newValue);
+    }
+  }
+}
+
+customElements.define("a-no-proxy", AnchorNoProxy);
+
+class NoProxy extends HTMLAnchorElement {
+  connectedCallback() {
+    this.addEventListener("click", e => {
+      e.preventDefault();
+      if (document.referrer.startsWith('https://lms.hypothes.is') && this.dataset.hasOwnProperty('canvas')) {
+        // get rid of proxy if it was added
+        var n = this.dataset.canvas.search('https://olin.instructure.com');
+      	window.open(this.dataset.canvas.substring(n), '_blank');
+      } else {
+      	window.open(this.href, '_blank');
+      }
+    });
+  }
+}
+
+customElements.define("no-proxy", NoProxy, { extends: "a" });
+
+class ConfirmLink extends HTMLAnchorElement {
+  connectedCallback() {
+    this.addEventListener("click", e => {
+      const result = confirm(`Are you sure you want to go to '${this.href}'?`);
+      if (!result) e.preventDefault();
+    });
+  }
+}
+
+customElements.define("confirm-link", ConfirmLink, { extends: "a" });
+
+</script>
+
+<!-- begin _includes/seo.html --><title>Assignment 15: Transformers for Text Embedding - Machine Learning Spring 2026 @ Olin College</title>
+<meta name="description" content="Website">
+
+
+
+<meta property="og:type" content="website">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Machine Learning Spring 2026 @ Olin College">
+<meta property="og:title" content="Assignment 15: Transformers for Text Embedding">
+<meta property="og:url" content="/assignments/assignment15/assignment15.html">
+
+
+  <meta property="og:description" content="Website">
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="canonical" href="/assignments/assignment15/assignment15.html">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": null,
+      "url": "/"
+    
+  }
+</script>
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Machine Learning Spring 2026 @ Olin College Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+<script src="https://cdn.jsdelivr.net/npm/mermaid@11.9.0/dist/mermaid.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.28/dist/katex.min.css" integrity="sha384-Wsr4Nh3yrvMf2KCebJchRJoVo1gTU6kcP05uRSh5NV3sj9+a8IomuJoQzf3sMq4T" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.28/dist/katex.min.js" integrity="sha384-+W9OcrYK2/bD7BmUAk+xeFAyKp0QjyRQUCxeU31dfyTt/FrPsUgaBTLLkVf33qWt" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.28/dist/contrib/auto-render.min.js" integrity="sha384-hCXGrW6PitJEwbkoStFjeJxv+fSOOQKOPbJxSfM6G5sWZjAyWhXiTIIAmQqnlLlh" crossorigin="anonymous"></script>
+
+<script>
+document.addEventListener("DOMContentLoaded", async function () {
+  // Render Mermaid first, from untouched source.
+  mermaid.initialize({ startOnLoad: false });
+  await mermaid.run(); // renders all .mermaid blocks
+
+  // render KaTeX
+  renderMathInElement(document.body, {
+          delimiters: [
+              {left: '$$', right: '$$', display: true},
+              {left: '$', right: '$', display: false},
+              {left: '\\(', right: '\\)', display: false},
+              {left: '\\[', right: '\\]', display: true}
+          ],
+    throwOnError: false,
+  });
+});
+</script>
+
+<script type="text/javascript">
+function HideShowElement(divID) {
+    const x = document.getElementById(divID);
+    if (x.style.display === "none") {
+        x.style.display = "block";
+    } else {
+        x.style.display = "none";
+    }
+}
+</script>
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" rel="stylesheet">
+
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', function() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const showSolutions = urlParams.get('showSolutions');
+    const showAllSolutions = urlParams.get('showAllSolutions');
+    const divs = document.querySelectorAll('button.togglebutton');
+
+    if (showSolutions == 'true') {
+        // Loop through the selected divs and manipulate them
+        divs.forEach(div => {
+            div.removeAttribute('hidden');
+        });
+    }
+
+    const solutionDivs = document.querySelectorAll('[id^=solution]');
+    const subpartSolutionDivs = document.querySelectorAll('[id^=subpartsolution]');
+
+    if (showAllSolutions == 'true') {
+        solutionDivs.forEach(div => {
+            console.log('test')
+            div.style.display = 'block';
+        });
+
+        subpartSolutionDivs.forEach(div => {
+            console.log('test')
+            div.style.display = 'block';
+        });
+    }
+});
+</script>
+
+<script type="text/javascript">
+function HideShowElement(divID) {
+    const x = document.getElementById(divID);
+    if (x.style.display === "none") {
+        x.style.display = "block";
+    } else {
+        x.style.display = "none";
+    }
+}
+</script>
+<style>
+:root {
+    --box-bg-color: #fff; /* Default background color */
+}
+
+.homework-box {
+    background-color: var(--box-bg-color);
+    border: 2px solid #ccc;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    width: 300px;
+}
+
+.homework-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    position: relative;
+}
+
+.homework-icon {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+}
+
+/* Handle missing or empty src attribute */
+.homework-icon[src=""],
+.homework-icon:not([src]) {
+    content: url('https://upload.wikimedia.org/wikipedia/commons/a/ab/Games_for_Learning_%2827470%29_-_The_Noun_Project.svg');
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+}
+
+.homework-title {
+    margin: 0;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.homework-content {
+    font-size: 16px;
+    color: #333;
+}
+</style>
+
+<style>
+.solution {
+    display: none; /* Hide solutions by default */
+    background-color: #f9f9f9;
+    padding: 10px;
+    border-left: 4px solid #007bff;
+    margin-top: 10px;
+}
+
+.toggle-button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    display: inline-block;
+}
+
+.toggle-button.hide-solution {
+    background-color: #dc3545; /* Red background for hide button */
+}
+
+img.mermaid {
+     max-width:500px;
+     text-align: center;
+}
+
+</style>
+
+<div style="display:none;">
+$
+\newcommand{\mlvec}[1]{\mathbf{#1}}
+\newcommand{\mlmat}[1]{\mathbf{#1}}
+\DeclareMathOperator*{\argmax}{arg\,max\,}
+\DeclareMathOperator*{\argmin}{arg\,min\,}
+$
+</div>
+
+  </head>
+
+  <body class="layout--problemset">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+          <a class="site-logo" href="/"><img src="https://qeacourse.github.io/RoboNinjaWarrior/website_graphics/olinlogo.png" alt=""></a>
+        
+        <a class="site-title" href="/">
+          Machine Learning Spring 2026 @ Olin College
+          
+        </a>
+        <ul class="visible-links"></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Assignment 15: Transformers for Text Embedding">
+    
+    
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">Assignment 15: Transformers for Text Embedding
+</h1>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On this page</h4></header>
+	      
+                <ul class="toc__menu">
+  <li><a href="#learning-objectives">Learning Objectives</a></li>
+  <li><a href="#intro">Intro</a></li>
+  <li><a href="#initial-approach-and-problem-statement">Initial Approach and Problem Statement</a></li>
+  <li><a href="#bert-for-sentence-embeddings">BERT for sentence embeddings</a></li>
+</ul>
+	      	
+            </nav>
+          </aside>
+        
+        <blockquote>
+  <p>Note: Still finalizing</p>
+</blockquote>
+
+<h1 id="learning-objectives">Learning Objectives</h1>
+
+<div class="tip" style="
+    border-left: 6px solid #000000;
+    margin: 2em 2em 2em 2em;">
+	<div style="background-color: #C6EBD5;
+	                column-gap: 1rem;
+					display: flex;
+					padding: 1em 1em 1em 1em;">
+	<div class="notice-bulb" style="
+	    font-family: 'Font Awesome 5 Free',serif;
+	    vertical-align: middle;
+	    font-weight: 900;
+	    font-size: xx-large;
+	    color: #000000;">
+        <i class="fas fa-brain"></i>
+</div>
+	<div style="font-size: xx-large; font-weight: 900;">Learning Objectives</div>
+	</div>
+	<div style="padding: 1em 1em 1em 1em;">
+	   
+<ul>
+  <li>Articulate the weaknesses of traditional word embedding models like word2vec</li>
+  <li>Understand how transformers can be used to improve word embeddings</li>
+  <li>Extend word embeddings to embed text with multiple words</li>
+</ul>
+
+	</div>
+</div>
+
+<h1 id="intro">Intro</h1>
+
+<p>While we used the idea of text generation as a way to motivate the transformer, the transformer architecture is used 
+in many other contexts.  As was mentioned in some of the sources we’ve consulted, the paper <a href="https://dl.acm.org/doi/pdf/10.5555/3295222.3295349">“Attention is All You 
+Need”</a>, which introduced the transformer architecture, contained 
+results on the problem of machine translation (translating text from one language to another).</p>
+
+<p>In the next two assignments, we’re going to revisit the problem of text similarity and information retrieval.  You 
+will recall, that being able to retrieve relevant pieces of text from a query is the core computational problem that 
+lies at the heart of the EchoMinds app.</p>
+
+<p><img alt="A screenshot of the EchoMinds app showing notes on various access technology" src="figures/echominds_screenshot.png" style="float: right; width: 250px; margin: 0 0 1rem 1rem;" /></p>
+
+<div class="tip" style="
+    border-left: 6px solid #000000;
+    margin: 2em 2em 2em 2em;">
+	<div style="background-color: #FDFD96;
+	                column-gap: 1rem;
+					display: flex;
+					padding: 1em 1em 1em 1em;">
+	<div class="notice-bulb" style="
+	    font-family: 'Font Awesome 5 Free',serif;
+	    vertical-align: middle;
+	    font-weight: 900;
+	    font-size: xx-large;
+	    color: #000000;">
+        <i class="fa fa-exclamation-triangle"></i>
+</div>
+	<div style="font-size: xx-large; font-weight: 900;">Notice</div>
+	</div>
+	<div style="padding: 1em 1em 1em 1em;">
+	   
+<p>Remember that the Echominds app was developed in the summer of 2025 as a notetaking tool for the blind and low 
+vision users.  The app’s core value proposition is to enable notes to be capture easily (either through voice or 
+text input) and then retrieved using natural language queries.  The design process that was used to arrive at the 
+EchoMinds app was explored in <a href="/assignments/assignment03/assignment03.html">assignment 3</a>.</p>
+
+<p>The team chose to design the app using a retrieval approach (returning the content the user has explicitly entered 
+or imported into the app) rather than a generative approach (e.g., ChatGPT) because 
+in their community-engaged design process, the team heard form users that they had been lied to by GenAI systems in the 
+past.  By returning only the data that the user had directly put into the system, the user would have confidence in the
+accuracy of the results.  This decision closely relates to the topic of trust and trustworthiness of Machine 
+learning systems that we explored in <a href="/assignments/assignment13/assignment13.html">assignment 13</a>.</p>
+
+<p>As an example of the usage model for the EchoMinds app, consider the screenshot on the right, which shows the 
+EchoMinds app with many preloading accessibility technology facts.  A student who has recently lost their vision and 
+is retraining to do their previous job non-visually, may be learning how to use the JAWS screenreader.  They may 
+want to know how to navigate a list of links using JAWS.  They may pose the question “How do I navigate links 
+quickly in JAWS?” and the EchoMinds app would search through the accessible technology facts that have been stored 
+in the app and return: “Press INSERT+F7 to display a list of all links on the page.”</p>
+
+	</div>
+</div>
+
+<p>Over the next two assignment, we’ll learn about a series of progressively more powerful approaches to solving the 
+task of text similarity and information retrieval.  We’ll start from a very simple approach based on word2vec, 
+add in the idea of transformers through an approach called BERT (Bidirectional Encoder Representations from 
+Transformers), learn how to move from word 
+embeddings to sentence embeddings using an approach called SBERT (Sentence BERT), and finally learn how we can 
+fine-tune a sentence embedding on our own dataset to squeeze out more performance.</p>
+
+<h1 id="initial-approach-and-problem-statement">Initial Approach and Problem Statement</h1>
+
+<p>Let’s formalize the problem we’re trying to solve in the creation of the EchoMinds app.  Given a series of notes 
+$x_1, x_2, \ldots, x_n$ where each $x_i$ is some piece of text, given query text $x_q$, return a sorted list of 
+notes that are most similar to the query.  The notion of similarity is intentional ambiguous here, but you might 
+imagine that the idea of similarity should conform the user’s expectations and the structure of natural language.</p>
+
+<p>As an example, let’s say we have the following notes.</p>
+<ol>
+  <li>To silence JAWS speech immediately press the Control key.</li>
+  <li>To read the current time in JAWS press Insert + F12.</li>
+  <li>To silence TalkBack speech tap the screen with two fingers once.</li>
+  <li>Moovit is often used by blind travelers for accessible public transit planning.</li>
+</ol>
+
+<p>Let’s say we have a query term <strong>“How do I stop JAWS from talking?”</strong>.  Given a particular algorithm for defining 
+similarity, we might return the notes in the following order (from most to 
+least similar): (1), (3), (2), (4).</p>
+
+<p>To start ourselves off, you’ll think through a very simple model for text similarity.</p>
+
+<div style="display: normal;
+        border-left: 6px solid #0065B4;
+        margin: 2em 0em 2em 0em;">
+    <div class="tip" style="background-color: #ECF7FF;
+        padding: 1em 1em 1em 1em;
+        display: flex;
+        column-gap: 1rem;">
+        <div class="notice-bulb" style="
+	    font-family: 'Font Awesome 5 Free',serif;
+	    vertical-align: middle;
+	    font-weight: 900;
+	    font-size: xx-large;
+	    color: #ff6f00;">
+            <i class="fas fa-question"></i>
+</div>
+	<div style="font-size: xx-large; font-weight: 900;">Exercise 1</div>
+    </div>
+<div style="display: normal; padding: 1em 1em 1em 1em;">
+	
+<p>Let’s consider an approach to text similarity based on text embeddings.  Let’s define a text embedding function 
+$\bm{\phi}(x)$ where $x$ is some piece of text and $\bm{\phi}(x)$ returns a vector of numbers in a 
+$d$-dimensional space.  We
+assume that the directions of the vectors $\bm{\phi}(x)$ in this space captures something about the meaning of the 
+text.Given a query $x_q$ and a potential item to retrieve $x_i$ we define the similarity between the pieces of text using
+<a href="https://en.wikipedia.org/wiki/Cosine_similarity">cosine similarity</a>.</p>
+
+<div>
+$$
+\text{cosine\_similarity}(x_q, x_i) = \frac{\bm{\phi}(x)^\top \bm{\phi}(x)}{\|\bm{\phi}(x)\| \|\bm{\phi}(x_q)\|}
+$$
+</div>
+
+<p>While this formula might look daunting it is nothing more than $\cos(\theta)$ where $\theta$ is the angle between
+the vectors $\bm{\phi}(x_q)$ and $\bm{\phi}(x_i)$ (to understand why this is the case, you just need to 
+recall 
+some  facts about the dot product).</p>
+
+<p>Recall that the Continuous Bag of Words model (CBOW), we assign each word in our vocabulary to a $300$-dimensional 
+vector.  Assuming you have a trained version of the CBOW model on hand, propose a method for using the CBOW model to 
+compute an embedding of a piece of text.  If you can come up with several approaches, list them here.  Be as 
+creative as you like.  For each of the approaches you come up with, describe the key limitations of the approach for 
+capturing the underlying meaning of the piece of text (e.g., what are some things your approach would not consider 
+about the piece of text that might be important for understanding its meaning).</p>
+
+
+    <button hidden="true" onclick="HideShowElement(&quot;solution-1&quot;)" class="togglebutton">Show / Hide Solution</button>
+
+<div id="solution-1" class="solution" style="
+    background-color: #cefad0;
+    border-left: 6px solid #6500B4;
+    padding: 1em 1em 1em 1em;
+    display: none;
+    column-gap: 2rem;
+    margin: 2em 2em 2em 2em;">
+    <div style="display: normal">
+<p style="font-weight: 900; font-size: x-large">Solution</p>
+
+<p>A simple approach would be to take a piece of text and segment it into a bunch of words $w_1, \ldots w_k$.  For each 
+word, we could compute its embedding using word2vec (yielding a sequence of 300-dimensional vectors).  As a first 
+pass, we can add these 300-dimensional vectors up to capture the overall meaning of the piece of text.</p>
+
+<p>This approach would fail to encode the order of the words in the text.  It would also fail to model how a specific 
+word modifies the meaning of another word (e.g., the word “Queen” in “The rock band Queen” and “Queen Victoria” 
+would both be assigned the same 300-dimensional vector).  The fact that word2vec is basically just a lookup table 
+from words to vectors is the reason for this limitation.</p>
+
+     </div>
+</div>
+</div>
+</div>
+
+<h2 id="bert-architecture">BERT architecture</h2>
+
+<p>Now we’re going to learn about an approach to encoding words as vectors called BERT (Bidirectional Encoder 
+Representations from Transformers).</p>
+
+<p>Another transformer</p>
+<ul>
+  <li>12 transformer layers, each with a multi-headed attention block and a feed-forward layer</li>
+  <li>Bidirectional self-attention (as opposed to the causal self-attention in GPTs)</li>
+</ul>
+
+<p>(INSERT) Image comparing translation, GPT, and BERT transformer architectures:</p>
+
+<p>Chris McCormick blog post (explains how to use BERT but not the architecture): (https://mccormickml.com/2019/05/14/BERT-word-embeddings-tutorial/)</p>
+
+<p>No need for students to run the code unless they want to</p>
+
+<p>(INSERT) The histogram in the blog post is weirdly cropped. Here’s a full version with labeled axes:</p>
+
+<h2 id="how-bert-is-trained-nsp-mlm">How BERT is trained (NSP, MLM)</h2>
+
+<p>BERT paper section 3.1 (approx 1 page) (https://arxiv.org/pdf/1810.04805)</p>
+
+<p>The loss functions for these tasks are just added I believe</p>
+
+<p>Some kind of output to look at</p>
+
+<p>Maybe comparison of BERT word embeddings with Word2Vec embeddings</p>
+
+<p>What can BERT do that Word2Vec can’t (embed context) (word2vec is effectively a lookup table after training, while BERT takes in the context of the entire sentence a word is in)</p>
+
+<p>Why might BERT work well for our Notebook AI app? (non-generative) What is it still missing? (It doesn’t compare question-answer pairs)</p>
+
+<h2 id="how-can-we-use-bert-for-our-notebook-ai-model">How can we use BERT for our Notebook AI model?</h2>
+
+<p>BERT predicts token embeddings, but we need a way to compare two sentences together. Looks like we’re missing something.</p>
+
+<p>We’re going to need to make some modifications to BERT. We have a couple options:</p>
+
+<p>Find a way get BERT to make sentence embeddings, and then compare those embeddings for similarity</p>
+
+<p>Give BERT two sentences and get it to somehow output how similar the sentences are</p>
+
+<h1 id="bert-for-sentence-embeddings">BERT for sentence embeddings</h1>
+
+<p>Let’s look at the first option. We could try averaging all of the token embeddings in a sentence. (this is known as mean-pooling)</p>
+
+<p>Some kind of output</p>
+
+<p>Now, the second option. BERT has a [CLS] token (short for classification) that is meant to be used for classification tasks. It is inputted before the first token in the first sentence that is put into the model. We could try putting a feed-forward layer on the output of the [CLS] token, which will output whether the sentences are a match or not.</p>
+
+<h2 id="output">Output?</h2>
+
+<p>Unfortunately, neither of these approaches will work very well because BERT wasn’t trained on exactly these tasks. It doesn’t know to put information on the similarity of sentences in the [CLS] token or to create its token embeddings so that they can be averaged to make a meaningful sentence embedding. But not to fear, we have another trick up our sleeve—fine-tuning.</p>
+
+<p>Explanation of fine-tuning (we will go more in depth on this later in the assignment)</p>
+
+<p>Let’s look at some setups for fine-tuning BERT for these two tasks.</p>
+
+<h2 id="introducing-sbert">Introducing SBERT</h2>
+
+<p>Biencoder model</p>
+
+<p>Introducing cross-encoders</p>
+
+<p>Classification layer on top of BERT</p>
+
+<h2 id="reflection">Reflection</h2>
+
+<p>Which of these approaches do you think would be better for the Notebook AI, considering inference time?</p>
+
+<p>Why is SBERT inference time faster?</p>
+
+<p>How do you determine what is a good balance between inference speed and accuracy? (BERT as a cross-encoder is more accurate but slower)</p>
+
+<p>You can combine both of these approaches, using SBERT to get an initial “promising” set of results, then using the cross-encoder to “re-rank” those results. This might be a good balance between inference speed and accuracy.</p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+        
+      </footer>
+
+      
+
+      
+    </div>
+
+    
+  </article>
+
+  
+  
+</div>
+
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2026 Machine Learning Spring 2026 @ Olin College.</div>
+
+      </footer>
+    </div>
+
+    <script src="/assets/js/copyCode.js"></script>
+
+
+  <script src="/assets/js/main.min.js"></script>
+  <script src="https://kit.fontawesome.com/4eee35f757.js"></script>
+
+
+
+
+
+
+
+
+
+
+  </body>
+</html>
