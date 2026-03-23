@@ -63,4 +63,5 @@ We're going to close out our text as data module by learning about how transform
 defining text similarity.  We'll show how this capability is at the core of the EchoMinds app, and you'll get a 
 chance to implement a series of models that will get increasingly good performance.
 
-I'll talk a little bit about BERT and draw some things on the chalkboard.  You'll also have some time to 
+I'll talk a little bit about BERT and draw some things on the chalkboard.  You'll also have some time to start the 
+assignment.
