@@ -22,7 +22,7 @@ Let's summarize the main points from the paper in small groups.  Here are some p
 recommend you raise the main points that you uncovered as well.
 * Define key terms (e.g., how do the authors define trust, trustworthiness, contractual trust, etc.)
 * How are trust and trustworthiness different?  When could a model be trustworthy and not trusted or trusted and not 
-  trustworthy?
+  trustworthy?  How does this relate to figure 6?
 
 In figure 3, the authors propose a three parameter model for trust in AI systems.  Do each of these terms make sense?
 For your own interactions with AI, do you agree that these parameters are associated with trust in AI systems?
@@ -31,11 +31,14 @@ For your own interactions with AI, do you agree that these parameters are associ
 * Parameter three: Ability.  Technical correctness, transparency, explainability, reliability, privacy and data 
   governance, technical robustness and safety.
 
+In figure 5, the authors propose a framework for distrust makers in AI systems.  Take some time to go through the 
+terms in the figure and make sure you understand them.
+
 We're revisiting the EchoMinds case study as an entry point into the issues around Trust and Trustworthiness in 
 machine learning systems.  Here are some relevant examples from the summer work.
 
-Analyze the following case studies using the framework in the paper. That is, for each case study analyze what 
-aspects of the system's design or behavior would increase or decrease trust.
+Analyze the following case studies using the frameworks in figure 3 and figure 5 of the paper. That is, for each case 
+study analyze what aspects of the system's design or behavior increase or decrease trust.
 * [Ashley's anecdote of the positive COVID test](https://olincollege.sharepoint.com/:v:/s/EducateAI/IQC_dRtNEQL3QJj78LLZV-PGAXDSS_DK_NaW4m3Z47qKwyA)
 * ![A Facebook post detailing an experience with having an AI app flag a bill as $9](images/ninedollar.png)
 * [Meta Glasses: Total Game-Changer for Me—Anyone Else?](https://www.reddit.com/r/Blind/comments/1nqw16e/meta_glasses_total_gamechanger_for_meanyone_else/)
