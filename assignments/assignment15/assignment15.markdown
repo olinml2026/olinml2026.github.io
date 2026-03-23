@@ -7,8 +7,6 @@ due_on_class: 17
 published: true
 ---
 
-> Note: Still finalizing
-
 # Learning Objectives
 
 {% capture content %}
