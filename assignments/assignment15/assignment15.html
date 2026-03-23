@@ -550,14 +550,14 @@ text.Given a query $x_q$ and a potential item to retrieve $x_i$ we define the si
 
 <div>
 $$
-\text{cosine\_similarity}(x_q, x_i) = \frac{\bm{\phi}(x)^\top \bm{\phi}(x)}{\|\bm{\phi}(x)\| \|\bm{\phi}(x_q)\|}
+\text{cosine\_similarity}(x_q, x_i) = \frac{\bm{\phi}(x_q)^\top \bm{\phi}(x_i)}{\|\bm{\phi}(x_q)\| \|\bm{\phi}(x_i)\|}
 $$
 </div>
 
 <p>While this formula might look daunting it is nothing more than $\cos(\theta)$ where $\theta$ is the angle between
 the vectors $\bm{\phi}(x_q)$ and $\bm{\phi}(x_i)$ (to understand why this is the case, you just need to 
 recall 
-some  facts about the dot product).</p>
+some <a href="https://en.wikipedia.org/wiki/Dot_product#Geometric_definition">facts about the dot product</a>).</p>
 
 <p>Recall that the Continuous Bag of Words model (CBOW), we assign each word in our vocabulary to a $300$-dimensional 
 vector.  Assuming you have a trained version of the CBOW model on hand, propose a method for using the CBOW model to 
