@@ -78,7 +78,7 @@ customElements.define("confirm-link", ConfirmLink, { extends: "a" });
 
 </script>
 
-<!-- begin _includes/seo.html --><title>Machine Learning Spring 2026 - Machine Learning Spring 2026 @ Olin College</title>
+<!-- begin _includes/seo.html --><title>Machine Learning Spring 2026 @ Olin College</title>
 <meta name="description" content="Website">
 
 
@@ -86,15 +86,14 @@ customElements.define("confirm-link", ConfirmLink, { extends: "a" });
 <meta property="og:type" content="website">
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Machine Learning Spring 2026 @ Olin College">
-<meta property="og:title" content="Machine Learning Spring 2026">
-<meta property="og:url" content="/">
+<meta property="og:title" content="Machine Learning Spring 2026 @ Olin College">
+<meta property="og:url" content="/assignments/assignment18/ImagesQAD.html">
 
 
   <meta property="og:description" content="Website">
 
 
 
-  <meta property="og:image" content="/website_graphics/LaneThomasky.png">
 
 
 
@@ -104,8 +103,7 @@ customElements.define("confirm-link", ConfirmLink, { extends: "a" });
 
 
 
-
-<link rel="canonical" href="/">
+<link rel="canonical" href="/assignments/assignment18/ImagesQAD.html">
 
 
 
@@ -333,7 +331,7 @@ $
 
   </head>
 
-  <body class="layout--splash">
+  <body class="layout--single">
     <nav class="skip-links">
   <h2 class="screen-reader-text">Skip links</h2>
   <ul>
@@ -375,233 +373,239 @@ $
 
     <div class="initial-content">
       
-  
-
-
-
-
-
-
-
-
-
-
-
-<div class="page__hero--overlay"
-  style="background-color: #000; background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('/website_graphics/LaneThomasky.png');"
->
-  
-    <div class="wrapper">
-      <h1 id="page-title" class="page__title" itemprop="headline">
-        
-          Machine Learning Spring 2026
-
-        
-      </h1>
-      
-      
-      
-      
-    </div>
-  
-  
-</div>
 
 
 
 <div id="main" role="main">
-  <article class="splash" itemscope itemtype="https://schema.org/CreativeWork">
-    <meta itemprop="headline" content="Machine Learning Spring 2026">
+  
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    
     
     
     
 
-    <section class="page__content" itemprop="text">
-      <div class="header-search">
-  <form class="header-search-form" action="/search" method="get">
-    <input type="text" id="search-box" name="query" />
-    <input type="submit" value="search" />
-  </form>
+    <div class="page__inner-wrap">
+      
+        <header>
+          
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right ">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On this page</h4></header>
+	      
+                <ul class="toc__menu">
+  <li><a href="#learning-objectives">Learning Objectives</a></li>
+</ul>
+	      	
+            </nav>
+          </aside>
+        
+        <p>s—
+title: “Quality Assessed Deliverable: Machine Learning with Images”
+toc_sticky: true 
+toc_h_max: 1
+layout: problemset
+published: false
+—</p>
+
+<h1 id="learning-objectives">Learning Objectives</h1>
+
+<p>The intent of this quality assessed deliverable is to demonstrate your understanding of a few key concepts from the Images as Data module (largely focusing on convolutional neural networks).</p>
+
+<p>Most of the questions pull directly or indirectly from your prior assignments. The intent here is to minimize the workload (assuming you have been keeping up on your assignments) and to revisit concepts from the assignments now that you have had a chance to ask questions in class.</p>
+
+<div class="tip" style="
+    border-left: 6px solid #000000;
+    margin: 2em 2em 2em 2em;">
+	<div style="background-color: #C6EBD5;
+	                column-gap: 1rem;
+					display: flex;
+					padding: 1em 1em 1em 1em;">
+	<div class="notice-bulb" style="
+	    font-family: 'Font Awesome 5 Free',serif;
+	    vertical-align: middle;
+	    font-weight: 900;
+	    font-size: xx-large;
+	    color: #000000;">
+        <i class="fas fa-brain"></i>
+</div>
+	<div style="font-size: xx-large; font-weight: 900;">Learning Objectives</div>
+	</div>
+	<div style="padding: 1em 1em 1em 1em;">
+	   
+<ul>
+  <li>Identify and explain key components of a convolutional neural network (CNN)</li>
+  <li>Create and apply filters like a CNN</li>
+  <li>Calculate the output size and values resulting from a given filter</li>
+</ul>
+
+	</div>
 </div>
 
-<h2 id="education-research">Education Research</h2>
-<p><a href="education_research/education_research">Education Research Information</a></p>
+<p>Will be a Canvas quiz.</p>
 
-<!--
-## Final project
-[Final Project Documents](assignments/assignment17/FinalProject)
--->
+<ol>
+  <li>
+    <p>a. Manually calculate the output matrix resulting from applying the following filter. Do not add padding.
+\(\begin{bmatrix}
+0 &amp; ~~~1 &amp; ~~~0 \\  
+1 &amp; -4 &amp; ~~~1 \\  
+0 &amp; ~~~1 &amp; ~~~0 \\  
+\end{bmatrix}\)
+to this image (via a convolution):
+\(\begin{bmatrix}
+0 &amp; 0 &amp; 0 &amp; 0 \\  
+0 &amp; 0 &amp; 50 &amp; 50 \\  
+0 &amp; 50 &amp; 50 &amp; 50 \\  
+0 &amp; 0 &amp; 50 &amp; 0 \\  
+\end{bmatrix}\)</p>
+  </li>
+  <li>
+    <p>b. What is the name for this kind of filter?</p>
+  </li>
+  <li>How many weights (parameters, excluding biases) need to be learned for a convolutional layer that starts with a 10x10x3 a.k.a a 10x10 RGB color image and results in an output with a size of 6x6x10, using no padding and a stride of 1?
+    <ul>
+      <li>Solution: This question requires knowledge of the effects of the filter size on output image size, knowledge that an RGB image has a depth of 3, knowledge that each filter on a color image has size fxfx3, knowledge of how stride affects output size.
+        <ul>
+          <li>To go from a 10x10 to a 6x6 with a stride of 1 and no padding requires a 5x5 filter (losing 2 on each side).</li>
+          <li>Each filter (kernel) therefore is a 5x5x3, so 75 weights to be learned.</li>
+          <li>The output has 10 layers (channels), so there are 10 filters to be learned, so 75x10 = 750</li>
+        </ul>
+      </li>
+      <li>Common mistakes:
+        <ul>
+          <li>If 250, you may have forgotten about the RGB part.</li>
+          <li>If 300*360 = 108000, then you’re probably doing a fully connected layer</li>
+          <li>if 25*7 = 175, then you may have misunderstood what happens with color images and a kernel.</li>
+          <li>if 270, then you assumed a filter size of 3x3 (ChatGPT 4o mini made this error)</li>
+          <li></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Compared to the situation in the previous question (convolutional layer), how would the number of weights change if you instead had a fully connected weights between each node in the input layer and each node in the output?<br />
+ a. The number of weights would increase significantly (fully connected weights needed are more than 10x what is needed for convolutional layer).<br />
+ b. The number of weights would increase somewhat (fully connected weights needed are less than 10x what is needed for convolutional layer).<br />
+ c. The number of weights would stay the same.<br />
+ d. The number of weights would decrease somewhat (convolutional layer weights needed are less than 10x what is needed for fully connected layer). <br />
+ e. The number of weights would decrease significantly (convolutional layer weights needed are more than 10x what is needed for fully connected layer).</li>
+</ol>
 
-<h2 id="in-class-activities">In-class Activities</h2>
+<p>Consider the following situations where 9 3x3 filters are applied to the following images (no padding):<br />
+A. a 24x24 grayscale image with a stride of 1.<br />
+B. a 24x24 grayscale image with a stride of 2.<br />
+C. a 32x32 grayscale image with a stride of 2.</p>
 
-<table>
-  <thead>
-    <tr>
-      <th>Day #</th>
-      <th>Activity</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>1</td>
-      <td><a href="/activities/day01.html">Course intro and welcome to ML!</a></td>
-    </tr>
-    <tr>
-      <td>2</td>
-      <td><a href="/activities/day02.html">ML as Optimization and Linear Regression</a></td>
-    </tr>
-    <tr>
-      <td>3</td>
-      <td><a href="/activities/day03.html">Human-Centered Design for Machine Learning</a></td>
-    </tr>
-    <tr>
-      <td>4</td>
-      <td><a href="/activities/day04.html">Visit from Brian Charlson and Design Sprint</a></td>
-    </tr>
-    <tr>
-      <td>5</td>
-      <td><a href="/activities/day05.html">Linear, Ridge, and Logistic Regression &amp; Train-Test Split</a></td>
-    </tr>
-    <tr>
-      <td>6</td>
-      <td><a href="/activities/day06.html">Logistic Regression Sample Problem, Foundations of Micrograd</a></td>
-    </tr>
-    <tr>
-      <td>7</td>
-      <td><a href="/activities/day07.html">Building Towards Autodifferentiation</a></td>
-    </tr>
-    <tr>
-      <td>8</td>
-      <td><a href="/activities/day08.html">From Micrograd to Pytorch and Starting COMPAS</a></td>
-    </tr>
-    <tr>
-      <td>9</td>
-      <td><a href="/activities/day09.html">Validation sets, project planning, and multilayer perceptron</a></td>
-    </tr>
-    <tr>
-      <td>10</td>
-      <td><a href="/activities/day10.html">COMPAS discussion</a></td>
-    </tr>
-    <tr>
-      <td>11</td>
-      <td><a href="/activities/day11.html">Overfitting in Neural Networks and Project Work Time</a></td>
-    </tr>
-    <tr>
-      <td>12</td>
-      <td><a href="/activities/day12.html">Project Shareout and Starting Text as Data</a></td>
-    </tr>
-    <tr>
-      <td>13</td>
-      <td><a href="/activities/day13.html">Introduction to Transformers</a></td>
-    </tr>
-    <tr>
-      <td>14</td>
-      <td><a href="/activities/day14.html">Self-Attention in Transformers</a></td>
-    </tr>
-    <tr>
-      <td>15</td>
-      <td><a href="/activities/day15.html">Choose Your Own Adventure</a></td>
-    </tr>
-    <tr>
-      <td>16</td>
-      <td><a href="/activities/day16.html">Trust and Trustworthiness in Machine Learning and Starting BERT</a></td>
-    </tr>
-    <tr>
-      <td>17</td>
-      <td><a href="/activities/day17.html">SBERT and Finetuning</a></td>
-    </tr>
-  </tbody>
-</table>
+<ol>
+  <li>
+    <p>Rank order the number of nodes in the output from largest to smallest:<br />
+a. A, then B, then C<br />
+b. A, then C, then B<br />
+c. A and B are the same, then C<br />
+d. B and C are the same, then A<br />
+e. B, then C, then A<br />
+f. C, then B, then A<br />
+g. C, then A, then B<br />
+h. C, then A and B are the same<br />
+i. They are all the same</p>
+  </li>
+  <li>
+    <p>Ignoring the bias term, rank order each situation based on the number of weights to be learned (from largest to smallest):<br />
+a. A, then B, then C<br />
+b. A, then C, then B<br />
+c. A and B are the same, then C<br />
+d. B and C are the same, then A<br />
+e. B, then C, then A<br />
+f. C, then B, then A<br />
+g. C, then A, then B<br />
+h. C, then A and B are the same<br />
+i. They are all the same</p>
+  </li>
+  <li>
+    <p>Write code for a 5x5 filter that will result in any vertical edges showing up as positive values if the the edge is darker on the right and lighter on the left and as negative values if the edge is darker on the left and lighter on the right.  Apply no padding and use a stride of 1.</p>
+  </li>
+</ol>
 
-<h2 id="assignments">Assignments</h2>
+<p>You should be able to copy your padding and apply filter code from Assignment 15 directly into this and then just add the filter. 
+Please note that if you were getting a swirly looking penguin in Assignment 15, this was likely due to an issue with the datatype when you created the image. To solve this, you can either start with:
+image_filtered= np.zeros((output_size,output_size))<br />
+or 
+image_filtered = np.zeros_like(image, dtype = np.float32)  (this also gives you the wrong size for this exercise)
+If you’re still getting something like this, please reach out to us.</p>
 
-<table>
-  <thead>
-    <tr>
-      <th>Due at beginning of class #</th>
-      <th>Assignment</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>2</td>
-      <td><a href="/assignments/assignment01/assignment01.html">Assignment 1</a> (<a href="/assignments/assignment01/assignment01.html?showSolutions=true">with show solution button</a>)</td>
-    </tr>
-    <tr>
-      <td>3</td>
-      <td><a href="/assignments/assignment02/assignment02.html">Assignment 2</a> (<a href="/assignments/assignment02/assignment02.html?showSolutions=true">with show solution button</a>)</td>
-    </tr>
-    <tr>
-      <td>4</td>
-      <td><a href="/assignments/assignment03/assignment03.html">Assignment 3</a></td>
-    </tr>
-    <tr>
-      <td>5</td>
-      <td><a href="/assignments/assignment04/assignment04.html">Assignment 4</a></td>
-    </tr>
-    <tr>
-      <td>6</td>
-      <td><a href="/assignments/assignment05/assignment05.html">Assignment 5</a> (<a href="/assignments/assignment05/assignment05.html?showSolutions=true">with show solution button</a>)</td>
-    </tr>
-    <tr>
-      <td>6</td>
-      <td><a href="/assignments/assignment06/assignment06.html">Assignment 6</a> (<a href="/assignments/assignment06/assignment06.html?showSolutions=true">with show solution button</a>)</td>
-    </tr>
-    <tr>
-      <td>8</td>
-      <td><a href="/assignments/assignment07/assignment07.html">Assignment 7</a> (<a href="/assignments/assignment07/assignment07.html?showSolutions=true">with show solution button</a>)</td>
-    </tr>
-    <tr>
-      <td>9</td>
-      <td><a href="/assignments/assignment08/assignment08.html">Assignment 8</a></td>
-    </tr>
-    <tr>
-      <td>10</td>
-      <td><a href="/assignments/assignment09/assignment09.html">Assignment 9</a> (<a href="/assignments/assignment09/assignment09.html?showSolutions=true">with show solution button</a>)</td>
-    </tr>
-    <tr>
-      <td>12</td>
-      <td><a href="/assignments/assignment10/assignment10.html">Small data mini-project on classification</a></td>
-    </tr>
-    <tr>
-      <td>13</td>
-      <td><a href="/assignments/assignment11/assignment11.html">Bag of Words, Text Classification, and Word Embeddings</a> (<a href="/assignments/assignment11/assignment11.html?showSolutions=true">with show solution button</a>)</td>
-    </tr>
-    <tr>
-      <td>14</td>
-      <td><a href="/assignments/assignment12/assignment12.html">Generative Pre-Trained Transformers (GPTs) Part 1</a></td>
-    </tr>
-    <tr>
-      <td>15</td>
-      <td><a href="/assignments/assignment13/assignment13.html">Trust and Trustworthiness of Machine Learning Models</a></td>
-    </tr>
-    <tr>
-      <td>16</td>
-      <td><a href="/assignments/assignment14/assignment14.html">Generative Pre-Trained Transformers (GPTs) Part 2</a> (<a href="/assignments/assignment14/assignment14.html?showSolutions=true">with show solution button</a>)</td>
-    </tr>
-    <tr>
-      <td>17</td>
-      <td><a href="/assignments/assignment15/assignment15.html">Transformers for Text Embedding</a> (<a href="/assignments/assignment15/assignment15.html?showSolutions=true">with show solution button</a>)</td>
-    </tr>
-    <tr>
-      <td>18</td>
-      <td><a href="/assignments/assignment16/assignment16.html">SBERT and Finetuning</a> (<a href="/assignments/assignment16/assignment16.html?showSolutions=true">with show solution button</a>)</td>
-    </tr>
-  </tbody>
-</table>
+<p>https://colab.research.google.com/github/olinml2024/notebooks/blob/main/ML2024_ML_with_Images_As_Data_Manual_Convolutions.ipynb</p>
 
-<h2 id="other-important-documents">Other Important Documents</h2>
-<p><a href="assignments/assignment01/notation_conventions">Notation conventions</a></p>
+<p>Put the values of your filter here.</p>
 
-<p><a href="assignments/assignment10/LearningAsOptimizationTakeaways">Learning as Optimization Key Concepts</a></p>
+<p>Upload the figure generated by your code here.</p>
 
-<h2 id="overlay-image-attribution">Overlay Image Attribution</h2>
+<ol>
+  <li>Match the loss curve to what is happening</li>
+</ol>
 
-<p><span><a href="https://lone-thomasky.de/">Lone Thomasky</a> &amp; <a href="https://bits-und-baeume.org/en">Bits&amp;Bäume</a> / <a href="https://betterimagesofai.org/images?artist=LoneThomasky&amp;title=DigitalSocietyBell"> Digital Society Bell</a> / <a href="https://creativecommons.org/licenses/by/4.0/">Licenced by CC-BY 4.0</a></span></p>
+<p>(shuffle these answers in the Canvas)</p>
+
+<ol>
+  <li>
+    <p>Generally, why are convolutional layers useful for image processing? Check all that apply.<br />
+ a. They reduce the number of weights in the model compared to a fully connected layer, reducing the number of parameters that the model needs to learn.<br />
+ b. They increase the number of weights in the model compared to a fully connected layer, allowing to model to learn more information.<br />
+ c. They preserve some of the spatial information of the image.<br />
+ d. They extract image features that are relevant for the task (e.g., classifying types of images).<br />
+ e. They extract tokens that minimize the variance.<br />
+ f. Convolutional layers detect objects by directly classifying each pixel as an object.<br />
+ g. Convolutional layers are useful for image processing because they treat each pixel individually without considering its neighbors.</p>
+  </li>
+  <li>
+    <p>In transfer learning for image processing, why are pre-trained models often fine-tuned? <br />
+A. To make the model smaller and more efficient<br />
+B. To adapt the model to specific features in the new dataset<br />
+C. To replace all layers with random weights<br />
+D. To ignore the data used in the original training</p>
+  </li>
+  <li>
+    <p>In transfer learning, what does it mean to use a model as a “feature extractor”?  <br />
+A. The model’s final layers are replaced to match the new task’s requirements<br />
+B. Only the output layer is trained while other layers are frozen<br />
+C. All layers are re-trained to fit the new dataset<br />
+D. The model’s earlier layers are used to extract general features, which are then used in a new model</p>
+  </li>
+  <li>
+    <p>What is one potential drawback of using transfer learning for an image processing model?<br />
+A. It requires significantly more data than training from scratch<br />
+B. It can be harder to interpret and understand the model’s decisions<br />
+C. It prevents the model from learning new features<br />
+D. It is only effective for small-scale image processing tasks</p>
+  </li>
+</ol>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
 
 
-    </section>
+        
+      </footer>
+
+      
+
+      
+    </div>
+
+    
   </article>
+
+  
+  
 </div>
 
     </div>
