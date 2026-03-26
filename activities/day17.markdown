@@ -93,6 +93,6 @@ We'll discuss the answer to this when folks have had a chance to work through th
 
 # Starting Assignment 16
 
-In assignment 16, you will be finetuning a sentence transformer model on a dataset of your choosing.  For the rest of
-class, you should look into what datasets are available for this finetuning, how you might generate a dataset yourself,
+In [assignment 16](../assignments/assignment16/assignment16.markdown), you will be finetuning a sentence transformer 
+model on a dataset of your choosing.  For the rest of class, you should look into what datasets are available for this finetuning, how you might generate a dataset yourself,
 or what datasets we have provided for finetuning.

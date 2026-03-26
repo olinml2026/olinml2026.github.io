@@ -29,8 +29,12 @@ Colab pro for any reason, please talk to me, and we'll see if we can find anothe
 SBERT ([Sentence-Embeddings using Siamese BERT-Networks](https://arxiv.org/abs/1908.10084)) is a hugely influential paper that forms the basis of many modern approaches for computing similarity between
 two pieces of text.  As we saw in the previous assignment, being able to evaluate the similarity between two pieces of text can be used for tasks 
 such as search and question answering.  The main ideas of SBERT are described in [day 17](../../activities/day17).  
-You can also learn about SBERT from the original paper (linked previously in this paragraph).  You can also find 
-more information using the following resources.
+
+{% capture external %}
+In addition to the writeup from last class, you can learn about SBERT from the [original paper](https://arxiv.org/abs/1908.10084) 
+as well as this [fantastic video](https://www.youtube.com/watch?v=O3xbVmpdJwU).
+{% endcapture %}
+{% include external_resources.html content=external %}
 
 # Finetuning
 
