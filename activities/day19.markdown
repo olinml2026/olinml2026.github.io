@@ -1,5 +1,5 @@
 ---
-title: "Day 19: CNNs and GANs"
+title: "Day 19: Convolutional Neural Networks" 
 toc_sticky: true 
 toc_h_max: 1
 layout: problemset
@@ -8,53 +8,39 @@ published: false
 
 {% capture agenda %}
 * 10:20-10:25am: Everyone come hang out in MAC128, we'll talk about the plan and answer any logistics questions.
-* 10:25-10:45am:  Review CNNs
-* 10:45-10:55am: Jess!
-* 10:55-12:00pm: GANs
+* 10:25-10:30am: Quick ConvNet review
+* 10:30-11:00am:ConvNets - What are they good for?
+* 11:00-11:30pm: Image filter debrief
+* 11:30-12:00pm: Next assignment preview
 {% endcapture %}
 {% include agenda.html content=agenda %}
 
-# Say hello to our guests (5 minutes)
-Hi guests! Come to Olin and be our students!
+
+# Overview of a ConvNet/CNN/Convolutional Neural Network
+
+In your assignment, you looked at some of:
+* This [interactive visual overview of CNNs from a collaboration between Georgia Tech and Oregon State](https://poloclub.github.io/cnn-explainer/){:target="_blank"}. This one will allow you to explore each of the layers and functions. You can click on each of the parts to see more. There's a little video at the end that shows how to use the tool. 
+* This [write-up with some helpful visualizations by Ujjwal Karn](https://ujjwalkarn.me/2016/08/11/intuitive-explanation-convnets){:target="_blank"}.
+* [One of the earlier types of these visualizations focused on handwritten numbers](https://adamharley.com/nn_vis/){:target="_blank"}  by Adam Harley.
+* [Training on MNIST in the browser by Karpathy](https://cs.stanford.edu/people/karpathy/convnetjs/demo/mnist.html){:target="_blank"}. This one shows the weights and the gradients.
+
+You might have some questions, like:  
+* I looked at the architecture, but I'm not sure if I could explain in. Can you help?
+* Why not do this whole thing as a bunch of fully connected layer?
+* Everyone loves to make these brain analogies, is this really what the brain does?
+
+# ConvNets - What are they good for?
+
+At your tables, research an application of convolutional neural networks. Your objective is to find a meaningful, humorous, or otherwise interesting application to share with the larger class. 
+
+You will come to the front, explain your application, and show something (an image, a video, a graph from a paper). 
+
+# Image filter debrief
+
+Filters: Not just to keep you from saying something you'll regret. They also help ConvNets process images!
+
+In your assignment, you manually created filters to detect different properties of images (e.g., vertical lines). There are many correct ways to do this, and they may lead to different results. At tables, compare your filters and results with others. Be prepared to share one observation or comparison with the larger group. 
 
 
-# Review CNNs (20 minutes)
-* Filter review
-* Loss functions: how to know when your model is overfitting or not learning
-* Transfer learning
-    * Feature extractor
-    * Freezing weights
-
-# Quality assessed deliverable preview (5 minutes)
-The quality assessed deliverable is now posted.
-
-
-# Jess give a 5 minute talk! (10 minutes)
-Hmm... interesting time math!
-
-Yay, Jess!
-
-
-# Generative Adversarial Networks (GANs)  (40 minutes)
-Let's warm up with a little game: [https://real-or-fake-the-ai-game.onrender.com/](https://real-or-fake-the-ai-game.onrender.com/)
-We will rotate which table is the decider (you have 6 seconds to decide).
-
-
-
-## GAN simulation activity (30 minutes)
-A short video with a very general overview: [https://youtu.be/X994dDnmRmY](https://youtu.be/X994dDnmRmY)
-
-There is lots of code out there with varying degrees of complexity, but one thing to note is that we've learned many of the basic building blocks. Example: https://github.com/sw-song/PyTorch-GAN/blob/master/implementations/dcgan/dcgan.py
-
-
-## Bonus: Explore some fun image generation applications (alternative activity)
-We probably won't get to these in class, but they could be interesting to explore (and may also help you think about your final project deliverables):
-* [https://mitmedialab.github.io/GAN-play/](https://mitmedialab.github.io/GAN-play/)
-* [https://magenta.tensorflow.org/assets/sketch_rnn_demo/index.html](https://magenta.tensorflow.org/assets/sketch_rnn_demo/index.html)
-* [https://github.com/nashory/gans-awesome-applications](https://github.com/nashory/gans-awesome-applications)
-* [https://github.com/sw-song/PyTorch-GAN](https://github.com/sw-song/PyTorch-GAN)
-* [https://github.com/ZZUTK/Face-Aging-CAAE](https://github.com/ZZUTK/Face-Aging-CAAE)
-
-
-# Assignment preview - Project prep (5 minutes)
-It's final project time! We are going to kick-off next class and share more details. However, we want you to take a little time to explore in preparation for coming up with a good final project. Our goal is that everyone leaves class Thursday with a final project idea and a partner (if they want one).
+# Next assignment preview
+We'll discuss the next assignment and get started.

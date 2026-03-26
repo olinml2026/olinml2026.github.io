@@ -1,58 +1,98 @@
 ---
-title: "Day 17: Goodbye Text, Hello Images and Convolution"
+title: "Day 17: SBERT and Finetuning"
 toc_sticky: true 
 toc_h_max: 1
 layout: problemset
-published: false
+published: true
 ---
 
 {% capture agenda %}
-* 10:20-10:25am: Everyone come hang out in MAC128, we'll talk about the plan and answer any logistics questions.
-* 10:25-10:50am: Closing out LLMs 
-* 10:50-12:00pm: Images as data
+* 3:45-3:55pm: Debrief on previous assignment
+* 3:45-4:35pm: SBERT and finetuning
+* 4:35-5:25pm: Start assignment on finetuning
 {% endcapture %}
 {% include agenda.html content=agenda %}
 
+# Debrief on previous assignment
 
-# Share-out your application of LLMs
-In [Assignment 14](../assignments/assignment14/assignment14#proposing-an-llm-for-an-application-and-context-you-care-about), we asked you to propose an application of an LLM for a context that you care about. We'll do a share-out about our applications and possibly think about where they fall on some axes (e.g., at Olin or beyond; positive to negative; practical to whimsical). 
+How did it go?  What sort of performance did you get?  How did you use the output of the ```[cls]``` token or did 
+you use the average of all token embeddings?  Any lingering questions? 
 
-# Identifying Gaps in Knowledge
+# BERT Limitations
 
-Let's return to the visualization from the exercise 1 of assignment 14.  With folks around you, identify aspects of the visualization that you don't understand.  That is, what are the pieces in this diagram that we did not touch on in class thus far?
+The motivation for SBERT arises from a key limitation of BERT that we bumped up against in the previous assignment 
+when trying to use BERT to quantify the similarity of two pieces of text.  Specifically, BERT can be used for 
+sentence similarity in two ways.
 
-## Follow-up From Class
+* Method 1: For a given query, $x_q$, and each potential match $x_i$, feed the ``[CLS]`` $x_q$ ``[SEP]`` $x_i$ ``
+[SEP]`` into the BERT model.  BERT will return the likelihood that that $x_q$ and $x_i$ are related.
+* Method 2 (what we tried): For a given query, $x_q$, compute an embedding vector $\bm{\phi}(x_q)$.  Do the same for 
+  each $x_i$ and then use cosine similarity to match queries to pieces of text.
 
-Hi folks.  We wanted to take a little bit of time to clarify a few pieces of the walkthrough of the nano-GPT visualization.  The questions people asked were great, so hopefully this information can help.
+{% capture problem %}
+Suppose it takes $1$ms to run a sentence pair through BERT (method 1).  If you have 1,000 queries and 10,000 
+potential matches, how long would it take to match each query to a piece of text?
 
-***Point 1:*** In [this visualization](https://bbycroft.net/llm) we have 3 attention heads.  Each attention head has its own independent matrices for computing keys, queries, and values.
+Suppose it takes $0.5$ms to run a single sentence through BERT.  Further, it takes $1$ microsecond to compute the 
+cosine similarity of two embeddings returned by BERT (method 2).  How long would it take to match each query to a 
+piece of text (assuming the same numbers of each as in the previous part)?
 
+When is method 2 preferable to method 1?
+{% endcapture %}
+{% include problem.html problem=problem %}
 
-***Point 2:*** The value vectors for each token in each of our 3 attention heads is 16-dimensional.  These 16-dimensional vectors are added together in a weighted fashion (with the weight given by the self-attention matrix) to compute the output of each attention head.
+# SBERT
 
-***Point 3:*** We stack the outputs of each attention head to get back to our original 48-dimensional space (the dimensionality of the embedding space is $C=48$).
+SBERT ([Sentence-Embeddings using Siamese BERT-Networks](https://arxiv.org/abs/1908.10084)) is a hugely influential paper that forms the basis of many modern approaches for computing similarity between
+two pieces of text.  The structure employed in the model is shown in the figure below.
 
-***Point 4:*** We then take the vector from the previous step and pass it through a projection matrix to translate from whatever representations were learned by each attention head to something that is appropriate to add to the input embedding (via the residual pathway).  Amanda asked a brilliant question about this in class, which was why this translation is needed since all of the attention heads have the same inputs.  This is still a hard question to answer, and Jess Brown did a nice job offering a suggestion that each of the attention heads might learn a different internal meaning of value space (the $V$ matrix), and we need a linear mapping (a matrix) in order to combine these different value spaces (across heads) in a meaningful way. After reviewing the visualization again, there is one more way to explain this.  If we look back at [this section of the 3B1B video](https://youtu.be/eMlx5fFNoYc?t=818) we see two ways to think about computing value vectors in an attention head.
+![A schematic of the Siamese network structure for SBERT](images/SBERT_architecture.png)
 
-We could (but don't) think of the matrix, $\mathbf{W_V}$, that maps from embeddings to value vectors as a $C \times C$ matrix (where $C$ is the embedding dimension).  As Grant Sanderson, of 3B1B, points out, this approach would use many more parameters to represent the mapping from embeddings to value vectors (versus embeddings to keys or embeddings to queries).  To make the number of parameters similar between these three entities (keys, queries, and values), we can instead think of two steps for computing our value vectors.  First, we use a matrix $\mathbf{V_\downarrow}$ to go from the embedding space to a lower dimensional space (in the visualization we go from $C=48$ to $16$ dimensions).  Second, we use a matrix called $\mathbf{V_\uparrow}$ to go from the 16-dimensional representation back to the $48$ dimensional representation.  As Grant explains, this change to how we compute our value vectors constrains the number of parameters versus having $\mathbf{W_V}$ as a $C \times C$ (48 by 48) matrix.  Mapping this intuition onto our visualization of NanoGPT, we can think of the box labeled ``V Weights`` as playing the role of $\mathbf{V_\downarrow}$ and the box labeled ``Project Weights`` as containing the $\mathbf{V_\uparrow}$ matrices for each of the three attention heads (stacked).
+There are two potential architectures for SBERT shown in the figure above.  They both share the same initial steps 
+in that you first take a BERT model and encode each sentence pair independently.  The outputs of BERT (obtained 
+through a pooling strategy such as averaging over the last hidden states) are either concatenated and fed into a 
+either a softmax classifier (which outputs whether the sentences are similar) or the cosine similarity metric (which 
+will be close to 1 when the sentences are similar).
 
-# LLM Quality Assessed Deliverable and plans for the rest of the semester
+## SBERT Training Process
 
-We'll talk about the timeline (some details now added to the homepage).
+{% capture problem %}
+Given what you know about text-based machine learning models, how would you train this model?  What are the design 
+decisions you'd have to make in deciding how to train it?  It will probably be more fun to reason through it without 
+reading the paper, but you are welcome to consult the paper if you'd like.
 
-# Images as data
+We'll discuss how the actual training process works once folks have had a chance to come up with their own ideas.
+{% endcapture %}
+{% include problem.html problem=problem %}
 
-Let's discuss:  
-What is different about images compared to a set of variables (like in the Titanic data set)? What about compared to text data?
+## SBERT Inference Process
 
+{% capture problem %}
+When doing inference (meaning answering which sentences are most similar to each of a set of queries), SBERT can be 
+considerably faster than Method 1 for BERT.  Why can SBERT do inference faster?  How would inference work for the 
+SBERT model?
 
-One common application of image data is in medical image processing. Here's a few recent papers, including one about one about clinical trials. 
-* [McKinney, S.M., Sieniek, M., Godbole, V. et al. International evaluation of an AI system for breast cancer screening. Nature 577, 89–94 (2020). https://doi.org/10.1038/s41586-019-1799-6](https://www.nature.com/articles/s41586-019-1799-6)
-* [Esteva, A., Chou, K., Yeung, S. et al. Deep learning-enabled medical computer vision. npj Digit. Med. 4, 5 (2021). https://doi.org/10.1038/s41746-020-00376-2](https://rdcu.be/dYXIV)
-* [Abràmoff, M.D., Lavin, P.T., Birch, M. et al. Pivotal trial of an autonomous AI-based diagnostic system for detection of diabetic retinopathy in primary care offices. npj Digital Med 1, 39 (2018). https://doi.org/10.1038/s41746-018-0040-6](https://www.nature.com/articles/s41746-018-0040-6)
+We'll discuss the answer to this when folks have had a chance to work through this problem.
+{% endcapture %}
+{% include problem.html problem=problem %}
 
+# Finetuning SBERT to a new Domain
 
-# Preview of assignment and talking about convolution
+The idea of finetuning a machine learning model is increasingly important.  In the finetuning process, you take an 
+existing machine learning model and train it on a new dataset.  Through this training process, the parameters of the 
+model (e.g., the parameters of the neural network) are adapted to fit this new dataset.  Finetuning can be 
+understood as a particular approach to the more general idea of [transfer learning](https://en.wikipedia.org/wiki/Transfer_learning) 
+where knowledge learned from a task is re-used in order to boost performance on a related task.
 
-We'll learn about convolutional neural networks to process images. First, we need to understand what a convolution means in this context.
-[Assignment 15 - Images as Data and Convolutions](assignments/assignment15/assignment15)
+{% capture problem %}
+In comparison to the alternative of training a model from scratch on a dataset what are some advantages of fine-tuning?  What are some disadvantages?
+
+We'll discuss the answer to this when folks have had a chance to work through this problem.
+{% endcapture %}
+{% include problem.html problem=problem %}
+
+# Starting Assignment 16
+
+In assignment 16, you will be finetuning a sentence transformer model on a dataset of your choosing.  For the rest of
+class, you should look into what datasets are available for this finetuning, how you might generate a dataset yourself,
+or what datasets we have provided for finetuning.

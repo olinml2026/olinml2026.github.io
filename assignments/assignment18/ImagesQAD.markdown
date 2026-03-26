@@ -1,4 +1,4 @@
----
+s---
 title: "Quality Assessed Deliverable: Machine Learning with Images"
 toc_sticky: true 
 toc_h_max: 1

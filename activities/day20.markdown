@@ -1,5 +1,5 @@
 ---
-title: "Day 20: Final Project Launch"
+title: "Day 20: CNNs and GANs"
 toc_sticky: true 
 toc_h_max: 1
 layout: problemset
@@ -8,23 +8,53 @@ published: false
 
 {% capture agenda %}
 * 10:20-10:25am: Everyone come hang out in MAC128, we'll talk about the plan and answer any logistics questions.
-* 10:25-10:45am: We'll go over the final project deliverables and structure
-* 10:45-11:00am: Discuss projects with folks sitting around you
-* 11:00-12pm: Idea clustering and team formation
+* 10:25-10:45am:  Review CNNs
+* 10:45-10:55am: Jess!
+* 10:55-12:00pm: GANs
 {% endcapture %}
 {% include agenda.html content=agenda %}
 
-# Overview of Final Project Structure
+# Say hello to our guests (5 minutes)
+Hi guests! Come to Olin and be our students!
 
-We'll walk you through [the final project deliverables, due dates, and assessment](../assignments/assignment17/FinalProject).
+
+# Review CNNs (20 minutes)
+* Filter review
+* Loss functions: how to know when your model is overfitting or not learning
+* Transfer learning
+    * Feature extractor
+    * Freezing weights
+
+# Quality assessed deliverable preview (5 minutes)
+The quality assessed deliverable is now posted.
 
 
-# Discuss Projects at Tables
+# Jess give a 5 minute talk! (10 minutes)
+Hmm... interesting time math!
 
-You had some time to think of final project topics and why they are important to you. Take some time and share with folks around you (aim for a group size of around 5) what you came up with.  As a listener feel free to offer additional ideas, mutual interest in the project, or useful clarifying questions (we won't have time for long discussions though).
+Yay, Jess!
 
-# Idea Clustering and Team Formation
 
-Write your favorite ideas on Post-It notes and include your name.  Place the Post-Its on the board in the appropriate category.  Once the ideas are clustered, you can congregate by one of the clusters to find students who are interested in similar topics.  Through this process we hope you will find someone to work with or additional ideas for your own project topic (if you are working alone).
+# Generative Adversarial Networks (GANs)  (40 minutes)
+Let's warm up with a little game: [https://real-or-fake-the-ai-game.onrender.com/](https://real-or-fake-the-ai-game.onrender.com/)
+We will rotate which table is the decider (you have 6 seconds to decide).
 
-If you are not able to find a partner (and want one) or could work alone but are open to having a partner, please fill out [this survey](https://docs.google.com/forms/d/e/1FAIpQLSfN8POj2iA2fPjhiQehWcTxvGcy4lJgLs_S_wTZjqbwck0hMA/viewform) no later than 5pm on Thursday November 14th.  If you have a partner already, you do not (and should not) fill out this survey.
+
+
+## GAN simulation activity (30 minutes)
+A short video with a very general overview: [https://youtu.be/X994dDnmRmY](https://youtu.be/X994dDnmRmY)
+
+There is lots of code out there with varying degrees of complexity, but one thing to note is that we've learned many of the basic building blocks. Example: https://github.com/sw-song/PyTorch-GAN/blob/master/implementations/dcgan/dcgan.py
+
+
+## Bonus: Explore some fun image generation applications (alternative activity)
+We probably won't get to these in class, but they could be interesting to explore (and may also help you think about your final project deliverables):
+* [https://mitmedialab.github.io/GAN-play/](https://mitmedialab.github.io/GAN-play/)
+* [https://magenta.tensorflow.org/assets/sketch_rnn_demo/index.html](https://magenta.tensorflow.org/assets/sketch_rnn_demo/index.html)
+* [https://github.com/nashory/gans-awesome-applications](https://github.com/nashory/gans-awesome-applications)
+* [https://github.com/sw-song/PyTorch-GAN](https://github.com/sw-song/PyTorch-GAN)
+* [https://github.com/ZZUTK/Face-Aging-CAAE](https://github.com/ZZUTK/Face-Aging-CAAE)
+
+
+# Assignment preview - Project prep (5 minutes)
+It's final project time! We are going to kick-off next class and share more details. However, we want you to take a little time to explore in preparation for coming up with a good final project. Our goal is that everyone leaves class Thursday with a final project idea and a partner (if they want one).
