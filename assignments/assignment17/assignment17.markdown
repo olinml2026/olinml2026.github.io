@@ -4,8 +4,10 @@ toc_sticky: true
 toc_h_max: 1
 layout: problemset
 due_on_class: 19
-published: false
+published: true
 ---
+
+> Note: still finalizing
 
 # Learning Objectives
 
@@ -137,9 +139,6 @@ $$
 20 & 0  \\  
 \end{bmatrix}
 $$
-
-Please note that ChatGPT4o got this wrong when we put it in, but ChatGPTo1-preview got it correct. 
-
 {% endcapture %}
 
 {% include problem.html problem=problem solution=sol %}
