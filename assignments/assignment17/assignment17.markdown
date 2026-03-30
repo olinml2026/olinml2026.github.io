@@ -7,8 +7,6 @@ due_on_class: 19
 published: true
 ---
 
-> Note: still finalizing
-
 # Learning Objectives
 
 {% capture content %}
@@ -150,7 +148,7 @@ $$
 {% capture problem %}
 In this notebook, you will create your own filters and apply them like they are part of a convolutional neural network. You will need to do a little research on filter types. 
 
-[https://colab.research.google.com/github/olinml2024/notebooks/blob/main/ML2024_Assignment_15_Manual_Convolutions.ipynb](https://colab.research.google.com/github/olinml2024/notebooks/blob/main/ML2024_Assignment_15_Manual_Convolutions.ipynb){:target="_blank"}
+[https://colab.research.google.com/drive/146PINGkBpFUGo8AhyEk8yNH5JFgOezXv?usp=sharing](https://colab.research.google.com/drive/146PINGkBpFUGo8AhyEk8yNH5JFgOezXv?usp=sharing){:target="_blank"}
 
 {% endcapture %}
 
