@@ -527,9 +527,9 @@ captures.</p>
 &amp; 1 &amp; 0 &amp;  0 &amp;  0 &amp;  0 &amp;  0 \\ 0 &amp;  1&amp; 1 &amp;  1 &amp; 0 &amp; 1 &amp;  1 &amp;  1 &amp; 0 &amp;  1 &amp;  1 &amp;  1 &amp;  1 &amp;  1 &amp; 0 &amp;  1 &amp;  1 &amp;  1 &amp;  1 &amp;  1 &amp; 0 &amp; 1 &amp;  1 &amp;  1 &amp;  1 &amp;  1  \end{bmatrix}
 $$</p>
 
-<p><button hidden="true" onclick="HideShowElement(&quot;subpartsolution-46&quot;)" class="togglebutton">Show / Hide Solution</button></p>
+<p><button hidden="true" onclick="HideShowElement(&quot;subpartsolution-48&quot;)" class="togglebutton">Show / Hide Solution</button></p>
 
-<div id="subpartsolution-46" class="solution" style="
+<div id="subpartsolution-48" class="solution" style="
     background-color: #cefad0;
     border-left: 6px solid #6500B4;
     padding: 1em 1em 1em 1em;
@@ -561,9 +561,9 @@ attention &amp;= (\mathbf{W_q} \mathbf{r}_i) \cdot (\mathbf{W_k} \mathbf{r}_j)
 \end{aligned}
 $$</p>
 
-<p><button hidden="true" onclick="HideShowElement(&quot;subpartsolution-47&quot;)" class="togglebutton">Show / Hide Solution</button></p>
+<p><button hidden="true" onclick="HideShowElement(&quot;subpartsolution-49&quot;)" class="togglebutton">Show / Hide Solution</button></p>
 
-<div id="subpartsolution-47" class="solution" style="
+<div id="subpartsolution-49" class="solution" style="
     background-color: #cefad0;
     border-left: 6px solid #6500B4;
     padding: 1em 1em 1em 1em;
@@ -601,9 +601,9 @@ $$</p>
 
 <p>Come up with a short sequence of characters, $s$, consisting of some vowels and some consonants (keep the length pretty small).  Compute the matrix of all queries corresponding to your sequence, $\mathbf{Q}$, where the number of rows of $\mathbf{Q}$ is equal to the number of tokens (the length of $s$) and the number of columns is equal to the query dimension.  Compute the matrix of all keys corresponding to your sequence, $\mathbf{K}$, where the number of rows of $\mathbf{K}$ is equal to the number of tokens (the length of $s$) and the number of columns is equal to the query dimension.  Compute the (pre-masking) attention of each token to each other token using the formula $\mathbf{Q} \mathbf{K}^\top$.  Apply masking to ensure that keys (columns) corresponding to later tokens do not influence earlier queries (rows).  Note: that the visualization in the 3B1B video (at <a href="https://youtu.be/eMlx5fFNoYc?t=514">this time stamp</a>) has this matrix laid out with query tokens as columns and the keys as rows (we wanted to let you know to minimize confusion).  Apply a softmax across each row (as before, this is shown on columns in the 3B1B video) to determine a weight for each token and show the resultant matrix.</p>
 
-<p><button hidden="true" onclick="HideShowElement(&quot;subpartsolution-48&quot;)" class="togglebutton">Show / Hide Solution</button></p>
+<p><button hidden="true" onclick="HideShowElement(&quot;subpartsolution-50&quot;)" class="togglebutton">Show / Hide Solution</button></p>
 
-<div id="subpartsolution-48" class="solution" style="
+<div id="subpartsolution-50" class="solution" style="
     background-color: #cefad0;
     border-left: 6px solid #6500B4;
     padding: 1em 1em 1em 1em;
@@ -650,9 +650,9 @@ softmax(mask(\mathbf{Q} \mathbf{K}^\top)) &amp;= \begin{bmatrix}    1 &amp;  0 &
 
 <p>Define the value for the $i$th token as $\mathbf{W_V} \mathbf{r}_i$ where $\mathbf{W_V}$ is the identity matrix and $\mathbf{r}_i$ is the embedding of the token.  Construct the matrix $\mathbf{V}$ by computing the values of each token using the formula $\mathbf{W_V} \mathbf{r}_i$ and then transforming each value to a row of a matrix.  Show that taking your attention matrix from Part C and multiplying it on the right by $\mathbf{V}$ computes the output of the attention head which will give a vector close to $\begin{bmatrix} 1 \ 0 \end{bmatrix}$ if no consonants preceded a token and $\begin{bmatrix} 0 \ 1 \end{bmatrix}$ if at least one consonant preceded a token.</p>
 
-<p><button hidden="true" onclick="HideShowElement(&quot;subpartsolution-49&quot;)" class="togglebutton">Show / Hide Solution</button></p>
+<p><button hidden="true" onclick="HideShowElement(&quot;subpartsolution-51&quot;)" class="togglebutton">Show / Hide Solution</button></p>
 
-<div id="subpartsolution-49" class="solution" style="
+<div id="subpartsolution-51" class="solution" style="
     background-color: #cefad0;
     border-left: 6px solid #6500B4;
     padding: 1em 1em 1em 1em;
@@ -682,9 +682,9 @@ softmax(mask(\mathbf{Q} \mathbf{K}^\top)) &amp;= \begin{bmatrix}    1 &amp;  0 &
 
 <p>Suppose you wanted the attention head to determine the proportion of consonants that precede (rather than just whether a consonant precedes a word or not).  How would you modify $\mathbf{W_Q}$ and $\mathbf{W_K}$ to achieve this result?  You should not need to change $\mathbf{V}$.</p>
 
-<p><button hidden="true" onclick="HideShowElement(&quot;subpartsolution-50&quot;)" class="togglebutton">Show / Hide Solution</button></p>
+<p><button hidden="true" onclick="HideShowElement(&quot;subpartsolution-52&quot;)" class="togglebutton">Show / Hide Solution</button></p>
 
-<div id="subpartsolution-50" class="solution" style="
+<div id="subpartsolution-52" class="solution" style="
     background-color: #cefad0;
     border-left: 6px solid #6500B4;
     padding: 1em 1em 1em 1em;
@@ -774,9 +774,9 @@ $$
 $$
 </div>
 
-<p><button hidden="true" onclick="HideShowElement(&quot;subpartsolution-51&quot;)" class="togglebutton">Show / Hide Solution</button></p>
+<p><button hidden="true" onclick="HideShowElement(&quot;subpartsolution-53&quot;)" class="togglebutton">Show / Hide Solution</button></p>
 
-<div id="subpartsolution-51" class="solution" style="
+<div id="subpartsolution-53" class="solution" style="
     background-color: #cefad0;
     border-left: 6px solid #6500B4;
     padding: 1em 1em 1em 1em;
@@ -809,9 +809,9 @@ attention &amp;= (\mathbf{W_q} \mathbf{r}_i ) \cdot (\mathbf{W_k} \mathbf{r}_j)
 $$
 </div>
 
-<p><button hidden="true" onclick="HideShowElement(&quot;subpartsolution-52&quot;)" class="togglebutton">Show / Hide Solution</button></p>
+<p><button hidden="true" onclick="HideShowElement(&quot;subpartsolution-54&quot;)" class="togglebutton">Show / Hide Solution</button></p>
 
-<div id="subpartsolution-52" class="solution" style="
+<div id="subpartsolution-54" class="solution" style="
     background-color: #cefad0;
     border-left: 6px solid #6500B4;
     padding: 1em 1em 1em 1em;
@@ -842,9 +842,9 @@ $$</div>
 
 <p>Come up with a short sequence of characters, $s$, consisting of some vowels and some consonants (keep the length pretty small).  Compute the matrix of all queries corresponding to your sequence, $\mathbf{Q}$, where the number of rows of $\mathbf{Q}$ is equal to the number of tokens (the length of $s$) and the number of columns is equal to the query dimension.  Compute the matrix of all keys corresponding to your sequence, $\mathbf{K}$, where the number of rows of $\mathbf{K}$ is equal to the number of tokens (the length of $s$) and the number of columns is equal to the query dimension.  Compute the (pre-masking) attention of each token to each other token using the formula $\mathbf{Q} \mathbf{K}^\top$.  Apply masking to ensure that keys (columns) corresponding to later tokens do not influence earlier queries (rows).  Note: that the visualization in the 3B1B video (at <a href="https://youtu.be/eMlx5fFNoYc?t=514">this time stamp</a>) has this matrix laid out with query tokens as columns and the keys as rows (we wanted to let you know to minimize confusion).  Apply a softmax across each row (as before, this is shown on columns in the 3B1B video) to determine a weight for each token and show the resultant matrix.</p>
 
-<p><button hidden="true" onclick="HideShowElement(&quot;subpartsolution-53&quot;)" class="togglebutton">Show / Hide Solution</button></p>
+<p><button hidden="true" onclick="HideShowElement(&quot;subpartsolution-55&quot;)" class="togglebutton">Show / Hide Solution</button></p>
 
-<div id="subpartsolution-53" class="solution" style="
+<div id="subpartsolution-55" class="solution" style="
     background-color: #cefad0;
     border-left: 6px solid #6500B4;
     padding: 1em 1em 1em 1em;
@@ -893,9 +893,9 @@ softmax(mask(\mathbf{Q} \mathbf{K}^\top)) &amp;= \begin{bmatrix}    1.0000     &
 
 <p><strong>Hint:</strong> you’ll want to construct $\mathbf{V}$ so consonants are mapped to the vector \(\begin{bmatrix} 1 \\ 0 \end{bmatrix}\) and vowels are mapped to the vector \(\begin{bmatrix} 0 \\ 0 \end{bmatrix}\).</p>
 
-<p><button hidden="true" onclick="HideShowElement(&quot;subpartsolution-54&quot;)" class="togglebutton">Show / Hide Solution</button></p>
+<p><button hidden="true" onclick="HideShowElement(&quot;subpartsolution-56&quot;)" class="togglebutton">Show / Hide Solution</button></p>
 
-<div id="subpartsolution-54" class="solution" style="
+<div id="subpartsolution-56" class="solution" style="
     background-color: #cefad0;
     border-left: 6px solid #6500B4;
     padding: 1em 1em 1em 1em;
@@ -930,9 +930,9 @@ softmax(mask(\mathbf{Q} \mathbf{K}^\top)) &amp;= \begin{bmatrix}    1.0000     &
 
 <p>Why was it important to have a position embedding in order to get this attention head to behave (i.e., have the output) the way we wanted it to?</p>
 
-<p><button hidden="true" onclick="HideShowElement(&quot;subpartsolution-55&quot;)" class="togglebutton">Show / Hide Solution</button></p>
+<p><button hidden="true" onclick="HideShowElement(&quot;subpartsolution-57&quot;)" class="togglebutton">Show / Hide Solution</button></p>
 
-<div id="subpartsolution-55" class="solution" style="
+<div id="subpartsolution-57" class="solution" style="
     background-color: #cefad0;
     border-left: 6px solid #6500B4;
     padding: 1em 1em 1em 1em;
