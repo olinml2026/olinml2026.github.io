@@ -1,0 +1,723 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.17.2 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<script>
+class AnchorNoProxy extends HTMLElement {
+  constructor() {
+    super();
+    this.attachShadow({ mode: "open" });
+    this._$a = null;
+  }
+  connectedCallback() {
+    const href = this.getAttribute("href") || "#";
+    if (this.dataset.hasOwnProperty('canvas')) {
+        const canvasURL = this.dataset.canvas;
+        this.shadowRoot.innerHTML = `<style>a:hover, a:active { outline: 0; }\na { color: #5197ad; }\na:visited { color: #5197ad; }\na:hover { color: #266477; outline: 0; }</style><a href="${href}" data-canvas="${canvasURL}"><slot></slot></a>`;
+    } else {
+        this.shadowRoot.innerHTML = `<style>a:hover, a:active { outline: 0; }\na { color: #5197ad; }\na:visited { color: #5197ad; }\na:hover { color: #266477; outline: 0; }</style><a href="${href}"><slot></slot></a>`;
+    }
+    this._$a = this.shadowRoot.querySelector("a");
+    this._$a.addEventListener("click", e => {
+      var url = this.getAttribute('href');
+      e.preventDefault();
+      if (document.referrer.startsWith('https://lms.hypothes.is') && this.dataset.hasOwnProperty('canvas')) {
+        // get rid of proxy if it was added
+        var n = this.dataset.canvas.search('https://olin.instructure.com');
+        window.open(this.dataset.canvas.substring(n), '_blank');
+      } else {
+        window.open(url, '_blank');
+      }
+    });
+  }
+  static get observedAttributes() { return ["href"]; }
+  attributeChangedCallback(name, oldValue, newValue) {
+    if (oldValue !== newValue) {
+      if (this._$a === null) return;
+      this._$a.setAttribute("href", newValue);
+    }
+  }
+}
+
+customElements.define("a-no-proxy", AnchorNoProxy);
+
+class NoProxy extends HTMLAnchorElement {
+  connectedCallback() {
+    this.addEventListener("click", e => {
+      e.preventDefault();
+      if (document.referrer.startsWith('https://lms.hypothes.is') && this.dataset.hasOwnProperty('canvas')) {
+        // get rid of proxy if it was added
+        var n = this.dataset.canvas.search('https://olin.instructure.com');
+      	window.open(this.dataset.canvas.substring(n), '_blank');
+      } else {
+      	window.open(this.href, '_blank');
+      }
+    });
+  }
+}
+
+customElements.define("no-proxy", NoProxy, { extends: "a" });
+
+class ConfirmLink extends HTMLAnchorElement {
+  connectedCallback() {
+    this.addEventListener("click", e => {
+      const result = confirm(`Are you sure you want to go to '${this.href}'?`);
+      if (!result) e.preventDefault();
+    });
+  }
+}
+
+customElements.define("confirm-link", ConfirmLink, { extends: "a" });
+
+</script>
+
+<!-- begin _includes/seo.html --><title>Day 19: Convolutional Neural Networks and Privacy in ML - Machine Learning Spring 2026 @ Olin College</title>
+<meta name="description" content="Website">
+
+
+
+<meta property="og:type" content="website">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Machine Learning Spring 2026 @ Olin College">
+<meta property="og:title" content="Day 19: Convolutional Neural Networks and Privacy in ML">
+<meta property="og:url" content="/activities/day19.html">
+
+
+  <meta property="og:description" content="Website">
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="canonical" href="/activities/day19.html">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": null,
+      "url": "/"
+    
+  }
+</script>
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Machine Learning Spring 2026 @ Olin College Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+<script src="https://cdn.jsdelivr.net/npm/mermaid@11.9.0/dist/mermaid.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.28/dist/katex.min.css" integrity="sha384-Wsr4Nh3yrvMf2KCebJchRJoVo1gTU6kcP05uRSh5NV3sj9+a8IomuJoQzf3sMq4T" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.28/dist/katex.min.js" integrity="sha384-+W9OcrYK2/bD7BmUAk+xeFAyKp0QjyRQUCxeU31dfyTt/FrPsUgaBTLLkVf33qWt" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.28/dist/contrib/auto-render.min.js" integrity="sha384-hCXGrW6PitJEwbkoStFjeJxv+fSOOQKOPbJxSfM6G5sWZjAyWhXiTIIAmQqnlLlh" crossorigin="anonymous"></script>
+
+<script>
+document.addEventListener("DOMContentLoaded", async function () {
+  // Render Mermaid first, from untouched source.
+  mermaid.initialize({ startOnLoad: false });
+  await mermaid.run(); // renders all .mermaid blocks
+
+  // render KaTeX
+  renderMathInElement(document.body, {
+          delimiters: [
+              {left: '$$', right: '$$', display: true},
+              {left: '$', right: '$', display: false},
+              {left: '\\(', right: '\\)', display: false},
+              {left: '\\[', right: '\\]', display: true}
+          ],
+    throwOnError: false,
+  });
+});
+</script>
+
+<script type="text/javascript">
+function HideShowElement(divID) {
+    const x = document.getElementById(divID);
+    if (x.style.display === "none") {
+        x.style.display = "block";
+    } else {
+        x.style.display = "none";
+    }
+}
+</script>
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" rel="stylesheet">
+
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', function() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const showSolutions = urlParams.get('showSolutions');
+    const showAllSolutions = urlParams.get('showAllSolutions');
+    const divs = document.querySelectorAll('button.togglebutton');
+
+    if (showSolutions == 'true') {
+        // Loop through the selected divs and manipulate them
+        divs.forEach(div => {
+            div.removeAttribute('hidden');
+        });
+    }
+
+    const solutionDivs = document.querySelectorAll('[id^=solution]');
+    const subpartSolutionDivs = document.querySelectorAll('[id^=subpartsolution]');
+
+    if (showAllSolutions == 'true') {
+        solutionDivs.forEach(div => {
+            console.log('test')
+            div.style.display = 'block';
+        });
+
+        subpartSolutionDivs.forEach(div => {
+            console.log('test')
+            div.style.display = 'block';
+        });
+    }
+});
+</script>
+
+<script type="text/javascript">
+function HideShowElement(divID) {
+    const x = document.getElementById(divID);
+    if (x.style.display === "none") {
+        x.style.display = "block";
+    } else {
+        x.style.display = "none";
+    }
+}
+</script>
+<style>
+:root {
+    --box-bg-color: #fff; /* Default background color */
+}
+
+.homework-box {
+    background-color: var(--box-bg-color);
+    border: 2px solid #ccc;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    width: 300px;
+}
+
+.homework-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    position: relative;
+}
+
+.homework-icon {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+}
+
+/* Handle missing or empty src attribute */
+.homework-icon[src=""],
+.homework-icon:not([src]) {
+    content: url('https://upload.wikimedia.org/wikipedia/commons/a/ab/Games_for_Learning_%2827470%29_-_The_Noun_Project.svg');
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+}
+
+.homework-title {
+    margin: 0;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.homework-content {
+    font-size: 16px;
+    color: #333;
+}
+</style>
+
+<style>
+.solution {
+    display: none; /* Hide solutions by default */
+    background-color: #f9f9f9;
+    padding: 10px;
+    border-left: 4px solid #007bff;
+    margin-top: 10px;
+}
+
+.toggle-button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    display: inline-block;
+}
+
+.toggle-button.hide-solution {
+    background-color: #dc3545; /* Red background for hide button */
+}
+
+img.mermaid {
+     max-width:500px;
+     text-align: center;
+}
+
+</style>
+
+<div style="display:none;">
+$
+\newcommand{\mlvec}[1]{\mathbf{#1}}
+\newcommand{\mlmat}[1]{\mathbf{#1}}
+\DeclareMathOperator*{\argmax}{arg\,max\,}
+\DeclareMathOperator*{\argmin}{arg\,min\,}
+$
+</div>
+
+  </head>
+
+  <body class="layout--problemset">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+          <a class="site-logo" href="/"><img src="https://qeacourse.github.io/RoboNinjaWarrior/website_graphics/olinlogo.png" alt=""></a>
+        
+        <a class="site-title" href="/">
+          Machine Learning Spring 2026 @ Olin College
+          
+        </a>
+        <ul class="visible-links"></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Day 19: Convolutional Neural Networks and Privacy in ML">
+    
+    
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">Day 19: Convolutional Neural Networks and Privacy in ML
+</h1>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title">
+<i class="fas fa-file-alt"></i> On this page</h4></header>
+	      
+                <ul class="toc__menu">
+  <li><a href="#">Agenda</a></li>
+  <li><a href="#overview-of-a-convnetcnnconvolutional-neural-network">Overview of a ConvNet/CNN/Convolutional Neural Network</a></li>
+  <li><a href="#image-filter-debrief">Image filter debrief</a></li>
+  <li><a href="#data-augmentation">Data augmentation</a></li>
+  <li><a href="#privacy-in-machine-learning">Privacy in machine learning</a></li>
+  <li><a href="#next-assignment-preview">Next assignment preview</a></li>
+</ul>
+	      	
+            </nav>
+          </aside>
+        
+        
+<div class="tip" style="
+    border-left: 6px solid #000000;
+    margin: 2em 2em 2em 2em;">
+	<div style="background-color: #4c00b0;
+	                column-gap: 1rem;
+					display: flex;
+					padding: 1em 1em 1em 1em;">
+	<div class="notice-bulb" style="
+	    font-family: 'Font Awesome 5 Free',serif;
+	    vertical-align: middle;
+	    font-weight: 900;
+	    font-size: xx-large;
+	    color: #FFFFFF;">
+        <i class="fas fa-list"></i>
+</div>
+	<h1 style="font-size: xx-large; font-weight: 900; color: white;">Agenda</h1>
+    </div>
+	<div style="padding: 1em 1em 1em 1em;">
+	   
+<ul>
+  <li>3:45-3:55pm: Quick ConvNet review</li>
+  <li>3:55-4:15pm: Image filter debrief</li>
+  <li>4:15-4:35: Data augmentation</li>
+  <li>4:35-5:15: Privacy in machine learning</li>
+  <li>5:15-5:25pm: Next assignment preview</li>
+</ul>
+
+	</div>
+</div>
+
+<h1 id="overview-of-a-convnetcnnconvolutional-neural-network">Overview of a ConvNet/CNN/Convolutional Neural Network</h1>
+
+<p>In your assignment, you looked at some of:</p>
+<ul>
+  <li>This <a href="https://poloclub.github.io/cnn-explainer/" target="_blank">interactive visual overview of CNNs from a collaboration between Georgia Tech and Oregon State</a>. This one will allow you to explore each of the layers and functions. You can click on each of the parts to see more. There’s a little video at the end that shows how to use the tool.</li>
+  <li>This <a href="https://ujjwalkarn.me/2016/08/11/intuitive-explanation-convnets" target="_blank">write-up with some helpful visualizations by Ujjwal Karn</a>.</li>
+  <li>
+<a href="https://adamharley.com/nn_vis/" target="_blank">One of the earlier types of these visualizations focused on handwritten numbers</a>  by Adam Harley.</li>
+  <li>
+<a href="https://cs.stanford.edu/people/karpathy/convnetjs/demo/mnist.html" target="_blank">Training on MNIST in the browser by Karpathy</a>. This one shows the weights and the gradients.</li>
+</ul>
+
+<p>You might have some questions, like:</p>
+<ul>
+  <li>I looked at the architecture, but I’m not sure if I could explain in. Can you help?</li>
+  <li>Why not do this whole thing as a bunch of fully connected layer?</li>
+  <li>Everyone loves to make these brain analogies, is this really what the brain does?</li>
+</ul>
+
+<h1 id="image-filter-debrief">Image filter debrief</h1>
+
+<p>Filters: Not just to keep you from saying something you’ll regret. They also help ConvNets process images!</p>
+
+<p>In your assignment, you manually created filters to detect different properties of images (e.g., vertical lines). There are many correct ways to do this, and they may lead to different results. At tables, compare your filters and results with others. Be prepared to share one observation or comparison with the larger group.</p>
+
+<h1 id="data-augmentation">Data augmentation</h1>
+
+<p>When training computer vision modules, data augmentation techniques are often uses to increase the diversity of 
+training images.  I’ll talk a little bit about the sorts of augmentations you might see, and then we can see <a href="https://colab.research.google.com/drive/1lBUjxz5hJleKTt_zTrFwSyER0Er3wA8-?usp=sharing">how you 
+would do those in PyTorch</a>.</p>
+
+<h1 id="privacy-in-machine-learning">Privacy in machine learning</h1>
+
+<p>There are a number of ways in which machine learning systems pose a risk to privacy.  Today, we’re going to talk 
+about the privacy of user data when interacting with machine learning systems.  Another class of privacy concerns, 
+which we will not talk about today, is the role of machine learning systems in surveillance.</p>
+
+<div style="display: normal;
+        border-left: 6px solid #0065B4;
+        margin: 2em 0em 2em 0em;">
+    <div class="tip" style="background-color: #ECF7FF;
+        padding: 1em 1em 1em 1em;
+        display: flex;
+        column-gap: 1rem;">
+        <div class="notice-bulb" style="
+	    font-family: 'Font Awesome 5 Free',serif;
+	    vertical-align: middle;
+	    font-weight: 900;
+	    font-size: xx-large;
+	    color: #ff6f00;">
+            <i class="fas fa-question"></i>
+</div>
+	<div style="font-size: xx-large; font-weight: 900;">Exercise 1</div>
+    </div>
+<div style="display: normal; padding: 1em 1em 1em 1em;">
+	
+<p>Take a look at some of the materials in this section.  With respect to privacy risks associated with AI, were there 
+ones that you found particularly surprising?  Which one feels like the most pressing to address as a society?<br>
+With respect to the privacy frameworks (FIPPs and GDPR), are there particular considerations that you feel are too 
+onerous?  Are there protections that feel particularly important? Start out by discussing at your table and we’lll share out.</p>
+
+
+    <button hidden="true" onclick='HideShowElement("solution-1")' class="togglebutton">Show / Hide Solution</button>
+
+<div id="solution-1" class="solution" style="
+    background-color: #cefad0;
+    border-left: 6px solid #6500B4;
+    padding: 1em 1em 1em 1em;
+    display: none;
+    column-gap: 2rem;
+    margin: 2em 2em 2em 2em;">
+    <div style="display: normal">
+<p style="font-weight: 900; font-size: x-large">Solution</p>
+
+
+     </div>
+</div>
+</div>
+</div>
+
+<h2 id="overview-of-privacy-risks-and-some-regulatory-frameworks">Overview of Privacy Risks (and some regulatory frameworks)</h2>
+
+<p>IBM has a nice concise article <a href="https://www.ibm.com/think/insights/ai-privacy">Exploring privacy issues in the age of AI</a></p>
+
+<h2 id="fair-information-practice-principles-fipps">Fair Information Practice Principles (FIPPs)</h2>
+
+<p>One highly influential framework for data privacy is the Fair Information Practice Principles (FIPPs).  These 
+principles were articulated at a 1980 at the <a href="https://en.wikipedia.org/wiki/Convention_for_the_Protection_of_Individuals_with_Regard_to_Automatic_Processing_of_Personal_Data">Convention for_the_Protection_of_Individuals_with_Regard_to_Automatic_Processing_of_Personal_Data</a></p>
+
+<p>This convention eventually gave rise to <a href="https://rm.coe.int/1680078b37">a treaty</a> that the member states of the 
+Council of Europe ratified.  The <a href="https://www.europarl.europa.eu/meetdocs/2014_2019/plmrep/COMMITTEES/LIBE/DV/2018/09-10/Convention_108_EN.pdf">framework was updated in 2018</a>, largely in response to artificial intelligence.</p>
+
+<p>The document sets out the following principles that govern privacy of data processing systems.</p>
+
+<p><strong>Legitimacy of data processing and quality of data</strong></p>
+<ol>
+  <li>Data processing shall be proportionate in relation to the legitimate purpose pursued and reflect at all stages of 
+the processing a fair balance between all interests concerned, whether public or private, and the rights and 
+freedoms at stake.</li>
+  <li>Each Party shall provide that data processing can be carried out on the basis of the free, specific, informed and 
+unambiguous consent of the data subject or of some other legitimate basis laid down by law.</li>
+  <li>Personal data undergoing processing shall be processed lawfully.</li>
+  <li>Personal data undergoing processing shall be
+    <ul>
+      <li>processed fairly and in a transparent manner;</li>
+      <li>collected for explicit, specified and legitimate purposes and not processed in a way incompatible with those 
+purposes; further processing for archiving purposes in the public interest, scientific or historical research 
+purposes or statistical purposes is, subject to appropriate safeguards, compatible with thosepurposes;</li>
+      <li>adequate, relevant and not excessive in relation to the purposes for which they are processed;</li>
+      <li>accurate and, where necessary, kept up to date;</li>
+      <li>preserved in a form which permits identification of data subjects for no longer than is necessary for the 
+purposes for which those data are processed.</li>
+    </ul>
+  </li>
+</ol>
+
+<p><strong>Special Categories of Data</strong></p>
+
+<ol>
+  <li>The processing of: genetic data; personal data relating to offences, criminal proceedings and convictions, and 
+related security measures;– biometric data uniquely identifying a person;– personal data for the information they 
+reveal relating to racial or ethnic origin, political opinions, trade-union membership, religious or other beliefs, 
+health or sexual life,shall only be allowed where appropriate safeguards are enshrined in law, complementing those 
+of this Convention.</li>
+  <li>Such safeguards shall guard against the risks that the processing of sensitive data may present for the interests, 
+rights and fundamental freedoms of the data subject, notably a risk of discrimination.</li>
+</ol>
+
+<p><strong>Transparency of processing</strong></p>
+<ol>
+  <li>Each Party shall provide that the controller informs the data subjects of: a. his or her identity and habitual 
+residence or establishment; b. the legal basis and the purposes of the intended processing; c. the categories of 
+personal data processed; d. the recipients or categories of recipients of the personal data, if any; and e. the means 
+of exercising the rights set out in Article 9,</li>
+  <li>Paragraph 1 shall not apply where the data subject already has the relevant information.</li>
+  <li>Where the personal data are not collected from the data subjects, the controller shall not be required to provide 
+such information where the processing is expressly prescribed by law or this proves to be impossible or involves 
+disproportionate efforts.</li>
+</ol>
+
+<p><strong>Article 9 – Rights of the data subject</strong></p>
+
+<p>Every individual shall have a right:</p>
+<ol>
+  <li>not to be subject to a decision significantly affect-ing him or her based solely on an automated process-ing of 
+data without having his or her views taken into consideration;</li>
+  <li>to obtain, on request, at reasonable intervals and without excessive delay or expense, confirmation of the 
+processing of personal data relating to him or her, the communication in an intelligible form of the data processed, 
+all available information on their origin, on the preservation period as well as any other information that the 
+controller is required to provide in order to ensure the transparency of processing in accordance with Article 8, 
+paragraph 1;</li>
+  <li>to obtain, on request, knowledge of the reason-ing underlying data processing where the results of such processing 
+are applied to him or her;</li>
+  <li>to object at any time, on grounds relating to his or her situation, to the processing of personal data concerning 
+him or her unless the controller demonstrates legitimate grounds for the processing which override his or her 
+interests or rights and fundamental freedoms;</li>
+  <li>to obtain, on request, free of charge and with-out excessive delay, rectification or erasure, as the case may be, 
+of such data if these are being, or have been, processed contrary to the provisions of this Convention;</li>
+  <li>to have a remedy under Article 12 where his other rights under this Convention have been violated;</li>
+  <li>to benefit, whatever his or her nationality or residence, from the assistance of a supervisory authority within 
+the meaning of Article 15, in exercising his orher rights under this Convention.</li>
+</ol>
+
+<h2 id="gdpr">GDPR</h2>
+
+<p>The <a href="https://gdpr-info.eu/">GDPR</a> (General Data Protection Regulation) is an EU regulatory framework to protect personal data and privacy.<br>
+It is governed by largely the same principles as the FIPPs, but focuses more on regulation methods and frameworks 
+rather than solely articulating broad principles (although you can take a look at the <a href="https://gdpr-info.eu/chapter-2/">specific principles outlined</a>)</p>
+
+<p>As it relates to AI, one important part of GDPR is <a href="https://gdpr-info.eu/art-22-gdpr/">article 22</a></p>
+
+<blockquote>
+  <p>Article 22 provides protections to individuals against
+decisions “based solely on automated processing” of
+personal data without human intervention, also called
+automated decision-making (ADM).24 It enshrines
+the right of individuals not to be subject to ADM
+where these decisions could produce an adverse
+legal or similarly significant effect on them. Given the
+widespread use of ADM as it relates to health, loan
+approvals, job applications, law enforcement, and
+other fields, the article plays a crucial role in enforcing
+a minimum degree of human involvement in such
+decision-making processes</p>
+</blockquote>
+
+<h2 id="allowances-for-ai-training-and-development">Allowances for AI training and development</h2>
+
+<p>There have been some (controversial) efforts to streamline GDPR compliance for AI companies.  Here is an <a href="https://www.amnesty.org/en/latest/news/2026/04/eu-simplification-laws/">article 
+critiquing the effort</a>.</p>
+
+<h2 id="privacy-case-study">Privacy Case Study</h2>
+
+<p>Technology for people with disabilities has been an area where there has often been a tension between the privacy 
+concerns of individual users and the need for companies to either monetize or explicitly tune their systems to user 
+data.  One relevant case study is <a href="https://aira.io/">AIRA</a>, which is an on-demand visual interpretation service.<br>
+They articulate their <a href="https://aira.io/aira-explorer-privacy-policy/">privacy policy</a> in this document.</p>
+
+<p>Ethan Smith, who was one of the six students who worked on the EchoMinds project over the summer, recorded this 
+video describing how he thought about the privacy / functionality tradeoffs of joining <a href="https://aira.io/introducing-project-astra-join-the-trusted-testers-waitlist-today/">AIRA’s trusted tester program</a> 
+that came with significant privacy tradeoffs.</p>
+
+<p>Let’s <a href="https://olincollege.sharepoint.com/:v:/s/EducateAI/IQDQFjbyXRu2Q7CYZkkWa9AuAdGooBxWyNRZnmU-F0HRlXM?e=ejRtgS&amp;nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZy1MaW5rIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXcifX0%3D">watch Ethan’s video together</a> (not pubicly available currently)</p>
+
+<p>Some discussion questions:</p>
+<ol>
+  <li>If you were in Ethan’s shoes, would you trade your personal data for access to AIRA’s service?</li>
+  <li>Do you think what AIRA is doing is ethical?</li>
+  <li>If you were developing your own technology for people who are blind, how would you handle use privacy?</li>
+</ol>
+
+<h1 id="next-assignment-preview">Next assignment preview</h1>
+
+<p>We’ll discuss the next assignment and get started.</p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+        
+      </footer>
+
+      
+
+      
+    </div>
+
+    
+  </article>
+
+  
+  
+</div>
+
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">© 2026 Machine Learning Spring 2026 @ Olin College.</div>
+
+      </footer>
+    </div>
+
+    <script src="/assets/js/copyCode.js"></script>
+
+
+  <script src="/assets/js/main.min.js"></script>
+  <script src="https://kit.fontawesome.com/4eee35f757.js"></script>
+
+
+
+
+
+
+
+
+
+
+  </body>
+</html>
