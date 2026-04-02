@@ -35,7 +35,7 @@ Filters: Not just to keep you from saying something you'll regret. They also hel
 
 In your assignment, you manually created filters to detect different properties of images (e.g., vertical lines). There are many correct ways to do this, and they may lead to different results. At tables, compare your filters and results with others. Be prepared to share one observation or comparison with the larger group. 
 
-# Data augmentation
+# Data augmentation and image transformations
 
 When training computer vision modules, data augmentation techniques are often uses to increase the diversity of 
 training images.  I'll talk a little bit about the sorts of augmentations you might see, and then we can see [how you 
