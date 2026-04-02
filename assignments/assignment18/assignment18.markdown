@@ -30,7 +30,6 @@ However, for some of you, you might get a deeper sense of the material if you co
 Here is the [notebook](https://colab.research.google.com/github/olinml2024/notebooks/blob/main/Assignment_16_Convolutional_Neural_Networks_in_PyTorch.ipynb){:target="_blank"}.
 
 # What to submit
-For your quality assessed deliverable, we may to ask you to submit answers to some of these questions, so keep that in mind as you document your work.
 
 For people using assessment option B, you don't need to submit all of your code. We aren't giving you solutions here, so you also don't need to do the corrections. Please submit a document that answers the questions below. You will need to include some key figures (which are mostly generated for you).
 
@@ -97,7 +96,9 @@ The PyTorch documentation has a [nice description and example of transfer learni
 You can modify our existing notebook to do transfer learning. You'll need to read through the given transfer learning example and extract relevant parts of the code. 
 
 {% capture problem %}
-Research transfer learning. Apply transfer learning to the CIFAR10 and our dessert dataset (our notebook should help you with loading these), comparing how well it works on these two datasets under a few different conditions (e.g., small number of epochs, small number of training images).
+Research transfer learning. Apply transfer learning to the CIFAR10 or our dessert dataset (our notebook should help 
+you with loading these), comparing how well transfer learning works under a few different 
+conditions (e.g., small number of epochs, small number of training images).
 
 Write a short summary what you experimented with and what you learned (including key figures or pieces of information). You do not need to share your full code (and it's fine to run things and then copy an image). 
 
