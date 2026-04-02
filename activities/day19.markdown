@@ -6,12 +6,14 @@ layout: problemset
 published: false
 ---
 
+> still finalizing
+
 {% capture agenda %}
-* 10:20-10:25am: Everyone come hang out in MAC128, we'll talk about the plan and answer any logistics questions.
-* 10:25-10:30am: Quick ConvNet review
-* 10:30-11:00am:ConvNets - What are they good for?
-* 11:00-11:30pm: Image filter debrief
-* 11:30-12:00pm: Next assignment preview
+* 3:45-3:55pm: Quick ConvNet review
+* 3:55-4:15pm: Image filter debrief
+* 4:15-4:35: Data augmentation
+* 4:35-5:15: Privacy in machine learning
+* 5:15-5:25pm: Next assignment preview
 {% endcapture %}
 {% include agenda.html content=agenda %}
 
@@ -29,18 +31,19 @@ You might have some questions, like:
 * Why not do this whole thing as a bunch of fully connected layer?
 * Everyone loves to make these brain analogies, is this really what the brain does?
 
-# ConvNets - What are they good for?
-
-At your tables, research an application of convolutional neural networks. Your objective is to find a meaningful, humorous, or otherwise interesting application to share with the larger class. 
-
-You will come to the front, explain your application, and show something (an image, a video, a graph from a paper). 
-
 # Image filter debrief
 
 Filters: Not just to keep you from saying something you'll regret. They also help ConvNets process images!
 
 In your assignment, you manually created filters to detect different properties of images (e.g., vertical lines). There are many correct ways to do this, and they may lead to different results. At tables, compare your filters and results with others. Be prepared to share one observation or comparison with the larger group. 
 
+# Data augmentation
+
+TODO (bring back some of the image transform stuff from 2024)
+
+# Privacy in machine learning
+
+TODO
 
 # Next assignment preview
 We'll discuss the next assignment and get started.

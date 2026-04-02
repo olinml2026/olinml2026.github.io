@@ -4,8 +4,11 @@ toc_sticky: true
 toc_h_max: 1
 layout: problemset
 due_on_class: 20
-published: false
+published: true
+no_solutions: true
 ---
+
+> Still finalizing
 
 # Learning Objectives
 
@@ -17,7 +20,8 @@ published: false
 {% include learning_objectives.html content=content %}
 
 
-This assignment is very open ended with the intent of creating space for you experiment and learn and then share back in class.  
+This assignment is very open-ended with the intent of creating space for you experiment and learn and then share 
+back in class.
 
 
 # A CNN notebook
@@ -85,7 +89,10 @@ If you are stuck on what to do, you might experiment with increasing the model c
 {% include problem.html problem=problem %}
 
 # Transfer learning
-People often use transfer learning, where we build on a pre-trained model (that was trained on a huge dataset) and then tweak it for our own purpose. This is incredibly powerful. Here's [one video](https://youtu.be/MQkVIYzpK-Y){:target="_blank"} on transfer learning, but feel free to find your own resource (and skip ahead in this video).  
+People often use transfer learning, where we build on a pre-trained model (that was trained on a huge dataset) and 
+then tweak it for our own purpose. This is incredibly powerful. Here's [one video](https://www.youtube.com/watch?v=DyPW-994t7w){:target="_blank"} on transfer learning.  The video also has an application of transfer learning to 
+the task of flower classification.  Even though the code is in Keras (a different framework from Pytorch for machine 
+learning), the overall takeaways from the application are transferable (pun intended).
 
 The PyTorch documentation has a [nice description and example of transfer learning](https://pytorch.org/tutorials/beginner/transfer_learning_tutorial.html){:target="_blank"}. Note that you can open it in a Colab notebook at the top of the page.
 
