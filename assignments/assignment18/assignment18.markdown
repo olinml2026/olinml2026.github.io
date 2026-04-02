@@ -8,8 +8,6 @@ published: true
 no_solutions: true
 ---
 
-> Still finalizing
-
 # Learning Objectives
 
 {% capture content %}
