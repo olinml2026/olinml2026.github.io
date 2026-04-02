@@ -51,7 +51,7 @@ which we will not talk about today, is the role of machine learning systems in s
 Take a look at some of the materials in this section.  With respect to privacy risks associated with AI, were there 
 ones that you found particularly surprising?  Which one feels like the most pressing to address as a society?  
 With respect to the privacy frameworks (FIPPs and GDPR), are there particular considerations that you feel are too 
-onerous?  Are there protections that feel particularly important? Start out by discussing at your table and we'lll share out.
+onerous?  Are there protections that feel particularly important? Start out by discussing at your table and we'll share out.
 {% endcapture %}
 {% include problem.html problem=problem %}
 
