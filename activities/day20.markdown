@@ -1,53 +1,47 @@
 ---
-title: "Day 20: CNNs and GANs"
+title: "Day 20: GANs, Diffusion, and Final Project Launch"
 toc_sticky: true 
 toc_h_max: 1
 layout: problemset
-published: false
+published: true
 ---
 
 {% capture agenda %}
-* 10:20-10:25am: Everyone come hang out in MAC128, we'll talk about the plan and answer any logistics questions.
-* 10:25-10:45am:  Review CNNs
-* 10:45-10:55am: Jess!
-* 10:55-12:00pm: GANs
+* 3:45-4:05pm: CNN Shareout
+* 4:05-4:35pm:  GANs and Diffusion Models
+* 4:35-5:25pm: Final project launch
 {% endcapture %}
 {% include agenda.html content=agenda %}
 
-# Say hello to our guests (5 minutes)
-Hi guests! Come to Olin and be our students!
+# CNN Shareout (15 minutes)
+At your tables, discuss what you found doing assignment 18.  We'll make a list of key takeaways together as a class.
 
+# GANs and Diffusion Models (30 minutes)
 
-# Review CNNs (20 minutes)
-* Filter review
-* Loss functions: how to know when your model is overfitting or not learning
-* Transfer learning
-    * Feature extractor
-    * Freezing weights
+GANs and Diffusion Models are methods of generating synthetic images, videos, or audio.  These tools have gotten so 
+good, that the lines between real and fake have become very hazy.  Some interesting examples can be found in the 
+isthisAI subreddit (for example).
 
-# Quality assessed deliverable preview (5 minutes)
-The quality assessed deliverable is now posted.
-
-
-# Jess give a 5 minute talk! (10 minutes)
-Hmm... interesting time math!
-
-Yay, Jess!
-
-
-# Generative Adversarial Networks (GANs)  (40 minutes)
-Let's warm up with a little game: [https://real-or-fake-the-ai-game.onrender.com/](https://real-or-fake-the-ai-game.onrender.com/)
-We will rotate which table is the decider (you have 6 seconds to decide).
-
-
-
-## GAN simulation activity (30 minutes)
-A short video with a very general overview: [https://youtu.be/X994dDnmRmY](https://youtu.be/X994dDnmRmY)
+A nice [overview of GANS](https://www.youtube.com/watch?v=TpMIssRdhco).
 
 There is lots of code out there with varying degrees of complexity, but one thing to note is that we've learned many of the basic building blocks. Example: https://github.com/sw-song/PyTorch-GAN/blob/master/implementations/dcgan/dcgan.py
 
+Here is [a really great conceptual overview of diffusion models](https://www.youtube.com/watch?v=x2GRE-RzmD8) (including guided diffusion where a text prompt 
+guides the image generation process.)
 
-## Bonus: Explore some fun image generation applications (alternative activity)
+
+## Ethical issues in image generation
+
+Here is a well-cited paper on [the effects of these tools on artists](https://dl.acm.org/doi/10.1145/3600211.3604681)
+.  The paper goes through the various cultural and economic harms that these tools bring and discusses relevant 
+copyright statutes.
+
+AI-driven media generation poses all sorts of potential issues for democracy.  Here is a law review article from 
+ages ago (2019!) that [systematically goes through risks and potentially safe guards](https://scholarship.law.bu.edu/cgi/viewcontent.cgi?article=1640&context=faculty_scholarship).
+
+
+## Bonus: Explore some fun image generation applications
+
 We probably won't get to these in class, but they could be interesting to explore (and may also help you think about your final project deliverables):
 * [https://mitmedialab.github.io/GAN-play/](https://mitmedialab.github.io/GAN-play/)
 * [https://magenta.tensorflow.org/assets/sketch_rnn_demo/index.html](https://magenta.tensorflow.org/assets/sketch_rnn_demo/index.html)
@@ -55,6 +49,20 @@ We probably won't get to these in class, but they could be interesting to explor
 * [https://github.com/sw-song/PyTorch-GAN](https://github.com/sw-song/PyTorch-GAN)
 * [https://github.com/ZZUTK/Face-Aging-CAAE](https://github.com/ZZUTK/Face-Aging-CAAE)
 
+# Overview of Final Project Structure
 
-# Assignment preview - Project prep (5 minutes)
-It's final project time! We are going to kick-off next class and share more details. However, we want you to take a little time to explore in preparation for coming up with a good final project. Our goal is that everyone leaves class Thursday with a final project idea and a partner (if they want one).
+We'll walk you through [the final project deliverables, due dates, and assessment](../assignments/assignment19/assignment19).
+
+
+## Discuss Projects at Tables
+
+You had some time to think of final project topics and why they are important to you. Take some time and share with folks around you (aim for a group size of around 5) what you came up with.  As a listener feel free to offer additional ideas, mutual interest in the project, or useful clarifying questions (we won't have time for long discussions though).
+
+## Idea Clustering and Team Formation
+
+Write your favorite ideas on Post-It notes and include your name.  Place the Post-Its on the board in the appropriate category.  Once the ideas are clustered, you can congregate by one of the clusters to find students who are interested in similar topics.  Through this process we hope you will find someone to work with or additional ideas for your own project topic (if you are working alone).
+
+If you are not able to find a partner (and want one) or could work alone but are open to having a partner, please 
+fill out [this survey](https://docs.google.com/forms/d/e/1FAIpQLSfN8POj2iA2fPjhiQehWcTxvGcy4lJgLs_S_wTZjqbwck0hMA/viewform) 
+no later than 5pm on Tuesday, April 7th.  If you have a partner already, you do not (and should not) 
+fill out this survey.
