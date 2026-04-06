@@ -51,7 +51,9 @@ We probably won't get to these in class, but they could be interesting to explor
 
 # Overview of Final Project Structure
 
-We'll walk you through [the final project deliverables, due dates, and assessment](../assignments/assignment19/assignment19).
+We'll go through [a slide deck to introduce the final project](https://docs.google.com/presentation/d/1euhdibsJXYnk3B6kC6bwcQNwGjzhkIHzTMk31NnDraE/edit?usp=sharing)
+
+A more detailed walkthrough of [the final project deliverables, due dates, and assessment](../assignments/assignment19/assignment19) is also available (note: some timings are still being finalized
 
 
 ## Discuss Projects at Tables

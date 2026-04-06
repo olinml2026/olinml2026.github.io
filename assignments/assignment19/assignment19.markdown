@@ -5,6 +5,7 @@ toc_h_max: 1
 layout: problemset
 due_on_class: final event
 published: true
+no_solutions: true
 ---
 
 # Overview
@@ -22,7 +23,12 @@ Please see [this spreadsheet](https://docs.google.com/spreadsheets/d/1ow6NdGBVwG
 
 # Choosing a Project Topic and Possibly a Partner
 
-On Canvas (Project Topic Brainstorm assignment), we gave you a link to the 2019 project posters. We also have [some slides](https://docs.google.com/presentation/d/1akIhFbNFulvfhqR_4A5tHM_oXKQtMw5akulwpdXB3RU/edit?usp=sharing) we'd like to go through to help introduce the final project.
+On Canvas (see link in the Final Project Module), we gave you a link to the 2019 project posters. We also have [some slides](https://docs.google.com/presentation/d/1euhdibsJXYnk3B6kC6bwcQNwGjzhkIHzTMk31NnDraE/edit?usp=sharing) we'd like to go through to help introduce the final project.
+
+The [day 20](../../activities/day20) page has a link to a survey you can use to submit your project interest if you 
+need help 
+finding a 
+partner.
 
 # Deliverable: Project Proposal
 
