@@ -99,7 +99,7 @@ The assessment will also include smaller allocation to:
 
 During the final event, we will celebrate your work with a project expo.  We'll have stations setup for you to show your work to your fellow classmates (and instructors).  If you'd like, you can make a poster for this event, but you can also use a laptop to show your final deliverables.
 
-Rubric: attendance and full participation in the final will earn a 100%.  If you cannot attend the final event, you must make arrangements to meet with Sam or Paul to go over your final project (similarly to what you would do for folks who come by our station if you were to be there for the final event).
+Rubric: attendance and full participation in the final will earn a 100%.  If you cannot attend the final event, you must make arrangements to meet with me to go over your final project (similarly to what you would do for folks who come by our station if you were to be there for the final event).
 
 # Final Reflection
 
