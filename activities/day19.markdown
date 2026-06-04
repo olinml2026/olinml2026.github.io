@@ -164,7 +164,7 @@ Ethan Smith, who was one of the six students who worked on the EchoMinds project
 video describing how he thought about the privacy / functionality tradeoffs of joining [AIRA's trusted tester program](https://aira.io/introducing-project-astra-join-the-trusted-testers-waitlist-today/) 
 that came with significant privacy tradeoffs.
 
-Let's [watch Ethan's video together](https://olincollege.sharepoint.com/:v:/s/EducateAI/IQDQFjbyXRu2Q7CYZkkWa9AuAdGooBxWyNRZnmU-F0HRlXM?e=ejRtgS&nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZy1MaW5rIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXcifX0%3D) (not pubicly available currently)
+Let's [watch Ethan's video together](https://olincollege.sharepoint.com/:v:/s/EducateAI/IQDQFjbyXRu2Q7CYZkkWa9AuAdGooBxWyNRZnmU-F0HRlXM?e=ejRtgS&nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZy1MaW5rIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXcifX0%3D) (not publicly available currently)
 
 Some discussion questions:
 1. If you were in Ethan's shoes, would you trade your personal data for access to AIRA's service?
